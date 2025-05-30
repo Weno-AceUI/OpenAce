@@ -9,6 +9,10 @@ OpenAce is a lightweight, modular base operating system developed by Weno. Desig
 - Integrated with AceUI for a modern user experience
 - Support for a wide range of hardware via device drivers
 
+## Development Roadmap
+We have provided a development Roadmap below:
+![OpenAce Project Roadmap](roadmap.png)
+
 ## Integrating OpenAce into Your ROM
 OpenAce is designed to be easily integrated into custom ROMs. ROM developers do **not** need to clone the entire OpenAce repository. Instead, you only need to integrate the in-development OpenAce API into your ROM project to extend, customize, and interact with the OS at various levels.
 
