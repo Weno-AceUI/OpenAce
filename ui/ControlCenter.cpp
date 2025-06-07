@@ -28,15 +28,10 @@ int main() {
 
     // Serve the frontend
     CROW_ROUTE(app, "/")([]{
-<<<<<<< HEAD
     crow::response res;
     res.set_static_file_info("control_center.html");
     return res;
 });
-=======
-        return crow::response::file("control_center.html");
-    });
->>>>>>> 6f0a2d717bcf5a01f76a8a5ecd1cd52c2cf40c50
 
     // Get state
     CROW_ROUTE(app, "/api/state").methods("GET"_method)([](){

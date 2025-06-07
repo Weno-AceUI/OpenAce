@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/WebCppApp.dir/base/frameworks/WebCpp/WebCppApp.cpp.o -o WebCppApp  /Users/dylando/libs/ultralight/libUltralightCore.a /Users/dylando/libs/ultralight/libUltralight.a
