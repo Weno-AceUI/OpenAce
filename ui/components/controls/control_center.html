@@ -2,69 +2,113 @@
 <html>
 <head>
     <title>OpenAce Control Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: sans-serif; background: #f5f5f5; margin: 0; padding: 2em; }
-        .panel { background: #fff; border-radius: 8px; padding: 2em; max-width: 400px; margin: auto; box-shadow: 0 2px 8px #0001; }
-        .row { display: flex; align-items: center; margin-bottom: 1.5em; }
-        .row label { flex: 1; }
-        .toggle-btn { width: 60px; height: 32px; border-radius: 16px; background: #ddd; position: relative; cursor: pointer; }
-        .toggle-btn.on { background: #4caf50; }
-        .toggle-knob { width: 28px; height: 28px; border-radius: 50%; background: #fff; position: absolute; top: 2px; left: 2px; transition: left 0.2s; }
-        .toggle-btn.on .toggle-knob { left: 30px; }
-        .slider { width: 120px; }
+        /* Inactive Toggle Button bg-color inactive */
+        .inactive {
+            background-color: #42C7E2;
+        }
+        /* Custom slider thumb and track transitions */
+        input[type="range"].slider {
+            transition: background 0.3s;
+        }
+        input[type="range"].slider::-webkit-slider-thumb {
+            transition: background 0.3s, box-shadow 0.3s, transform 0.2s cubic-bezier(.34,1.56,.64,1);
+        }
+        input[type="range"].slider:focus::-webkit-slider-thumb {
+            background: #fde047;
+            box-shadow: 0 0 0 4px #fde04744;
+        }
+        input[type="range"].slider:focus {
+            background: #fef9c3;
+        }
+        input[type="range"].slider::-moz-range-thumb {
+            transition: background 0.3s, box-shadow 0.3s, transform 0.2s cubic-bezier(.34,1.56,.64,1);
+        }
+        input[type="range"].slider:focus::-moz-range-thumb {
+            background: #fde047;
+            box-shadow: 0 0 0 4px #fde04744;
+        }
+        input[type="range"].slider:focus {
+            background: #fef9c3;
+        }
+        input[type="range"].slider::-ms-thumb {
+            transition: background 0.3s, box-shadow 0.3s, transform 0.2s cubic-bezier(.34,1.56,.64,1);
+        }
+        input[type="range"].slider:focus::-ms-thumb {
+            background: #fde047;
+            box-shadow: 0 0 0 4px #fde04744;
+        }
+        input[type="range"].slider:focus {
+            background: #fef9c3;
+        }
     </style>
 </head>
-<body>
-    <div class="panel">
-        <h2>OpenAce Control Center</h2>
-        <div id="toggles"></div>
-        <div id="sliders"></div>
+<body class="bg-transparent min-h-screen flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white rounded-xl shadow-lg p-4 sm:p-8 w-full max-w-xs sm:max-w-md md:max-w-lg">
+        <form id="control-form" autocomplete="off">
+            <div class="mb-8">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button type="button" class="toggle-btn active px-6 py-2 rounded-full bg-green-500 text-white font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-300 shadow-sm" id="wifi-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-120q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29Zm0-440q75 0 142.5 24T745-470q20 15 20.5 39.5T748-388q-17 17-42 17.5T661-384q-38-26-84-41t-97-15q-51 0-97 15t-84 41q-20 14-45 13t-42-18q-17-18-17-42.5t20-39.5q55-42 122.5-65.5T480-560Zm0-240q125 0 235.5 41T914-643q20 17 21 42t-17 43q-17 17-42 17.5T831-556q-72-59-161.5-91.5T480-680q-100 0-189.5 32.5T129-556q-20 16-45 15.5T42-558q-18-18-17-43t21-42q88-75 198.5-116T480-800Z"/></svg>
+                    </button>
+                    <button type="button" class="toggle-btn active px-6 py-2 rounded-full bg-green-500 text-white font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-300 shadow-sm" id="bluetooth-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M440-137v-247L284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l156 156v-247q0-18 12-29.5t28-11.5q8 0 15 3t13 9l172 172q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L536-480l144 144q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L508-108q-6 6-13 9t-15 3q-16 0-28-11.5T440-137Zm80-439 76-76-76-74v150Zm0 342 76-74-76-76v150Z"/></svg>
+                    </button>
+                    <button type="button" class="toggle-btn inactive px-6 py-2 rounded-full text-gray-700 font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300 shadow-sm" id="airplane-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M400-408 147-307q-24 10-45.5-4.5T80-352v-22q0-12 5.5-23t15.5-18l299-209v-176q0-33 23.5-56.5T480-880q33 0 56.5 23.5T560-800v176l299 209q10 7 15.5 18t5.5 23v22q0 26-21.5 40.5T813-307L560-408v144l103 72q8 6 12.5 14.5T680-159v24q0 20-16.5 32.5T627-96l-147-44-147 44q-20 6-36.5-6.5T280-135v-24q0-10 4.5-18.5T297-192l103-72v-144Z"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <div class="mb-6 flex flex-col sm:flex-row items-center gap-4">
+                    <label for="brightness" class="w-28">Brightness</label>
+                    <input class="slider flex-1 accent-yellow-400 transition-all duration-300" id="brightness" type="range" min="0" max="100" value="70">
+                    <span id="brightness-value" class="w-12 text-right transition-colors duration-300">70%</span>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <label for="volume" class="w-28">Volume</label>
+                    <input class="slider flex-1 accent-blue-400 transition-all duration-300" id="volume" type="range" min="0" max="100" value="40">
+                    <span id="volume-value" class="w-12 text-right transition-colors duration-300">40%</span>
+                </div>
+            </div>
+        </form>
     </div>
     <script>
-        async function fetchState() {
-            const res = await fetch('/api/state');
-            return await res.json();
+        // Toggle button logic with press animation
+        function toggleButton(btn) {
+            btn.classList.toggle('active');
+            btn.classList.add('scale-95');
+            setTimeout(() => btn.classList.remove('scale-95'), 120);
+            if (btn.classList.contains('active')) {
+                btn.classList.remove('inactive', 'text-gray-700');
+                btn.classList.add('bg-green-500', 'text-white');
+            } else {
+                btn.classList.remove('bg-green-500', 'text-white');
+                btn.classList.add('inactive', 'text-gray-700');
+            }
         }
-        async function toggle(idx) {
-            await fetch('/api/toggle/' + idx, {method: 'POST'});
-            render();
+        document.getElementById('wifi-btn').onclick = function() { toggleButton(this); };
+        document.getElementById('bluetooth-btn').onclick = function() { toggleButton(this); };
+        document.getElementById('airplane-btn').onclick = function() { toggleButton(this); };
+
+        // Slider value display and thumb bounce
+        function bounceThumb(input) {
+            input.classList.add('ring-2', 'ring-yellow-300');
+            input.style.transform = 'scale(1.08)';
+            setTimeout(() => {
+                input.classList.remove('ring-2', 'ring-yellow-300');
+                input.style.transform = '';
+            }, 180);
         }
-        async function setSlider(idx, value) {
-            await fetch('/api/slider/' + idx, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({value: value})
-            });
-            render();
-        }
-        async function render() {
-            const state = await fetchState();
-            const togglesDiv = document.getElementById('toggles');
-            togglesDiv.innerHTML = '';
-            state.toggles.forEach((t, i) => {
-                const row = document.createElement('div');
-                row.className = 'row';
-                row.innerHTML = `<label>${t.name}</label>
-                    <div class="toggle-btn${t.state ? ' on' : ''}" onclick="toggle(${i})">
-                        <div class="toggle-knob"></div>
-                    </div>`;
-                togglesDiv.appendChild(row);
-            });
-            const slidersDiv = document.getElementById('sliders');
-            slidersDiv.innerHTML = '';
-            state.sliders.forEach((s, i) => {
-                const row = document.createElement('div');
-                row.className = 'row';
-                row.innerHTML = `<label>${s.name}</label>
-                    <input class="slider" type="range" min="0" max="100" value="${s.value}" 
-                        oninput="setSlider(${i}, this.value)">
-                    <span>${s.value}%</span>`;
-                slidersDiv.appendChild(row);
-            });
-        }
-        window.toggle = toggle;
-        window.setSlider = setSlider;
-        render();
+        document.getElementById('brightness').oninput = function() {
+            document.getElementById('brightness-value').textContent = this.value + '%';
+            bounceThumb(this);
+        };
+        document.getElementById('volume').oninput = function() {
+            document.getElementById('volume-value').textContent = this.value + '%';
+            bounceThumb(this);
+        };
     </script>
 </body>
 </html>
