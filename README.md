@@ -2,6 +2,18 @@
 
 OpenAce is a lightweight, modular base operating system developed by Weno. Designed to replace Android on AceUI-powered devices, OpenAce provides a secure, efficient, and customizable platform for embedded and mobile systems.
 
+## What's New: WebCpp Integration
+OpenAce now incorporates WebCpp, a cutting-edge technology enabling native-like app performance using C++ components compiled to WebAssembly and rendered with web-native UI. This innovation powers both the OpenAce App SDK and AceUI, allowing developers to write rich applications using C++ logic and modern declarative UI.
+
+WebCpp Highlights
+Write Once, Run Anywhere: Build apps in modern C++ with WebCpp, then deploy across OpenAce devices.
+
+Blazing Fast Rendering: UI is rendered via a GPU-accelerated pipeline using AceUI’s WebCpp-based renderer.
+
+Modular Runtime: Integrates seamlessly into OpenAce’s modular architecture.
+
+Hybrid Web-native Model: Leverages WebAssembly for performance and HTML/CSS-like UI declarations for flexibility.
+
 ## Features
 - Minimal, fast, and resource-efficient core
 - Modular architecture for easy customization
