@@ -1,0 +1,37 @@
+{
+    "ConfigurationVersion": 2,
+    "Name": "OpenAce",
+    "Architecture": "arm64",
+    "Memory": 2048,
+    "CPUCount": 4,
+    "BootDevice": "kernel",
+    "Kernel": "build/kernel.bin",
+    "Initrd": "build/initrd.img",
+    "KernelCommandLine": "console=ttyAMA0 root=/dev/vda1",
+    "Drives": [
+        {
+            "Name": "System",
+            "Path": "openace.img",
+            "Type": "raw",
+            "Interface": "virtio"
+        },
+        {
+            "Name": "UserData",
+            "Path": "userdata.img",
+            "Type": "raw",
+            "Interface": "virtio"
+        }
+    ],
+    "Network": {
+        "Mode": "shared",
+        "Interface": "virtio"
+    },
+    "Display": {
+        "Type": "virtio-gpu",
+        "Resolution": "1920x1080"
+    },
+    "Input": {
+        "Keyboard": "virtio-keyboard",
+        "Mouse": "virtio-mouse"
+    }
+} 
