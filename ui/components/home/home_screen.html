@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAce Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('acepaper.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .app-icon {
+            transition: all 0.3s ease;
+        }
+        .app-icon:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            transform: scale(10, 10);
+            opacity: 0;
+            transition: transform .5s, opacity 1s;
+        }
+        .ripple:active::after {
+            transform: scale(0, 0);
+            opacity: .3;
+            transition: 0s;
+        }
+        .dock {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 10px;
+            margin: 0 auto;
+            width: fit-content;
+        }
+        .dock-icon {
+            transition: all 0.3s ease;
+        }
+        .dock-icon:hover {
+            transform: scale(1.2) translateY(-10px);
+        }
+        .contact-card {
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .message-bubble {
+            max-width: 80%;
+            margin: 8px;
+            padding: 12px;
+            border-radius: 16px;
+        }
+        .message-sent {
+            background: #007AFF;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+        .message-received {
+            background: #E5E5EA;
+            color: black;
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Top Bar -->
+    <div class="p-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <!-- Wifi Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-120q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29Zm0-440q75 0 142.5 24T745-470q20 15 20.5 39.5T748-388q-17 17-42 17.5T661-384q-38-26-84-41t-97-15q-51 0-97 15t-84 41q-20 14-45 13t-42-18q-17-18-17-42.5t20-39.5q55-42 122.5-65.5T480-560Zm0-240q125 0 235.5 41T914-643q20 17 21 42t-17 43q-17 17-42 17.5T831-556q-72-59-161.5-91.5T480-680q-100 0-189.5 32.5T129-556q-20 16-45 15.5T42-558q-18-18-17-43t21-42q88-75 198.5-116T480-800Z"/></svg>
+            <!-- Bluetooth Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M440-137v-247L284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l156 156v-247q0-18 12-29.5t28-11.5q8 0 15 3t13 9l172 172q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L536-480l144 144q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L508-108q-6 6-13 9t-15 3q-16 0-28-11.5T440-137Zm80-439 76-76-76-74v150Zm0 342 76-74-76-76v150Z"/></svg>
+            <!-- Airplane Mode Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M400-408 147-307q-24 10-45.5-4.5T80-352v-22q0-12 5.5-23t15.5-18l299-209v-176q0-33 23.5-56.5T480-880q33 0 56.5 23.5T560-800v176l299 209q10 7 15.5 18t5.5 23v22q0 26-21.5 40.5T813-307L560-408v144l103 72q8 6 12.5 14.5T680-159v24q0 20-16.5 32.5T627-96l-147-44-147 44q-20 6-36.5-6.5T280-135v-24q0-10 4.5-18.5T297-192l103-72v-144Z"/></svg>
+        </div>
+        <span class="text-white/60 text-sm" id="time">9:41</span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-6">
+        <!-- App Grid -->
+        <div class="grid grid-cols-4 gap-6">
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('settings')">
+                <img src="icons/settings.svg" alt="Settings"/>
+                <span class="text-white text-sm">Settings</span>
+            </button>
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('files')">
+               <img src="icons/files.svg" alt="Files"/>
+                <span class="text-white text-sm">Files</span>
+            </button>
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('camera')">
+                <img src="icons/camera.svg" alt="Camera"/>
+                <span class="text-white text-sm">Camera</span>
+            </button>
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('browser')">
+               <img src="icons/browse.svg" alt="Browser"/>
+                <span class="text-white text-sm">Browser</span>
+            </button>
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('messages')">
+               <img src="icons/messages.svg" alt="Messages"/>
+                <span class="text-white text-sm">Messages</span>
+            </button>
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('phone')">
+                <img src="icons/phone.svg" alt="Phone"/>
+                <span class="text-white text-sm">Phone</span>
+            </button>
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('gallery')">
+                <img src="icons/photos.svg" alt="Photos"/>
+                <span class="text-white text-sm">Photos</span>
+            </button>
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('music')">
+                <img src="icons/music.svg" alt="Music"/>
+                <span class="text-white text-sm">Music</span>
+            </button>
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('launcher')">
+                <img src="icons/launcher.svg" alt="  "/>
+                <span class="text-white text-sm">Launcher</span>
+            </button>
+        </div>
+
+        <!-- Contacts Section -->
+        <div id="contacts-section" class="mt-8 hidden">
+            <h2 class="text-xl font-semibold mb-4">Contacts</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="contacts-grid"></div>
+            <button class="mt-4 px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors" onclick="showAddContactModal()">
+                Add Contact
+            </button>
+        </div>
+
+        <!-- Messages Section -->
+        <div id="messages-section" class="mt-8 hidden">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold">Messages</h2>
+                <button class="px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors" onclick="showNewMessageModal()">
+                    New Message
+                </button>
+            </div>
+            <div class="glass rounded-lg p-4" id="messages-container"></div>
+        </div>
+    </div>
+
+    <!-- Add Contact Modal -->
+    <div id="add-contact-modal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center">
+        <div class="glass p-6 rounded-2xl w-full max-w-md">
+            <h3 class="text-xl font-semibold mb-4">Add Contact</h3>
+            <form id="add-contact-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1">Name</label>
+                    <input type="text" name="name" class="w-full px-3 py-2 bg-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Phone</label>
+                    <input type="tel" name="phone" class="w-full px-3 py-2 bg-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Email</label>
+                    <input type="email" name="email" class="w-full px-3 py-2 bg-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="flex justify-end gap-2 mt-6">
+                    <button type="button" class="px-4 py-2 rounded-lg hover:bg-white/10" onclick="hideAddContactModal()">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-600">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- New Message Modal -->
+    <div id="new-message-modal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center">
+        <div class="glass p-6 rounded-2xl w-full max-w-md">
+            <h3 class="text-xl font-semibold mb-4">New Message</h3>
+            <form id="new-message-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1">To</label>
+                    <select name="contact" class="w-full px-3 py-2 bg-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <!-- Contacts will be populated here -->
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Message</label>
+                    <textarea name="content" rows="4" class="w-full px-3 py-2 bg-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                </div>
+                <div class="flex justify-end gap-2 mt-6">
+                    <button type="button" class="px-4 py-2 rounded-lg hover:bg-white/10" onclick="hideNewMessageModal()">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-600">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Control Center Overlay (hidden by default) -->
+    <div id="control-center-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm hidden">
+        <div class="relative w-full max-w-sm">
+            <button id="close-cc-overlay" class="absolute top-2 right-2 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7A1 1 0 0 0 5.7 7.11L10.59 12l-4.89 4.89a1 1 0 1 0 1.41 1.41L12 13.41l4.89 4.89a1 1 0 0 0 1.41-1.41L13.41 12l4.89-4.89a1 1 0 0 0 0-1.4z"/></svg>
+            </button>
+            <div class="control-center rounded-3xl p-6 w-full max-w-sm bg-white/10 border border-white/10 backdrop-blur-lg">
+                <form id="control-form" autocomplete="off">
+                    <div class="mb-8">
+                        <div class="grid grid-cols-3 gap-3">
+                            <button type="button" class="toggle-btn active ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" id="wifi-btn">
+                                <!-- Wifi SVG -->
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-120q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29Zm0-440q75 0 142.5 24T745-470q20 15 20.5 39.5T748-388q-17 17-42 17.5T661-384q-38-26-84-41t-97-15q-51 0-97 15t-84 41q-20 14-45 13t-42-18q-17-18-17-42.5t20-39.5q55-42 122.5-65.5T480-560Zm0-240q125 0 235.5 41T914-643q20 17 21 42t-17 43q-17 17-42 17.5T831-556q-72-59-161.5-91.5T480-680q-100 0-189.5 32.5T129-556q-20 16-45 15.5T42-558q-18-18-17-43t21-42q88-75 198.5-116T480-800Z"/></svg>
+                                <span class="text-sm">Wi-Fi</span>
+                            </button>
+                            <button type="button" class="toggle-btn active ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" id="bluetooth-btn">
+                                <!-- Bluetooth SVG -->
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-137v-247L284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l156 156v-247q0-18 12-29.5t28-11.5q8 0 15 3t13 9l172 172q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L536-480l144 144q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L508-108q-6 6-13 9t-15 3q-16 0-28-11.5T440-137Zm80-439 76-76-76-74v150Zm0 342 76-74-76-76v150Z"/></svg>
+                                <span class="text-sm">Bluetooth</span>
+                            </button>
+                            <button type="button" class="toggle-btn inactive ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" id="airplane-btn">
+                                <!-- Airplane SVG -->
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M400-408 147-307q-24 10-45.5-4.5T80-352v-22q0-12 5.5-23t15.5-18l299-209v-176q0-33 23.5-56.5T480-880q33 0 56.5 23.5T560-800v176l299 209q10 7 15.5 18t5.5 23v22q0 26-21.5 40.5T813-307L560-408v144l103 72q8 6 12.5 14.5T680-159v24q0 20-16.5 32.5T627-96l-147-44-147 44q-20 6-36.5-6.5T280-135v-24q0-10 4.5-18.5T297-192l103-72v-144Z"/></svg>
+                                <span class="text-sm">Airplane</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <label for="brightness" class="control-label w-24"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-760q-17 0-28.5-11.5T440-800v-80q0-17 11.5-28.5T480-920q17 0 28.5 11.5T520-880v80q0 17-11.5 28.5T480-760Zm198 82q-11-11-11-27.5t11-28.5l56-57q12-12 28.5-12t28.5 12q11 11 11 28t-11 28l-57 57q-11 11-28 11t-28-11Zm122 238q-17 0-28.5-11.5T760-480q0-17 11.5-28.5T800-520h80q17 0 28.5 11.5T920-480q0 17-11.5 28.5T880-440h-80ZM480-40q-17 0-28.5-11.5T440-80v-80q0-17 11.5-28.5T480-200q17 0 28.5 11.5T520-160v80q0 17-11.5 28.5T480-40ZM226-678l-57-56q-12-12-12-29t12-28q11-11 28-11t28 11l57 57q11 11 11 28t-11 28q-12 11-28 11t-28-11Zm508 509-56-57q-11-12-11-28.5t11-27.5q11-11 27.5-11t28.5 11l57 56q12 11 11.5 28T791-169q-12 12-29 12t-28-12ZM80-440q-17 0-28.5-11.5T40-480q0-17 11.5-28.5T80-520h80q17 0 28.5 11.5T200-480q0 17-11.5 28.5T160-440H80Zm89 271q-11-11-11-28t11-28l57-57q11-11 27.5-11t28.5 11q12 12 12 28.5T282-225l-56 56q-12 12-29 12t-28-12Zm311-71q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Z"/></svg></label>
+                            <input class="pill-slider flex-1" id="brightness" type="range" min="0" max="100" value="70">
+                            <span id="brightness-value" class="control-value w-12 text-right">70%</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <label for="volume" class="control-label w-24"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M760-481q0-83-44-151.5T598-735q-15-7-22-21.5t-2-29.5q6-16 21.5-23t31.5 0q97 43 155 131.5T840-481q0 108-58 196.5T627-153q-16 7-31.5 0T574-176q-5-15 2-29.5t22-21.5q74-34 118-102.5T760-481ZM280-360H160q-17 0-28.5-11.5T120-400v-160q0-17 11.5-28.5T160-600h120l132-132q19-19 43.5-8.5T480-703v446q0 27-24.5 37.5T412-228L280-360Zm380-120q0 42-19 79.5T591-339q-10 6-20.5.5T560-356v-250q0-12 10.5-17.5t20.5.5q31 25 50 63t19 80Z"/></svg></label>
+                            <input class="pill-slider flex-1" id="volume" type="range" min="0" max="100" value="40">
+                            <span id="volume-value" class="control-value w-12 text-right">40%</span>
+                        </div>
+                        <button type="button" id="smart-hub-btn" class="smart-hub-btn ripple w-full p-4 rounded-2xl flex items-center justify-between bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-white/10 backdrop-blur-lg transition-all duration-300 hover:from-blue-500/30 hover:to-purple-500/30">
+                            <div class="flex items-center gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-120q-17 0-28.5-11.5T440-160v-80q0-17 11.5-28.5T480-280q17 0 28.5 11.5T520-240v80q0 17-11.5 28.5T480-120Zm-160-80q-17 0-28.5-11.5T280-240q0-17 11.5-28.5T320-280q17 0 28.5 11.5T360-240q0 17-11.5 28.5T320-200Zm320 0q-17 0-28.5-11.5T600-240q0-17 11.5-28.5T640-280q17 0 28.5 11.5T680-240q0 17-11.5 28.5T640-200ZM480-360q-75 0-127.5-52.5T300-540q0-75 52.5-127.5T480-720q75 0 127.5 52.5T660-540q0 75-52.5 127.5T480-360Zm0-80q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Zm0-100Zm0 380q-17 0-28.5-11.5T440-200q0-17 11.5-28.5T480-240q17 0 28.5 11.5T520-200q0 17-11.5 28.5T480-160Z"/></svg>
+                                <span class="text-white font-medium">Smart Hub</span>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: false });
+            document.getElementById('time').textContent = time;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // App navigation
+        function openApp(app) {
+            // Hide all sections
+            document.getElementById('contacts-section').classList.add('hidden');
+            document.getElementById('messages-section').classList.add('hidden');
+
+            // Show selected section
+            if (app === 'phone' || app === 'messages') {
+                document.getElementById(`${app}-section`).classList.remove('hidden');
+                if (app === 'phone') {
+                    loadContacts();
+                } else if (app === 'messages') {
+                    loadMessages();
+                }
+            }
+        }
+
+        // Contact management
+        async function loadContacts() {
+            try {
+                const response = await fetch('/api/contacts');
+                const data = await response.json();
+                const contactsGrid = document.getElementById('contacts-grid');
+                contactsGrid.innerHTML = '';
+
+                data.contacts.forEach(contact => {
+                    const contactCard = document.createElement('div');
+                    contactCard.className = 'contact-card glass p-4 rounded-xl';
+                    contactCard.innerHTML = `
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold">${contact.name}</h3>
+                                <p class="text-white/60 text-sm">${contact.phone}</p>
+                                <p class="text-white/60 text-sm">${contact.email}</p>
+                            </div>
+                            <button onclick="toggleFavorite(${contact.id})" class="text-yellow-500">
+                                ${contact.favorite ? '★' : '☆'}
+                            </button>
+                        </div>
+                    `;
+                    contactsGrid.appendChild(contactCard);
+                });
+            } catch (error) {
+                console.error('Error loading contacts:', error);
+            }
+        }
+
+        function showAddContactModal() {
+            document.getElementById('add-contact-modal').classList.remove('hidden');
+        }
+
+        function hideAddContactModal() {
+            document.getElementById('add-contact-modal').classList.add('hidden');
+        }
+
+        document.getElementById('add-contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            try {
+                const response = await fetch('/api/contacts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: formData.get('name'),
+                        phone: formData.get('phone'),
+                        email: formData.get('email'),
+                    }),
+                });
+                if (response.ok) {
+                    hideAddContactModal();
+                    loadContacts();
+                }
+            } catch (error) {
+                console.error('Error adding contact:', error);
+            }
+        });
+
+        async function toggleFavorite(contactId) {
+            try {
+                const response = await fetch(`/api/contacts/${contactId}/favorite`, {
+                    method: 'POST',
+                });
+                if (response.ok) {
+                    loadContacts();
+                }
+            } catch (error) {
+                console.error('Error toggling favorite:', error);
+            }
+        }
+
+        // Message management
+        async function loadMessages() {
+            try {
+                const response = await fetch('/api/contacts');
+                const data = await response.json();
+                const messagesContainer = document.getElementById('messages-container');
+                messagesContainer.innerHTML = '';
+
+                // Load messages for each contact
+                for (const contact of data.contacts) {
+                    const messagesResponse = await fetch(`/api/contacts/${contact.id}/messages`);
+                    const messagesData = await messagesResponse.json();
+
+                    if (messagesData.messages && messagesData.messages.length > 0) {
+                        const contactSection = document.createElement('div');
+                        contactSection.className = 'mb-6';
+                        contactSection.innerHTML = `
+                            <h3 class="font-semibold mb-2">${contact.name}</h3>
+                            <div class="space-y-2">
+                                ${messagesData.messages.map(msg => `
+                                    <div class="message-bubble ${msg.sent ? 'message-sent' : 'message-received'}">
+                                        <p>${msg.content}</p>
+                                        <span class="text-xs opacity-60">${msg.timestamp}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                        messagesContainer.appendChild(contactSection);
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading messages:', error);
+            }
+        }
+
+        function showNewMessageModal() {
+            document.getElementById('new-message-modal').classList.remove('hidden');
+            loadContactsForMessage();
+        }
+
+        function hideNewMessageModal() {
+            document.getElementById('new-message-modal').classList.add('hidden');
+        }
+
+        async function loadContactsForMessage() {
+            try {
+                const response = await fetch('/api/contacts');
+                const data = await response.json();
+                const select = document.querySelector('#new-message-form select[name="contact"]');
+                select.innerHTML = data.contacts.map(contact => 
+                    `<option value="${contact.id}">${contact.name}</option>`
+                ).join('');
+            } catch (error) {
+                console.error('Error loading contacts for message:', error);
+            }
+        }
+
+        document.getElementById('new-message-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const contactId = formData.get('contact');
+            try {
+                const response = await fetch(`/api/contacts/${contactId}/messages`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        content: formData.get('content'),
+                    }),
+                });
+                if (response.ok) {
+                    hideNewMessageModal();
+                    loadMessages();
+                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load initial data
+            loadContacts();
+            loadMessages();
+        });
+
+        // Control Center Overlay logic
+        const ccOverlay = document.getElementById('control-center-overlay');
+        const closeCcOverlay = document.getElementById('close-cc-overlay');
+        let lastY = null;
+        let atTop = true;
+
+        // Show overlay on downward scroll at top
+        window.addEventListener('touchstart', (e) => {
+            if (window.scrollY === 0) {
+                atTop = true;
+                lastY = e.touches[0].clientY;
+            } else {
+                atTop = false;
+            }
+        });
+        window.addEventListener('touchmove', (e) => {
+            if (!atTop || lastY === null) return;
+            const currentY = e.touches[0].clientY;
+            if (currentY - lastY > 40) { // User pulled down
+                ccOverlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                lastY = null;
+            }
+        });
+        closeCcOverlay.addEventListener('click', () => {
+            ccOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+        // Also close overlay if user taps outside the panel
+        ccOverlay.addEventListener('click', (e) => {
+            if (e.target === ccOverlay) {
+                closeCcOverlay.click();
+            }
+        });
+    </script>
+</body>
+</html> 

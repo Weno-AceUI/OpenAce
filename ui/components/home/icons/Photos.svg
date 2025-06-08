@@ -1,0 +1,17 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="50" height="50" rx="10" fill="white"/>
+<g id="Repeat group 1_inner" data-figma-trr="r6u1-0f">
+<circle cx="25.4463" cy="17.1969" r="8.24946" fill="url(#paint0_linear_92_80)"/>
+</g>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(25.1982 -6.75183) rotate(60)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(43.6445 11.6945) rotate(120)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(36.8927 36.8927) rotate(-180)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(11.6945 43.6445) rotate(-120)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(-6.75183 25.1982) rotate(-60)"/>
+<defs>
+<linearGradient id="paint0_linear_92_80" x1="25.4463" y1="8.94745" x2="25.4463" y2="25.4464" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FF0000"/>
+<stop offset="1" stop-color="#8800FF"/>
+</linearGradient>
+</defs>
+</svg>
