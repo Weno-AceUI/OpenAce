@@ -38,6 +38,14 @@
             <!-- Airplane Mode Icon -->
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M400-408 147-307q-24 10-45.5-4.5T80-352v-22q0-12 5.5-23t15.5-18l299-209v-176q0-33 23.5-56.5T480-880q33 0 56.5 23.5T560-800v176l299 209q10 7 15.5 18t5.5 23v22q0 26-21.5 40.5T813-307L560-408v144l103 72q8 6 12.5 14.5T680-159v24q0 20-16.5 32.5T627-96l-147-44-147 44q-20 6-36.5-6.5T280-135v-24q0-10 4.5-18.5T297-192l103-72v-144Z"/></svg>
         </div>
+        <div class="flex items-center gap-2">
+            <!-- App Notification Icon Area -->
+            <div id="notification-app-icon" class="relative p-2 rounded-full bg-white/10 flex items-center justify-center">
+                <img src="../home/icons/messages.svg" alt="Messages App" class="w-6 h-6" />
+                <!-- Notification badge (optional, hidden by default) -->
+                <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full border-2 border-white hidden"></span>
+            </div>
+        </div>
     </div>
     <div class="flex-1 flex flex-col justify-center items-center">
         <div class="glass rounded-3xl px-8 py-6 flex flex-col items-center shadow-lg">
@@ -46,12 +54,48 @@
         </div>
     </div>
     <div class="flex flex-col items-center mb-12">
-        <div class="flex gap-3">
-            <span class="inline-block w-3 h-3 rounded-full bg-white/40"></span>
-            <span class="inline-block w-3 h-3 rounded-full bg-white/40"></span>
-            <span class="inline-block w-3 h-3 rounded-full bg-white/40"></span>
-            <span class="inline-block w-3 h-3 rounded-full bg-white/40"></span>
-            <span class="inline-block w-3 h-3 rounded-full bg-white/40"></span>
+        <div id="dots-row" class="flex gap-3 cursor-pointer">
+            <span class="inline-block w-3 h-3 rounded-full bg-black/40 opacity-100"></span>
+            <span class="inline-block w-3 h-3 rounded-full bg-black/40 opacity-100"></span>
+            <span class="inline-block w-3 h-3 rounded-full bg-black/40 opacity-100"></span>
+            <span class="inline-block w-3 h-3 rounded-full bg-black/40 opacity-100"></span>
+            <span class="inline-block w-3 h-3 rounded-full bg-black/40 opacity-100"></span>
+        </div>
+    </div>
+    <!-- PIN Keypad Modal (hidden by default) -->
+    <div id="pin-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm hidden">
+        <div class="bg-white/10 rounded-2xl p-6 flex flex-col items-center w-72 max-w-full">
+            <div class="mb-4 text-white text-lg font-semibold">Enter PIN</div>
+            <div id="pin-dots" class="flex gap-2 mb-6">
+                <span class="inline-block w-4 h-4 rounded-full bg-black/60"></span>
+                <span class="inline-block w-4 h-4 rounded-full bg-black/20"></span>
+                <span class="inline-block w-4 h-4 rounded-full bg-black/20"></span>
+                <span class="inline-block w-4 h-4 rounded-full bg-black/20"></span>
+                <span class="inline-block w-4 h-4 rounded-full bg-black/20"></span>
+            </div>
+            <div class="grid grid-cols-3 gap-4 mb-4">
+                <button class="bg-white/20 text-white text-xl rounded-full w-14 h-14" onclick="pressPinKey('1')">1</button>
+                <button class="bg-white/20 text-white text-xl rounded-full w-14 h-14" onclick="pressPinKey('2')">2</button>
+                <button class="bg-white/20 text-white text-xl rounded-full w-14 h-14" onclick="pressPinKey('3')">3</button>
+                <button class="bg-white/20 text-white text-xl rounded-full w-14 h-14" onclick="pressPinKey('4')">4</button>
+                <button class="bg-white/20 text-white text-xl rounded-full w-14 h-14" onclick="pressPinKey('5')">5</button>
+                <button class="bg-white/20 text-white text-xl rounded-full w-14 h-14" onclick="pressPinKey('6')">6</button>
+                <button class="bg-white/20 text-white text-xl rounded-full w-14 h-14" onclick="pressPinKey('7')">7</button>
+                <button class="bg-white/20 text-white text-xl rounded-full w-14 h-14" onclick="pressPinKey('8')">8</button>
+                <button class="bg-white/20 text-white text-xl rounded-full w-14 h-14" onclick="pressPinKey('9')">9</button>
+                <span></span>
+                <button class="bg-white/20 text-white text-xl rounded-full w-14 h-14" onclick="pressPinKey('0')">0</button>
+            </div>
+            <div class="flex gap-4">
+                <button class="px-4 py-2 rounded-lg bg-white/20 text-white flex items-center justify-center" onclick="pressPinKey('back')">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m560-424 76 76q11 11 28 11t28-11q11-11 11-28t-11-28l-76-76 76-76q11-11 11-28t-11-28q-11-11-28-11t-28 11l-76 76-76-76q-11-11-28-11t-28 11q-11 11-11 28t11 28l76 76-76 76q-11 11-11 28t11 28q11 11 28 11t28-11l76-76ZM360-160q-19 0-36-8.5T296-192L116-432q-16-21-16-48t16-48l180-240q11-15 28-23.5t36-8.5h440q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H360Z"/></svg>
+                </button>
+                <button class="px-4 py-2 rounded-lg bg-white/20 text-white font-semibold flex items-center justify-center" style="min-width: 80px;" tabindex="-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm2 160q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm4-572q25 0 43.5 16t18.5 40q0 22-13.5 39T502-525q-23 20-40.5 44T444-427q0 14 10.5 23.5T479-394q15 0 25.5-10t13.5-25q4-21 18-37.5t30-31.5q23-22 39.5-48t16.5-58q0-51-41.5-83.5T484-720q-38 0-72.5 16T359-655q-7 12-4.5 25.5T368-609q14 8 29 5t25-17q11-15 27.5-23t34.5-8Z"/></svg>
+                </button>
+                <button class="px-4 py-2 rounded-lg bg-blue-500 text-white" onclick="submitPin()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m272-440 116 116q11 11 11 28t-11 28q-11 11-28 11t-28-11L148-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 28-11t28 11q11 11 11 28t-11 28L272-520h488v-120q0-17 11.5-28.5T800-680q17 0 28.5 11.5T840-640v120q0 33-23.5 56.5T760-440H272Z"/></svg></button>
+            </div>
+            <button class="mt-4 w-full px-4 py-2 rounded-lg bg-red-500 text-white text-lg font-semibold" onclick="closePinModal()">Cancel</button>
         </div>
     </div>
     <script>
@@ -64,6 +108,38 @@
         }
         setInterval(updateLockTime, 1000);
         updateLockTime();
+        // PIN Modal logic
+        const pinModal = document.getElementById('pin-modal');
+        const dotsRow = document.getElementById('dots-row');
+        let pin = '';
+        dotsRow.addEventListener('click', () => {
+            pinModal.classList.remove('hidden');
+            pin = '';
+            updatePinDots();
+        });
+        function closePinModal() {
+            pinModal.classList.add('hidden');
+            pin = '';
+            updatePinDots();
+        }
+        function pressPinKey(key) {
+            if (key === 'back') {
+                pin = pin.slice(0, -1);
+            } else if (pin.length < 5 && /[0-9]/.test(key)) {
+                pin += key;
+            }
+            updatePinDots();
+        }
+        function updatePinDots() {
+            const dots = document.querySelectorAll('#pin-dots span');
+            for (let i = 0; i < 5; i++) {
+                dots[i].style.background = i < pin.length ? '#111' : 'rgba(0,0,0,0.2)';
+            }
+        }
+        function submitPin() {
+            // No validation yet
+            closePinModal();
+        }
     </script>
 </body>
 </html> 
