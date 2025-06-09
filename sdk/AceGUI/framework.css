@@ -1,0 +1,70 @@
+/* OpenAce UI Framework - openace-ui.css */
+
+/* Apply base styles to the body.
+   Apps using this framework should include this CSS.
+   The background image path assumes this CSS and the HTML file
+   are served from a location where '../home/acepaper.png' is valid,
+   or that assets are managed to make 'acepaper.png' directly accessible.
+   Consider a centralized assets folder for production.
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        background: url('acepaper.png') no-repeat center center fixed; /* Path might need adjustment based on serving */
+        @apply bg-cover min-h-screen m-0 font-sans text-white;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+}
+
+@layer components {
+    /* Glass Effect Card Component */
+    .ace-card-glass {
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        @apply rounded-3xl shadow-lg;
+    }
+
+    /* Standard Button */
+    .ace-button {
+        @apply px-4 py-2 rounded-lg bg-white/20 text-white transition-colors duration-150 ease-in-out;
+    }
+    .ace-button:hover {
+        @apply bg-white/30;
+    }
+    .ace-button:active {
+        @apply bg-white/40 transform scale-95;
+    }
+
+    /* Primary Action Button (e.g., Blue) */
+    .ace-button-primary {
+        @apply ace-button bg-blue-500;
+    }
+    .ace-button-primary:hover {
+        @apply bg-blue-600;
+    }
+    .ace-button-primary:active {
+        @apply bg-blue-700 transform scale-95;
+    }
+
+    /* Danger Action Button (e.g., Red) */
+    .ace-button-danger {
+        @apply ace-button bg-red-500;
+    }
+    .ace-button-danger:hover {
+        @apply bg-red-600;
+    }
+    .ace-button-danger:active {
+        @apply bg-red-700 transform scale-95;
+    }
+
+    /* Circular Button (e.g., for keypads) */
+    .ace-button-circular {
+        @apply ace-button rounded-full aspect-square flex items-center justify-center;
+        /* Default size, can be overridden with w-X h-X or text-size */
+        @apply w-14 h-14 text-xl;
+    }
+}

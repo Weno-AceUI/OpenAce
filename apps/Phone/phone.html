@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAce Phone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('../home/acepaper.png') no-repeat center center fixed; /* Assuming similar path structure */
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="text-white flex flex-col items-center justify-center min-h-screen p-4">
+    <div class="glass rounded-3xl shadow-lg w-full max-w-md p-6 flex flex-col" style="height: 80vh; max-height: 700px;">
+        <h1 class="text-3xl font-bold text-center mb-6">Phone</h1>
+        <nav class="flex justify-around mb-6">
+            <button class="text-white px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors" onclick="showSection('dialpad')">Dialpad</button>
+            <button class="text-white px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors" onclick="showSection('contacts')">Contacts</button>
+            <button class="text-white px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors" onclick="showSection('history')">Call History</button>
+        </nav>
+
+        <div class="flex-1 overflow-y-auto text-white"> {/* Added text-white here for content within */}
+            <div id="dialpad" class="content-section active flex flex-col items-center">
+                <h2 class="text-2xl font-semibold mb-4">Dialer</h2>
+                <input type="text" id="dialedNumber" class="w-full bg-black/20 text-white text-2xl p-3 rounded-lg mb-4 text-center" readonly>
+                <div class="grid grid-cols-3 gap-3 w-full max-w-xs">
+                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('1')">1</button>
+                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('2')">2</button>
+                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('3')">3</button>
+                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('4')">4</button>
+                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('5')">5</button>
+                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('6')">6</button>
+                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('7')">7</button>
+                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('8')">8</button>
+                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('9')">9</button>
+                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('*')">*</button>
+                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('0')">0</button>
+                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('#')">#</button>
+                </div>
+                <div class="flex justify-around w-full max-w-xs mt-4">
+                    <button class="px-6 py-3 rounded-full bg-green-500 hover:bg-green-600 text-white font-semibold" onclick="makeCall()">Call</button>
+                    <button class="px-6 py-3 rounded-full bg-red-500 hover:bg-red-600 text-white font-semibold" onclick="clearDialer()">Clear</button>
+                </div>
+            </div>
+
+            <div id="contacts" class="content-section">
+                <h2 class="text-2xl font-semibold mb-4 text-center">Contacts</h2>
+                <div class="mb-6 text-white"> {/* Ensure text within this div is white */}
+                    <h3 class="text-lg font-medium mb-2">Add New Contact</h3>
+                    <input type="text" id="newContactName" placeholder="Name" class="w-full bg-black/20 text-white placeholder-white/60 p-2 rounded-lg mb-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                    <input type="tel" id="newContactPhone" placeholder="Phone Number" class="w-full bg-black/20 text-white placeholder-white/60 p-2 rounded-lg mb-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                    <button class="w-full px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold" onclick="addContact()">Add Contact</button>
+                </div>
+                <ul id="contactsList" class="space-y-2 text-white"> {/* Ensure list items are white */}
+                    <!-- Contacts will be loaded here by JavaScript -->
+                    <li class="bg-white/10 p-3 rounded-lg text-center">Loading contacts...</li>
+                </ul>
+            </div>
+
+            <div id="history" class="content-section">
+                <h2 class="text-2xl font-semibold mb-4 text-center text-white">Call History</h2> {/* Explicitly set text white */}
+                <ul id="callHistoryList" class="space-y-2 text-white"> {/* Ensure list items are white */}
+                    <!-- Call history will be loaded here by JavaScript -->
+                    <li class="bg-white/10 p-3 rounded-lg text-center">Loading call history...</li> {/* text-white is inherited from ul */}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            if (sectionId === 'contacts') loadContacts();
+            if (sectionId === 'history') loadCallHistory();
+        }
+
+        function appendToDialer(char) {
+            document.getElementById('dialedNumber').value += char;
+        }
+
+        function clearDialer() {
+            document.getElementById('dialedNumber').value = '';
+        }
+
+        function makeCall() {
+            const number = document.getElementById('dialedNumber').value;
+            if (number) {
+                alert('Calling ' + number + '... (Not implemented yet)');
+                // TODO: Implement actual call functionality via API
+            } else {
+                alert('Please enter a number to call.');
+            }
+        }
+
+        async function loadContacts() {
+            const listElement = document.getElementById('contactsList');
+            listElement.innerHTML = '<li class="text-white bg-white/10 p-3 rounded-lg text-center">Loading contacts...</li>';
+            try {
+                const response = await fetch('/api/contacts');
+                if (!response.ok) throw new Error('Failed to fetch contacts');
+                const contacts = await response.json();
+                listElement.innerHTML = ''; // Clear loading message
+                if (contacts.length === 0) {
+                    listElement.innerHTML = '<li class="text-white bg-white/10 p-3 rounded-lg text-center">No contacts found.</li>';
+                } else {
+                    contacts.forEach(contact => { // Each contact item will be styled by Tailwind if needed, but default li is fine for now
+                        const li = document.createElement('li'); li.className = 'text-white bg-white/10 p-3 rounded-lg'; // Style list items
+                        li.textContent = `${contact.name} - ${contact.phoneNumber}`;
+                        listElement.appendChild(li);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading contacts:', error);
+                listElement.innerHTML = '<li class="text-white bg-red-500/30 p-3 rounded-lg text-center">Error loading contacts.</li>';
+            }
+        }
+
+        async function addContact() {
+            const name = document.getElementById('newContactName').value;
+            const phone = document.getElementById('newContactPhone').value;
+            if (!name || !phone) {
+                alert('Please enter both name and phone number.');
+                return;
+            }
+            try {
+                const response = await fetch('/api/contacts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: name, phoneNumber: phone })
+                });
+                if (!response.ok) {
+                     const errorData = await response.json();
+                     throw new Error(errorData.message || 'Failed to add contact');
+                }
+                const result = await response.json();
+                alert(result.message || 'Contact added!');
+                document.getElementById('newContactName').value = '';
+                document.getElementById('newContactPhone').value = '';
+                loadContacts(); // Refresh list
+            } catch (error) {
+                console.error('Error adding contact:', error);
+                alert('Error adding contact: ' + error.message);
+            }
+        }
+
+
+        async function loadCallHistory() {
+            const listElement = document.getElementById('callHistoryList');
+            listElement.innerHTML = '<li class="text-white bg-white/10 p-3 rounded-lg text-center">Loading call history...</li>';
+            try {
+                const response = await fetch('/api/callhistory');
+                if (!response.ok) throw new Error('Failed to fetch call history');
+                const history = await response.json();
+                listElement.innerHTML = ''; // Clear loading message
+                if (history.length === 0) {
+                    listElement.innerHTML = '<li class="text-white bg-white/10 p-3 rounded-lg text-center">No call history.</li>';
+                } else {
+                    history.forEach(record => { // Each history item
+                        const li = document.createElement('li'); li.className = 'text-white bg-white/10 p-3 rounded-lg'; // Style list items
+                        li.textContent = `${record.contactName} (${record.type}) - ${record.timestamp}`;
+                        listElement.appendChild(li);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading call history:', error);
+                listElement.innerHTML = '<li class="text-white bg-red-500/30 p-3 rounded-lg text-center">Error loading call history.</li>';
+            }
+        }
+
+        // Initial load for the default active section
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('dialpad'); // Or whichever section you want to be default
+        });
+    </script>
+</body>
+</html>

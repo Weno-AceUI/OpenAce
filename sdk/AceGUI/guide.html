@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAce UI Framework - Style Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/css">
+        /* OpenAce UI Framework - Styles embedded from openace-ui.css */
+
+        /* Apply base styles to the body.
+           Apps using this framework should include this CSS.
+           The background image path assumes this CSS and the HTML file
+           are served from a location where '../home/acepaper.png' is valid,
+           or that assets are managed to make 'acepaper.png' directly accessible.
+           Consider a centralized assets folder for production.
+        */
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        @layer base {
+            body {
+                background: url('acepaper.png') no-repeat center center fixed; /* Path might need adjustment based on serving */
+                @apply bg-cover min-h-screen m-0 font-sans text-white;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            }
+        }
+
+        @layer components {
+            /* Glass Effect Card Component */
+            .ace-card-glass {
+                background: rgba(255, 255, 255, 0.12);
+                backdrop-filter: blur(16px);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                @apply rounded-3xl shadow-lg;
+            }
+
+            /* Standard Button */
+            .ace-button {
+                @apply px-4 py-2 rounded-lg bg-white/20 text-white transition-colors duration-150 ease-in-out;
+            }
+            .ace-button:hover {
+                @apply bg-white/30;
+            }
+            .ace-button:active {
+                @apply bg-white/40 transform scale-95;
+            }
+
+            /* Primary Action Button (e.g., Blue) */
+            .ace-button-primary {
+                @apply ace-button bg-blue-500;
+            }
+            .ace-button-primary:hover {
+                @apply bg-blue-600;
+            }
+            .ace-button-primary:active {
+                @apply bg-blue-700 transform scale-95;
+            }
+
+            /* Danger Action Button (e.g., Red) */
+            .ace-button-danger {
+                @apply ace-button bg-red-500;
+            }
+            .ace-button-danger:hover {
+                @apply bg-red-600;
+            }
+            .ace-button-danger:active {
+                @apply bg-red-700 transform scale-95;
+            }
+
+            /* Circular Button (e.g., for keypads) */
+            .ace-button-circular {
+                @apply ace-button rounded-full aspect-square flex items-center justify-center;
+                /* Default size, can be overridden with w-X h-X or text-size */
+                @apply w-14 h-14 text-xl;
+            }
+
+            /* Styles for the Style Guide page itself */
+            .component-showcase {
+                @apply p-6 mb-8 border border-white/20 rounded-xl;
+            }
+            .component-showcase h2 {
+                @apply text-2xl font-semibold mb-4 text-white/90;
+            }
+            .component-showcase h3 {
+                @apply text-lg font-medium mt-6 mb-2 text-white/80;
+            }
+            /* Styling for <code> blocks within the style guide */
+            .component-showcase code, code.styleguide-code { /* Added a more specific class for general use if needed */
+                @apply block bg-black/30 p-3 rounded-md text-sm font-mono whitespace-pre-wrap break-all;
+            }
+        }
+
+        /* You can add more layers or utilities as needed */
+    </style>
+</head>
+<body class="p-8">
+    <header class="mb-12 text-center">
+        <h1 class="text-4xl font-bold">OpenAce UI Framework</h1>
+        <p class="text-white/70">Style Guide & Component Library</p>
+    </header>
+
+    <main>
+        <!-- Glass Card Component -->
+        <section class="component-showcase">
+            <h2>Glass Card (`.ace-card-glass`)</h2>
+            <div class="ace-card-glass p-6 my-4">
+                <p>This is content inside a glass card. It has a frosted background and rounded corners.</p>
+            </div>
+            <h3>Usage:</h3>
+            <code>&lt;div class="ace-card-glass p-6"&gt;
+    Your content here...
+&lt;/div&gt;</code>
+        </section>
+
+        <!-- Button Components -->
+        <section class="component-showcase">
+            <h2>Buttons</h2>
+            
+            <h3>Standard Button (`.ace-button`)</h3>
+            <button class="ace-button my-2">Standard Button</button>
+            <code>&lt;button class="ace-button"&gt;Standard Button&lt;/button&gt;</code>
+
+            <h3>Primary Button (`.ace-button-primary`)</h3>
+            <button class="ace-button-primary my-2">Primary Action</button>
+            <code>&lt;button class="ace-button-primary"&gt;Primary Action&lt;/button&gt;</code>
+
+            <h3>Danger Button (`.ace-button-danger`)</h3>
+            <button class="ace-button-danger my-2">Danger Action</button>
+            <code>&lt;button class="ace-button-danger"&gt;Danger Action&lt;/button&gt;</code>
+
+            <h3>Circular Button (`.ace-button-circular`)</h3>
+            <div class="flex gap-4 my-2">
+                <button class="ace-button-circular">1</button>
+                <button class="ace-button-circular w-16 h-16 text-2xl">Big</button>
+            </div>
+            <code>&lt;button class="ace-button-circular"&gt;1&lt;/button&gt;
+&lt;button class="ace-button-circular w-16 h-16 text-2xl"&gt;Big&lt;/button&gt;</code>
+            <p class="text-sm text-white/60 mt-2">Note: Circular buttons default to w-14 h-14 text-xl. You can override size and font size with Tailwind utilities.</p>
+        </section>
+
+        <!-- More components will be added here -->
+
+    </main>
+
+    <footer class="mt-12 text-center text-sm text-white/50">
+        <p>OpenAce UI Framework</p>
+    </footer>
+</body>
+</html>
