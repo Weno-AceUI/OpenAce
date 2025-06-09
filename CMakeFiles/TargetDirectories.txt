@@ -1,0 +1,13 @@
+/Users/dylando/openace/CMakeFiles/edit_cache.dir
+/Users/dylando/openace/CMakeFiles/rebuild_cache.dir
+/Users/dylando/openace/ui/CMakeFiles/edit_cache.dir
+/Users/dylando/openace/ui/CMakeFiles/rebuild_cache.dir
+/Users/dylando/openace/ui/components/CMakeFiles/LockScreen.dir
+/Users/dylando/openace/ui/components/CMakeFiles/edit_cache.dir
+/Users/dylando/openace/ui/components/CMakeFiles/rebuild_cache.dir
+/Users/dylando/openace/base/CMakeFiles/WebCppApp.dir
+/Users/dylando/openace/base/CMakeFiles/edit_cache.dir
+/Users/dylando/openace/base/CMakeFiles/rebuild_cache.dir
+/Users/dylando/openace/tests/CMakeFiles/test_devmgr.dir
+/Users/dylando/openace/tests/CMakeFiles/edit_cache.dir
+/Users/dylando/openace/tests/CMakeFiles/rebuild_cache.dir

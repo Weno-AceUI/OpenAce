@@ -1,0 +1,41 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/kernel.bin.dir/kernel/core/config.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/core/config.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/core/device.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/core/device.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/core/devicetree.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/core/devicetree.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/core/fs.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/core/fs.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/core/init.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/core/init.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/core/ipc.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/core/ipc.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/core/log.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/core/log.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/core/memory.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/core/memory.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/core/net.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/core/net.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/core/power.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/core/power.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/core/process.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/core/process.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/core/scheduler.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/core/scheduler.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/core/security.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/core/security.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/core/time.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/core/time.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/drivers/driver.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/drivers/driver.c.o.d"
+  "CMakeFiles/kernel.bin.dir/kernel/services/devmgr.c.o"
+  "CMakeFiles/kernel.bin.dir/kernel/services/devmgr.c.o.d"
+  "kernel.bin"
+  "kernel.bin.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang C)
+  include(CMakeFiles/kernel.bin.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

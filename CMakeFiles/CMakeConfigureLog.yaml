@@ -1,0 +1,1886 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Darwin - 21.6.0 - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /opt/local/bin/x86_64-elf-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/local/bin/x86_64-elf-gcc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is GNU, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /opt/local/bin/x86_64-elf-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/local/bin/x86_64-elf-g++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdCXX/CMakeCXXCompilerId.o
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-J97zCx"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-J97zCx"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-J97zCx'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_c5fd2/fast
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_c5fd2.dir/build.make CMakeFiles/cmTC_c5fd2.dir/build
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-J97zCx'
+        Building C object CMakeFiles/cmTC_c5fd2.dir/CMakeCCompilerABI.c.o
+        /opt/local/bin/x86_64-elf-gcc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk   -v -Wl,-v -o CMakeFiles/cmTC_c5fd2.dir/CMakeCCompilerABI.c.o -c /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/opt/local/bin/x86_64-elf-gcc
+        Target: x86_64-elf
+        Configured with: /opt/local/var/macports/build/_opt_bblocal_var_buildworker_ports_build_ports_cross_x86_64-elf-gcc/x86_64-elf-gcc/work/gcc-12.4.0/configure --prefix=/opt/local --target=x86_64-elf --infodir=/opt/local/share/info --mandir=/opt/local/share/man --datarootdir=/opt/local/share/x86_64-elf-gcc --with-system-zlib --with-gmp=/opt/local --with-mpfr=/opt/local --with-mpc=/opt/local --enable-stage1-checking --enable-multilib --disable-libcc1 --with-newlib --with-libgloss --enable-languages=c,c++
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 12.4.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_c5fd2.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c5fd2.dir/'
+         /opt/local/libexec/gcc/x86_64-elf/12.4.0/cc1 -quiet -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_c5fd2.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccEcs5vB.s
+        GNU C17 (GCC) version 12.4.0 (x86_64-elf)
+        	compiled by GNU C version Apple LLVM 13.1.6 (clang-1316.0.21.2.5), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/sys-include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/include
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/include-fixed
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/include
+        End of search list.
+        GNU C17 (GCC) version 12.4.0 (x86_64-elf)
+        	compiled by GNU C version Apple LLVM 13.1.6 (clang-1316.0.21.2.5), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 5734a67fd891809683846a6ba37af879
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_c5fd2.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c5fd2.dir/'
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/as -o CMakeFiles/cmTC_c5fd2.dir/CMakeCCompilerABI.c.o /var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccEcs5vB.s
+        COMPILER_PATH=/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/
+        LIBRARY_PATH=/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib/
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_c5fd2.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c5fd2.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_c5fd2
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c5fd2.dir/link.txt --verbose=1
+        /opt/local/bin/x86_64-elf-gcc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_c5fd2.dir/CMakeCCompilerABI.c.o -o cmTC_c5fd2
+        Using built-in specs.
+        COLLECT_GCC=/opt/local/bin/x86_64-elf-gcc
+        COLLECT_LTO_WRAPPER=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper
+        Target: x86_64-elf
+        Configured with: /opt/local/var/macports/build/_opt_bblocal_var_buildworker_ports_build_ports_cross_x86_64-elf-gcc/x86_64-elf-gcc/work/gcc-12.4.0/configure --prefix=/opt/local --target=x86_64-elf --infodir=/opt/local/share/info --mandir=/opt/local/share/man --datarootdir=/opt/local/share/x86_64-elf-gcc --with-system-zlib --with-gmp=/opt/local --with-mpfr=/opt/local --with-mpc=/opt/local --enable-stage1-checking --enable-multilib --disable-libcc1 --with-newlib --with-libgloss --enable-languages=c,c++
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 12.4.0 (GCC) 
+        COMPILER_PATH=/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/
+        LIBRARY_PATH=/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib/
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'cmTC_c5fd2' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_c5fd2.'
+         /opt/local/libexec/gcc/x86_64-elf/12.4.0/collect2 -plugin /opt/local/libexec/gcc/x86_64-elf/12.4.0/liblto_plugin.so -plugin-opt=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccXkDzS4.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_c5fd2 crt0.o /opt/local/lib/gcc/x86_64-elf/12.4.0/crtbegin.o -L/opt/local/lib/gcc/x86_64-elf/12.4.0 -L/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_c5fd2.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/local/lib/gcc/x86_64-elf/12.4.0/crtend.o
+        collect2 version 12.4.0
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld -plugin /opt/local/libexec/gcc/x86_64-elf/12.4.0/liblto_plugin.so -plugin-opt=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccXkDzS4.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_c5fd2 crt0.o /opt/local/lib/gcc/x86_64-elf/12.4.0/crtbegin.o -L/opt/local/lib/gcc/x86_64-elf/12.4.0 -L/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_c5fd2.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/local/lib/gcc/x86_64-elf/12.4.0/crtend.o
+        GNU ld (GNU Binutils) 2.34
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_c5fd2.dir/build.make:99: cmTC_c5fd2] Error 1
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-J97zCx'
+        gmake: *** [Makefile:127: cmTC_c5fd2/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Check for working C compiler: /opt/local/bin/x86_64-elf-gcc"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-JPJvNh"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-JPJvNh"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-JPJvNh'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_57a04/fast
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_57a04.dir/build.make CMakeFiles/cmTC_57a04.dir/build
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-JPJvNh'
+        Building C object CMakeFiles/cmTC_57a04.dir/testCCompiler.c.o
+        /opt/local/bin/x86_64-elf-gcc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -o CMakeFiles/cmTC_57a04.dir/testCCompiler.c.o -c /Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-JPJvNh/testCCompiler.c
+        Linking C executable cmTC_57a04
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_57a04.dir/link.txt --verbose=1
+        /opt/local/bin/x86_64-elf-gcc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_57a04.dir/testCCompiler.c.o -o cmTC_57a04
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_57a04.dir/build.make:99: cmTC_57a04] Error 1
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-JPJvNh'
+        gmake: *** [Makefile:127: cmTC_57a04/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /opt/local/bin/x86_64-elf-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/local/bin/x86_64-elf-gcc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is GNU, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /opt/local/bin/x86_64-elf-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/local/bin/x86_64-elf-g++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdCXX/CMakeCXXCompilerId.o
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-cHeXp7"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-cHeXp7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-cHeXp7'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_bead4/fast
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_bead4.dir/build.make CMakeFiles/cmTC_bead4.dir/build
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-cHeXp7'
+        Building C object CMakeFiles/cmTC_bead4.dir/CMakeCCompilerABI.c.o
+        /opt/local/bin/x86_64-elf-gcc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk   -v -Wl,-v -o CMakeFiles/cmTC_bead4.dir/CMakeCCompilerABI.c.o -c /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/opt/local/bin/x86_64-elf-gcc
+        Target: x86_64-elf
+        Configured with: /opt/local/var/macports/build/_opt_bblocal_var_buildworker_ports_build_ports_cross_x86_64-elf-gcc/x86_64-elf-gcc/work/gcc-12.4.0/configure --prefix=/opt/local --target=x86_64-elf --infodir=/opt/local/share/info --mandir=/opt/local/share/man --datarootdir=/opt/local/share/x86_64-elf-gcc --with-system-zlib --with-gmp=/opt/local --with-mpfr=/opt/local --with-mpc=/opt/local --enable-stage1-checking --enable-multilib --disable-libcc1 --with-newlib --with-libgloss --enable-languages=c,c++
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 12.4.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_bead4.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_bead4.dir/'
+         /opt/local/libexec/gcc/x86_64-elf/12.4.0/cc1 -quiet -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_bead4.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccCfVFrV.s
+        GNU C17 (GCC) version 12.4.0 (x86_64-elf)
+        	compiled by GNU C version Apple LLVM 13.1.6 (clang-1316.0.21.2.5), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/sys-include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/include
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/include-fixed
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/include
+        End of search list.
+        GNU C17 (GCC) version 12.4.0 (x86_64-elf)
+        	compiled by GNU C version Apple LLVM 13.1.6 (clang-1316.0.21.2.5), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 5734a67fd891809683846a6ba37af879
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_bead4.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_bead4.dir/'
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/as -o CMakeFiles/cmTC_bead4.dir/CMakeCCompilerABI.c.o /var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccCfVFrV.s
+        COMPILER_PATH=/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/
+        LIBRARY_PATH=/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib/
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_bead4.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_bead4.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_bead4
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bead4.dir/link.txt --verbose=1
+        /opt/local/bin/x86_64-elf-gcc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_bead4.dir/CMakeCCompilerABI.c.o -o cmTC_bead4
+        Using built-in specs.
+        COLLECT_GCC=/opt/local/bin/x86_64-elf-gcc
+        COLLECT_LTO_WRAPPER=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper
+        Target: x86_64-elf
+        Configured with: /opt/local/var/macports/build/_opt_bblocal_var_buildworker_ports_build_ports_cross_x86_64-elf-gcc/x86_64-elf-gcc/work/gcc-12.4.0/configure --prefix=/opt/local --target=x86_64-elf --infodir=/opt/local/share/info --mandir=/opt/local/share/man --datarootdir=/opt/local/share/x86_64-elf-gcc --with-system-zlib --with-gmp=/opt/local --with-mpfr=/opt/local --with-mpc=/opt/local --enable-stage1-checking --enable-multilib --disable-libcc1 --with-newlib --with-libgloss --enable-languages=c,c++
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 12.4.0 (GCC) 
+        COMPILER_PATH=/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/
+        LIBRARY_PATH=/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib/
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'cmTC_bead4' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_bead4.'
+         /opt/local/libexec/gcc/x86_64-elf/12.4.0/collect2 -plugin /opt/local/libexec/gcc/x86_64-elf/12.4.0/liblto_plugin.so -plugin-opt=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccXUxIxT.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_bead4 crt0.o /opt/local/lib/gcc/x86_64-elf/12.4.0/crtbegin.o -L/opt/local/lib/gcc/x86_64-elf/12.4.0 -L/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_bead4.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/local/lib/gcc/x86_64-elf/12.4.0/crtend.o
+        collect2 version 12.4.0
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld -plugin /opt/local/libexec/gcc/x86_64-elf/12.4.0/liblto_plugin.so -plugin-opt=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccXUxIxT.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_bead4 crt0.o /opt/local/lib/gcc/x86_64-elf/12.4.0/crtbegin.o -L/opt/local/lib/gcc/x86_64-elf/12.4.0 -L/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_bead4.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/local/lib/gcc/x86_64-elf/12.4.0/crtend.o
+        GNU ld (GNU Binutils) 2.34
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_bead4.dir/build.make:99: cmTC_bead4] Error 1
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-cHeXp7'
+        gmake: *** [Makefile:127: cmTC_bead4/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Check for working C compiler: /opt/local/bin/x86_64-elf-gcc"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-tUR3n8"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-tUR3n8"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-tUR3n8'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_946e4/fast
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_946e4.dir/build.make CMakeFiles/cmTC_946e4.dir/build
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-tUR3n8'
+        Building C object CMakeFiles/cmTC_946e4.dir/testCCompiler.c.o
+        /opt/local/bin/x86_64-elf-gcc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -o CMakeFiles/cmTC_946e4.dir/testCCompiler.c.o -c /Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-tUR3n8/testCCompiler.c
+        Linking C executable cmTC_946e4
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_946e4.dir/link.txt --verbose=1
+        /opt/local/bin/x86_64-elf-gcc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_946e4.dir/testCCompiler.c.o -o cmTC_946e4
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_946e4.dir/build.make:99: cmTC_946e4] Error 1
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-tUR3n8'
+        gmake: *** [Makefile:127: cmTC_946e4/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /opt/local/bin/x86_64-elf-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/local/bin/x86_64-elf-gcc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is GNU, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /opt/local/bin/x86_64-elf-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/local/bin/x86_64-elf-g++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdCXX/CMakeCXXCompilerId.o
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-MFp5d7"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-MFp5d7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-MFp5d7'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_ffb80/fast
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_ffb80.dir/build.make CMakeFiles/cmTC_ffb80.dir/build
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-MFp5d7'
+        Building C object CMakeFiles/cmTC_ffb80.dir/CMakeCCompilerABI.c.o
+        /opt/local/bin/x86_64-elf-gcc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk   -v -Wl,-v -o CMakeFiles/cmTC_ffb80.dir/CMakeCCompilerABI.c.o -c /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/opt/local/bin/x86_64-elf-gcc
+        Target: x86_64-elf
+        Configured with: /opt/local/var/macports/build/_opt_bblocal_var_buildworker_ports_build_ports_cross_x86_64-elf-gcc/x86_64-elf-gcc/work/gcc-12.4.0/configure --prefix=/opt/local --target=x86_64-elf --infodir=/opt/local/share/info --mandir=/opt/local/share/man --datarootdir=/opt/local/share/x86_64-elf-gcc --with-system-zlib --with-gmp=/opt/local --with-mpfr=/opt/local --with-mpc=/opt/local --enable-stage1-checking --enable-multilib --disable-libcc1 --with-newlib --with-libgloss --enable-languages=c,c++
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 12.4.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_ffb80.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ffb80.dir/'
+         /opt/local/libexec/gcc/x86_64-elf/12.4.0/cc1 -quiet -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_ffb80.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//cceSfobI.s
+        GNU C17 (GCC) version 12.4.0 (x86_64-elf)
+        	compiled by GNU C version Apple LLVM 13.1.6 (clang-1316.0.21.2.5), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/sys-include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/include
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/include-fixed
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/include
+        End of search list.
+        GNU C17 (GCC) version 12.4.0 (x86_64-elf)
+        	compiled by GNU C version Apple LLVM 13.1.6 (clang-1316.0.21.2.5), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 5734a67fd891809683846a6ba37af879
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_ffb80.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ffb80.dir/'
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/as -o CMakeFiles/cmTC_ffb80.dir/CMakeCCompilerABI.c.o /var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//cceSfobI.s
+        COMPILER_PATH=/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/
+        LIBRARY_PATH=/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib/
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_ffb80.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ffb80.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_ffb80
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ffb80.dir/link.txt --verbose=1
+        /opt/local/bin/x86_64-elf-gcc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_ffb80.dir/CMakeCCompilerABI.c.o -o cmTC_ffb80
+        Using built-in specs.
+        COLLECT_GCC=/opt/local/bin/x86_64-elf-gcc
+        COLLECT_LTO_WRAPPER=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper
+        Target: x86_64-elf
+        Configured with: /opt/local/var/macports/build/_opt_bblocal_var_buildworker_ports_build_ports_cross_x86_64-elf-gcc/x86_64-elf-gcc/work/gcc-12.4.0/configure --prefix=/opt/local --target=x86_64-elf --infodir=/opt/local/share/info --mandir=/opt/local/share/man --datarootdir=/opt/local/share/x86_64-elf-gcc --with-system-zlib --with-gmp=/opt/local --with-mpfr=/opt/local --with-mpc=/opt/local --enable-stage1-checking --enable-multilib --disable-libcc1 --with-newlib --with-libgloss --enable-languages=c,c++
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 12.4.0 (GCC) 
+        COMPILER_PATH=/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/
+        LIBRARY_PATH=/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib/
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'cmTC_ffb80' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ffb80.'
+         /opt/local/libexec/gcc/x86_64-elf/12.4.0/collect2 -plugin /opt/local/libexec/gcc/x86_64-elf/12.4.0/liblto_plugin.so -plugin-opt=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//cc27EsDa.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_ffb80 crt0.o /opt/local/lib/gcc/x86_64-elf/12.4.0/crtbegin.o -L/opt/local/lib/gcc/x86_64-elf/12.4.0 -L/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_ffb80.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/local/lib/gcc/x86_64-elf/12.4.0/crtend.o
+        collect2 version 12.4.0
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld -plugin /opt/local/libexec/gcc/x86_64-elf/12.4.0/liblto_plugin.so -plugin-opt=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//cc27EsDa.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_ffb80 crt0.o /opt/local/lib/gcc/x86_64-elf/12.4.0/crtbegin.o -L/opt/local/lib/gcc/x86_64-elf/12.4.0 -L/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_ffb80.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/local/lib/gcc/x86_64-elf/12.4.0/crtend.o
+        GNU ld (GNU Binutils) 2.34
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_ffb80.dir/build.make:99: cmTC_ffb80] Error 1
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-MFp5d7'
+        gmake: *** [Makefile:127: cmTC_ffb80/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Check for working C compiler: /opt/local/bin/x86_64-elf-gcc"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-4HedIb"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-4HedIb"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-4HedIb'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_d6f29/fast
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_d6f29.dir/build.make CMakeFiles/cmTC_d6f29.dir/build
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-4HedIb'
+        Building C object CMakeFiles/cmTC_d6f29.dir/testCCompiler.c.o
+        /opt/local/bin/x86_64-elf-gcc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -o CMakeFiles/cmTC_d6f29.dir/testCCompiler.c.o -c /Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-4HedIb/testCCompiler.c
+        Linking C executable cmTC_d6f29
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d6f29.dir/link.txt --verbose=1
+        /opt/local/bin/x86_64-elf-gcc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_d6f29.dir/testCCompiler.c.o -o cmTC_d6f29
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_d6f29.dir/build.make:99: cmTC_d6f29] Error 1
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-4HedIb'
+        gmake: *** [Makefile:127: cmTC_d6f29/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /opt/local/bin/x86_64-elf-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/local/bin/x86_64-elf-gcc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is GNU, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /opt/local/bin/x86_64-elf-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/local/bin/x86_64-elf-g++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdCXX/CMakeCXXCompilerId.o
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-oyr9rX"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-oyr9rX"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-oyr9rX'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_39e72/fast
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_39e72.dir/build.make CMakeFiles/cmTC_39e72.dir/build
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-oyr9rX'
+        Building C object CMakeFiles/cmTC_39e72.dir/CMakeCCompilerABI.c.o
+        /opt/local/bin/x86_64-elf-gcc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk   -v -Wl,-v -o CMakeFiles/cmTC_39e72.dir/CMakeCCompilerABI.c.o -c /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/opt/local/bin/x86_64-elf-gcc
+        Target: x86_64-elf
+        Configured with: /opt/local/var/macports/build/_opt_bblocal_var_buildworker_ports_build_ports_cross_x86_64-elf-gcc/x86_64-elf-gcc/work/gcc-12.4.0/configure --prefix=/opt/local --target=x86_64-elf --infodir=/opt/local/share/info --mandir=/opt/local/share/man --datarootdir=/opt/local/share/x86_64-elf-gcc --with-system-zlib --with-gmp=/opt/local --with-mpfr=/opt/local --with-mpc=/opt/local --enable-stage1-checking --enable-multilib --disable-libcc1 --with-newlib --with-libgloss --enable-languages=c,c++
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 12.4.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_39e72.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_39e72.dir/'
+         /opt/local/libexec/gcc/x86_64-elf/12.4.0/cc1 -quiet -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_39e72.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccduUlU4.s
+        GNU C17 (GCC) version 12.4.0 (x86_64-elf)
+        	compiled by GNU C version Apple LLVM 13.1.6 (clang-1316.0.21.2.5), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/sys-include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/include
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/include-fixed
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/include
+        End of search list.
+        GNU C17 (GCC) version 12.4.0 (x86_64-elf)
+        	compiled by GNU C version Apple LLVM 13.1.6 (clang-1316.0.21.2.5), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 5734a67fd891809683846a6ba37af879
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_39e72.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_39e72.dir/'
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/as -o CMakeFiles/cmTC_39e72.dir/CMakeCCompilerABI.c.o /var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccduUlU4.s
+        COMPILER_PATH=/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/
+        LIBRARY_PATH=/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib/
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_39e72.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_39e72.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_39e72
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_39e72.dir/link.txt --verbose=1
+        /opt/local/bin/x86_64-elf-gcc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_39e72.dir/CMakeCCompilerABI.c.o -o cmTC_39e72
+        Using built-in specs.
+        COLLECT_GCC=/opt/local/bin/x86_64-elf-gcc
+        COLLECT_LTO_WRAPPER=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper
+        Target: x86_64-elf
+        Configured with: /opt/local/var/macports/build/_opt_bblocal_var_buildworker_ports_build_ports_cross_x86_64-elf-gcc/x86_64-elf-gcc/work/gcc-12.4.0/configure --prefix=/opt/local --target=x86_64-elf --infodir=/opt/local/share/info --mandir=/opt/local/share/man --datarootdir=/opt/local/share/x86_64-elf-gcc --with-system-zlib --with-gmp=/opt/local --with-mpfr=/opt/local --with-mpc=/opt/local --enable-stage1-checking --enable-multilib --disable-libcc1 --with-newlib --with-libgloss --enable-languages=c,c++
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 12.4.0 (GCC) 
+        COMPILER_PATH=/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/
+        LIBRARY_PATH=/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib/
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'cmTC_39e72' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_39e72.'
+         /opt/local/libexec/gcc/x86_64-elf/12.4.0/collect2 -plugin /opt/local/libexec/gcc/x86_64-elf/12.4.0/liblto_plugin.so -plugin-opt=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccUh6nrp.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_39e72 crt0.o /opt/local/lib/gcc/x86_64-elf/12.4.0/crtbegin.o -L/opt/local/lib/gcc/x86_64-elf/12.4.0 -L/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_39e72.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/local/lib/gcc/x86_64-elf/12.4.0/crtend.o
+        collect2 version 12.4.0
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld -plugin /opt/local/libexec/gcc/x86_64-elf/12.4.0/liblto_plugin.so -plugin-opt=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccUh6nrp.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_39e72 crt0.o /opt/local/lib/gcc/x86_64-elf/12.4.0/crtbegin.o -L/opt/local/lib/gcc/x86_64-elf/12.4.0 -L/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_39e72.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/local/lib/gcc/x86_64-elf/12.4.0/crtend.o
+        GNU ld (GNU Binutils) 2.34
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_39e72.dir/build.make:99: cmTC_39e72] Error 1
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-oyr9rX'
+        gmake: *** [Makefile:127: cmTC_39e72/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Check for working C compiler: /opt/local/bin/x86_64-elf-gcc"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-193IGX"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-193IGX"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-193IGX'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_32d34/fast
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_32d34.dir/build.make CMakeFiles/cmTC_32d34.dir/build
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-193IGX'
+        Building C object CMakeFiles/cmTC_32d34.dir/testCCompiler.c.o
+        /opt/local/bin/x86_64-elf-gcc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -o CMakeFiles/cmTC_32d34.dir/testCCompiler.c.o -c /Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-193IGX/testCCompiler.c
+        Linking C executable cmTC_32d34
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_32d34.dir/link.txt --verbose=1
+        /opt/local/bin/x86_64-elf-gcc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_32d34.dir/testCCompiler.c.o -o cmTC_32d34
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_32d34.dir/build.make:99: cmTC_32d34] Error 1
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-193IGX'
+        gmake: *** [Makefile:127: cmTC_32d34/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /opt/local/bin/x86_64-elf-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/local/bin/x86_64-elf-gcc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is GNU, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /opt/local/bin/x86_64-elf-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/local/bin/x86_64-elf-g++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdCXX/CMakeCXXCompilerId.o
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-XYntkP"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-XYntkP"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-XYntkP'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_a069f/fast
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_a069f.dir/build.make CMakeFiles/cmTC_a069f.dir/build
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-XYntkP'
+        Building C object CMakeFiles/cmTC_a069f.dir/CMakeCCompilerABI.c.o
+        /opt/local/bin/x86_64-elf-gcc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk   -v -Wl,-v -o CMakeFiles/cmTC_a069f.dir/CMakeCCompilerABI.c.o -c /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/opt/local/bin/x86_64-elf-gcc
+        Target: x86_64-elf
+        Configured with: /opt/local/var/macports/build/_opt_bblocal_var_buildworker_ports_build_ports_cross_x86_64-elf-gcc/x86_64-elf-gcc/work/gcc-12.4.0/configure --prefix=/opt/local --target=x86_64-elf --infodir=/opt/local/share/info --mandir=/opt/local/share/man --datarootdir=/opt/local/share/x86_64-elf-gcc --with-system-zlib --with-gmp=/opt/local --with-mpfr=/opt/local --with-mpc=/opt/local --enable-stage1-checking --enable-multilib --disable-libcc1 --with-newlib --with-libgloss --enable-languages=c,c++
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 12.4.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_a069f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a069f.dir/'
+         /opt/local/libexec/gcc/x86_64-elf/12.4.0/cc1 -quiet -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_a069f.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccnX9hdd.s
+        GNU C17 (GCC) version 12.4.0 (x86_64-elf)
+        	compiled by GNU C version Apple LLVM 13.1.6 (clang-1316.0.21.2.5), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/sys-include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/include
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/include-fixed
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/include
+        End of search list.
+        GNU C17 (GCC) version 12.4.0 (x86_64-elf)
+        	compiled by GNU C version Apple LLVM 13.1.6 (clang-1316.0.21.2.5), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 5734a67fd891809683846a6ba37af879
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_a069f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a069f.dir/'
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/as -o CMakeFiles/cmTC_a069f.dir/CMakeCCompilerABI.c.o /var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccnX9hdd.s
+        COMPILER_PATH=/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/
+        LIBRARY_PATH=/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib/
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_a069f.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a069f.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_a069f
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a069f.dir/link.txt --verbose=1
+        /opt/local/bin/x86_64-elf-gcc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_a069f.dir/CMakeCCompilerABI.c.o -o cmTC_a069f
+        Using built-in specs.
+        COLLECT_GCC=/opt/local/bin/x86_64-elf-gcc
+        COLLECT_LTO_WRAPPER=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper
+        Target: x86_64-elf
+        Configured with: /opt/local/var/macports/build/_opt_bblocal_var_buildworker_ports_build_ports_cross_x86_64-elf-gcc/x86_64-elf-gcc/work/gcc-12.4.0/configure --prefix=/opt/local --target=x86_64-elf --infodir=/opt/local/share/info --mandir=/opt/local/share/man --datarootdir=/opt/local/share/x86_64-elf-gcc --with-system-zlib --with-gmp=/opt/local --with-mpfr=/opt/local --with-mpc=/opt/local --enable-stage1-checking --enable-multilib --disable-libcc1 --with-newlib --with-libgloss --enable-languages=c,c++
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 12.4.0 (GCC) 
+        COMPILER_PATH=/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/
+        LIBRARY_PATH=/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib/
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'cmTC_a069f' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_a069f.'
+         /opt/local/libexec/gcc/x86_64-elf/12.4.0/collect2 -plugin /opt/local/libexec/gcc/x86_64-elf/12.4.0/liblto_plugin.so -plugin-opt=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccFSgcnA.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_a069f crt0.o /opt/local/lib/gcc/x86_64-elf/12.4.0/crtbegin.o -L/opt/local/lib/gcc/x86_64-elf/12.4.0 -L/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_a069f.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/local/lib/gcc/x86_64-elf/12.4.0/crtend.o
+        collect2 version 12.4.0
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld -plugin /opt/local/libexec/gcc/x86_64-elf/12.4.0/liblto_plugin.so -plugin-opt=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccFSgcnA.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_a069f crt0.o /opt/local/lib/gcc/x86_64-elf/12.4.0/crtbegin.o -L/opt/local/lib/gcc/x86_64-elf/12.4.0 -L/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_a069f.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/local/lib/gcc/x86_64-elf/12.4.0/crtend.o
+        GNU ld (GNU Binutils) 2.34
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_a069f.dir/build.make:99: cmTC_a069f] Error 1
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-XYntkP'
+        gmake: *** [Makefile:127: cmTC_a069f/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Check for working C compiler: /opt/local/bin/x86_64-elf-gcc"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-SejYzE"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-SejYzE"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-SejYzE'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_5f54c/fast
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_5f54c.dir/build.make CMakeFiles/cmTC_5f54c.dir/build
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-SejYzE'
+        Building C object CMakeFiles/cmTC_5f54c.dir/testCCompiler.c.o
+        /opt/local/bin/x86_64-elf-gcc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -o CMakeFiles/cmTC_5f54c.dir/testCCompiler.c.o -c /Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-SejYzE/testCCompiler.c
+        Linking C executable cmTC_5f54c
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5f54c.dir/link.txt --verbose=1
+        /opt/local/bin/x86_64-elf-gcc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_5f54c.dir/testCCompiler.c.o -o cmTC_5f54c
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_5f54c.dir/build.make:99: cmTC_5f54c] Error 1
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-SejYzE'
+        gmake: *** [Makefile:127: cmTC_5f54c/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/clang 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is AppleClang, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/bin/clang++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is AppleClang, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-voGi4Q"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-voGi4Q"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-voGi4Q'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_476bf/fast
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_476bf.dir/build.make CMakeFiles/cmTC_476bf.dir/build
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-voGi4Q'
+        Building C object CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o
+        /usr/bin/clang   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.7   -v -Wl,-v -MD -MT CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o -c /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c
+        Apple clang version 14.0.0 (clang-1400.0.29.202)
+        Target: x86_64-apple-darwin21.6.0
+        Thread model: posix
+        InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+        clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
+         "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx12.7.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -fno-rounding-math -funwind-tables=2 -target-sdk-version=13.1 -fvisibility-inlines-hidden-static-local-var -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -target-linker-version 820.1 -v -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -fdebug-compilation-dir=/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-voGi4Q -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o -x c /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c
+        clang -cc1 version 14.0.0 (clang-1400.0.29.202) default target x86_64-apple-darwin21.6.0
+        ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/local/include"
+        ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/Library/Frameworks"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include
+         /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include
+         /Library/Developer/CommandLineTools/usr/include
+         /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks (framework directory)
+        End of search list.
+        Linking C executable cmTC_476bf
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_476bf.dir/link.txt --verbose=1
+        /usr/bin/clang  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.7 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o -o cmTC_476bf
+        Apple clang version 14.0.0 (clang-1400.0.29.202)
+        Target: x86_64-apple-darwin21.6.0
+        Thread model: posix
+        InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+         "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 12.7.0 13.1 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -o cmTC_476bf -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a
+        @(#)PROGRAM:ld  PROJECT:ld64-820.1
+        BUILD 20:07:01 Nov  7 2022
+        configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+        Library search paths:
+        	/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/lib
+        Framework search paths:
+        	/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-voGi4Q'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:137 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+          add: [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include]
+          add: [/Library/Developer/CommandLineTools/usr/include]
+        end of search list found
+        collapse include dir [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include] ==> [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+        collapse include dir [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include]
+        collapse include dir [/Library/Developer/CommandLineTools/usr/include] ==> [/Library/Developer/CommandLineTools/usr/include]
+        implicit include dirs: [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include;/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include;/Library/Developer/CommandLineTools/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:173 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?))("|,| |$)]
+        ignore line: [Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-voGi4Q']
+        ignore line: []
+        ignore line: [Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_476bf/fast]
+        ignore line: [/opt/local/bin/gmake  -f CMakeFiles/cmTC_476bf.dir/build.make CMakeFiles/cmTC_476bf.dir/build]
+        ignore line: [gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-voGi4Q']
+        ignore line: [Building C object CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/clang   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.7   -v -Wl -v -MD -MT CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o -c /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c]
+        ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.202)]
+        ignore line: [Target: x86_64-apple-darwin21.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
+        ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
+        ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx12.7.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -fno-rounding-math -funwind-tables=2 -target-sdk-version=13.1 -fvisibility-inlines-hidden-static-local-var -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -target-linker-version 820.1 -v -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -fdebug-compilation-dir=/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-voGi4Q -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o -x c /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c]
+        ignore line: [clang -cc1 version 14.0.0 (clang-1400.0.29.202) default target x86_64-apple-darwin21.6.0]
+        ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/local/include"]
+        ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/Library/Frameworks"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include]
+        ignore line: [ /Library/Developer/CommandLineTools/usr/include]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks (framework directory)]
+        ignore line: [End of search list.]
+        ignore line: [Linking C executable cmTC_476bf]
+        ignore line: [/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_476bf.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/clang  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.7 -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o -o cmTC_476bf]
+        ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.202)]
+        ignore line: [Target: x86_64-apple-darwin21.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
+        link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 12.7.0 13.1 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -o cmTC_476bf -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+          arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
+          arg [-demangle] ==> ignore
+          arg [-lto_library] ==> ignore, skip following value
+          arg [/Library/Developer/CommandLineTools/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+          arg [-dynamic] ==> ignore
+          arg [-arch] ==> ignore
+          arg [x86_64] ==> ignore
+          arg [-platform_version] ==> ignore
+          arg [macos] ==> ignore
+          arg [12.7.0] ==> ignore
+          arg [13.1] ==> ignore
+          arg [-syslibroot] ==> ignore
+          arg [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_476bf] ==> ignore
+          arg [-search_paths_first] ==> ignore
+          arg [-headerpad_max_install_names] ==> ignore
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_476bf.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lSystem] ==> lib [System]
+          arg [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+        linker tool for 'C': /Library/Developer/CommandLineTools/usr/bin/ld
+        Library search paths: [;/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/lib]
+        Framework search paths: [;/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/]
+        remove lib [System]
+        remove lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+        collapse library dir [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/lib] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/lib]
+        collapse framework dir [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks]
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/lib]
+        implicit fwks: [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:210 (cmake_determine_linker_id)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the C compiler's linker: "/Library/Developer/CommandLineTools/usr/bin/ld" "-v"
+      @(#)PROGRAM:ld  PROJECT:ld64-820.1
+      BUILD 20:07:01 Nov  7 2022
+      configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+      LTO support using: LLVM version 14.0.0, (clang-1400.0.29.202) (static support for 29, runtime is 29)
+      TAPI support using: Apple TAPI version 14.0.0 (tapi-1400.0.11)
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Kjlubd"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Kjlubd"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Kjlubd'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_e351f/fast
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_e351f.dir/build.make CMakeFiles/cmTC_e351f.dir/build
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Kjlubd'
+        Building CXX object CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/clang++   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.7   -v -Wl,-v -MD -MT CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o -c /opt/local/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp
+        Apple clang version 14.0.0 (clang-1400.0.29.202)
+        Target: x86_64-apple-darwin21.6.0
+        Thread model: posix
+        InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+        clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
+         "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx12.7.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -fno-rounding-math -funwind-tables=2 -target-sdk-version=13.1 -fvisibility-inlines-hidden-static-local-var -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -target-linker-version 820.1 -v -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -fdeprecated-macro -fdebug-compilation-dir=/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Kjlubd -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/local/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp
+        clang -cc1 version 14.0.0 (clang-1400.0.29.202) default target x86_64-apple-darwin21.6.0
+        ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/local/include"
+        ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/Library/Frameworks"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include/c++/v1
+         /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include
+         /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include
+         /Library/Developer/CommandLineTools/usr/include
+         /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks (framework directory)
+        End of search list.
+        Linking CXX executable cmTC_e351f
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e351f.dir/link.txt --verbose=1
+        /usr/bin/clang++  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.7 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_e351f
+        Apple clang version 14.0.0 (clang-1400.0.29.202)
+        Target: x86_64-apple-darwin21.6.0
+        Thread model: posix
+        InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+         "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 12.7.0 13.1 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -o cmTC_e351f -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a
+        @(#)PROGRAM:ld  PROJECT:ld64-820.1
+        BUILD 20:07:01 Nov  7 2022
+        configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+        Library search paths:
+        	/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/lib
+        Framework search paths:
+        	/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Kjlubd'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:137 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include/c++/v1]
+          add: [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+          add: [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include]
+          add: [/Library/Developer/CommandLineTools/usr/include]
+        end of search list found
+        collapse include dir [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include/c++/v1] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include/c++/v1]
+        collapse include dir [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include] ==> [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+        collapse include dir [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include]
+        collapse include dir [/Library/Developer/CommandLineTools/usr/include] ==> [/Library/Developer/CommandLineTools/usr/include]
+        implicit include dirs: [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include/c++/v1;/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include;/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include;/Library/Developer/CommandLineTools/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:173 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?))("|,| |$)]
+        ignore line: [Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Kjlubd']
+        ignore line: []
+        ignore line: [Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_e351f/fast]
+        ignore line: [/opt/local/bin/gmake  -f CMakeFiles/cmTC_e351f.dir/build.make CMakeFiles/cmTC_e351f.dir/build]
+        ignore line: [gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Kjlubd']
+        ignore line: [Building CXX object CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/clang++   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.7   -v -Wl -v -MD -MT CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o -c /opt/local/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.202)]
+        ignore line: [Target: x86_64-apple-darwin21.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
+        ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
+        ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx12.7.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -fno-rounding-math -funwind-tables=2 -target-sdk-version=13.1 -fvisibility-inlines-hidden-static-local-var -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -target-linker-version 820.1 -v -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -fdeprecated-macro -fdebug-compilation-dir=/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Kjlubd -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/local/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [clang -cc1 version 14.0.0 (clang-1400.0.29.202) default target x86_64-apple-darwin21.6.0]
+        ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/local/include"]
+        ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/Library/Frameworks"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include/c++/v1]
+        ignore line: [ /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include]
+        ignore line: [ /Library/Developer/CommandLineTools/usr/include]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks (framework directory)]
+        ignore line: [End of search list.]
+        ignore line: [Linking CXX executable cmTC_e351f]
+        ignore line: [/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e351f.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/clang++  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.7 -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_e351f]
+        ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.202)]
+        ignore line: [Target: x86_64-apple-darwin21.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
+        link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 12.7.0 13.1 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -o cmTC_e351f -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+          arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
+          arg [-demangle] ==> ignore
+          arg [-lto_library] ==> ignore, skip following value
+          arg [/Library/Developer/CommandLineTools/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+          arg [-dynamic] ==> ignore
+          arg [-arch] ==> ignore
+          arg [x86_64] ==> ignore
+          arg [-platform_version] ==> ignore
+          arg [macos] ==> ignore
+          arg [12.7.0] ==> ignore
+          arg [13.1] ==> ignore
+          arg [-syslibroot] ==> ignore
+          arg [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_e351f] ==> ignore
+          arg [-search_paths_first] ==> ignore
+          arg [-headerpad_max_install_names] ==> ignore
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_e351f.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lc++] ==> lib [c++]
+          arg [-lSystem] ==> lib [System]
+          arg [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+        linker tool for 'CXX': /Library/Developer/CommandLineTools/usr/bin/ld
+        Library search paths: [;/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/lib]
+        Framework search paths: [;/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/]
+        remove lib [System]
+        remove lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+        collapse library dir [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/lib] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/lib]
+        collapse framework dir [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks]
+        implicit libs: [c++]
+        implicit objs: []
+        implicit dirs: [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/lib]
+        implicit fwks: [/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/System/Library/Frameworks]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:210 (cmake_determine_linker_id)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "/Library/Developer/CommandLineTools/usr/bin/ld" "-v"
+      @(#)PROGRAM:ld  PROJECT:ld64-820.1
+      BUILD 20:07:01 Nov  7 2022
+      configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+      LTO support using: LLVM version 14.0.0, (clang-1400.0.29.202) (static support for 29, runtime is 29)
+      TAPI support using: Apple TAPI version 14.0.0 (tapi-1400.0.11)
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Darwin - 21.6.0 - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /opt/local/bin/x86_64-elf-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/local/bin/x86_64-elf-gcc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is GNU, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /opt/local/bin/x86_64-elf-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/local/bin/x86_64-elf-g++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdCXX/CMakeCXXCompilerId.o
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-JKk6o0"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-JKk6o0"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-JKk6o0'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_60a6b/fast
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-JKk6o0'
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_60a6b.dir/build.make CMakeFiles/cmTC_60a6b.dir/build
+        gmake[2]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-JKk6o0'
+        Building C object CMakeFiles/cmTC_60a6b.dir/CMakeCCompilerABI.c.o
+        /opt/local/bin/x86_64-elf-gcc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk   -v -Wl,-v -o CMakeFiles/cmTC_60a6b.dir/CMakeCCompilerABI.c.o -c /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/opt/local/bin/x86_64-elf-gcc
+        Target: x86_64-elf
+        Configured with: /opt/local/var/macports/build/_opt_bblocal_var_buildworker_ports_build_ports_cross_x86_64-elf-gcc/x86_64-elf-gcc/work/gcc-12.4.0/configure --prefix=/opt/local --target=x86_64-elf --infodir=/opt/local/share/info --mandir=/opt/local/share/man --datarootdir=/opt/local/share/x86_64-elf-gcc --with-system-zlib --with-gmp=/opt/local --with-mpfr=/opt/local --with-mpc=/opt/local --enable-stage1-checking --enable-multilib --disable-libcc1 --with-newlib --with-libgloss --enable-languages=c,c++
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 12.4.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_60a6b.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_60a6b.dir/'
+         /opt/local/libexec/gcc/x86_64-elf/12.4.0/cc1 -quiet -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_60a6b.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//cciCG1f4.s
+        GNU C17 (GCC) version 12.4.0 (x86_64-elf)
+        	compiled by GNU C version Apple LLVM 13.1.6 (clang-1316.0.21.2.5), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/sys-include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/include
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/include-fixed
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/include
+        End of search list.
+        GNU C17 (GCC) version 12.4.0 (x86_64-elf)
+        	compiled by GNU C version Apple LLVM 13.1.6 (clang-1316.0.21.2.5), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 5734a67fd891809683846a6ba37af879
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_60a6b.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_60a6b.dir/'
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/as -o CMakeFiles/cmTC_60a6b.dir/CMakeCCompilerABI.c.o /var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//cciCG1f4.s
+        COMPILER_PATH=/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/
+        LIBRARY_PATH=/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib/
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_60a6b.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_60a6b.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_60a6b
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_60a6b.dir/link.txt --verbose=1
+        /opt/local/bin/x86_64-elf-gcc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_60a6b.dir/CMakeCCompilerABI.c.o -o cmTC_60a6b
+        Using built-in specs.
+        COLLECT_GCC=/opt/local/bin/x86_64-elf-gcc
+        COLLECT_LTO_WRAPPER=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper
+        Target: x86_64-elf
+        Configured with: /opt/local/var/macports/build/_opt_bblocal_var_buildworker_ports_build_ports_cross_x86_64-elf-gcc/x86_64-elf-gcc/work/gcc-12.4.0/configure --prefix=/opt/local --target=x86_64-elf --infodir=/opt/local/share/info --mandir=/opt/local/share/man --datarootdir=/opt/local/share/x86_64-elf-gcc --with-system-zlib --with-gmp=/opt/local --with-mpfr=/opt/local --with-mpc=/opt/local --enable-stage1-checking --enable-multilib --disable-libcc1 --with-newlib --with-libgloss --enable-languages=c,c++
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 12.4.0 (GCC) 
+        COMPILER_PATH=/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/
+        LIBRARY_PATH=/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib/
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'cmTC_60a6b' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_60a6b.'
+         /opt/local/libexec/gcc/x86_64-elf/12.4.0/collect2 -plugin /opt/local/libexec/gcc/x86_64-elf/12.4.0/liblto_plugin.so -plugin-opt=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccUREdxv.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_60a6b crt0.o /opt/local/lib/gcc/x86_64-elf/12.4.0/crtbegin.o -L/opt/local/lib/gcc/x86_64-elf/12.4.0 -L/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_60a6b.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/local/lib/gcc/x86_64-elf/12.4.0/crtend.o
+        collect2 version 12.4.0
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld -plugin /opt/local/libexec/gcc/x86_64-elf/12.4.0/liblto_plugin.so -plugin-opt=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccUREdxv.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_60a6b crt0.o /opt/local/lib/gcc/x86_64-elf/12.4.0/crtbegin.o -L/opt/local/lib/gcc/x86_64-elf/12.4.0 -L/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_60a6b.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/local/lib/gcc/x86_64-elf/12.4.0/crtend.o
+        GNU ld (GNU Binutils) 2.34
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[2]: *** [CMakeFiles/cmTC_60a6b.dir/build.make:99: cmTC_60a6b] Error 1
+        gmake[2]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-JKk6o0'
+        gmake[1]: *** [Makefile:127: cmTC_60a6b/fast] Error 2
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-JKk6o0'
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Check for working C compiler: /opt/local/bin/x86_64-elf-gcc"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Bbd7A6"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Bbd7A6"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Bbd7A6'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_28e33/fast
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Bbd7A6'
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_28e33.dir/build.make CMakeFiles/cmTC_28e33.dir/build
+        gmake[2]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Bbd7A6'
+        Building C object CMakeFiles/cmTC_28e33.dir/testCCompiler.c.o
+        /opt/local/bin/x86_64-elf-gcc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -o CMakeFiles/cmTC_28e33.dir/testCCompiler.c.o -c /Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Bbd7A6/testCCompiler.c
+        Linking C executable cmTC_28e33
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_28e33.dir/link.txt --verbose=1
+        /opt/local/bin/x86_64-elf-gcc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_28e33.dir/testCCompiler.c.o -o cmTC_28e33
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[2]: *** [CMakeFiles/cmTC_28e33.dir/build.make:99: cmTC_28e33] Error 1
+        gmake[2]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Bbd7A6'
+        gmake[1]: *** [Makefile:127: cmTC_28e33/fast] Error 2
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Bbd7A6'
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /opt/local/bin/x86_64-elf-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/local/bin/x86_64-elf-gcc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is GNU, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /opt/local/bin/x86_64-elf-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/local/bin/x86_64-elf-g++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+      
+      The CXX compiler identification is GNU, found in:
+        /Users/dylando/openace/CMakeFiles/3.29.5/CompilerIdCXX/CMakeCXXCompilerId.o
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Tg5Iq7"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Tg5Iq7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Tg5Iq7'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_002b7/fast
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_002b7.dir/build.make CMakeFiles/cmTC_002b7.dir/build
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Tg5Iq7'
+        Building C object CMakeFiles/cmTC_002b7.dir/CMakeCCompilerABI.c.o
+        /opt/local/bin/x86_64-elf-gcc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk   -v -Wl,-v -o CMakeFiles/cmTC_002b7.dir/CMakeCCompilerABI.c.o -c /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/opt/local/bin/x86_64-elf-gcc
+        Target: x86_64-elf
+        Configured with: /opt/local/var/macports/build/_opt_bblocal_var_buildworker_ports_build_ports_cross_x86_64-elf-gcc/x86_64-elf-gcc/work/gcc-12.4.0/configure --prefix=/opt/local --target=x86_64-elf --infodir=/opt/local/share/info --mandir=/opt/local/share/man --datarootdir=/opt/local/share/x86_64-elf-gcc --with-system-zlib --with-gmp=/opt/local --with-mpfr=/opt/local --with-mpc=/opt/local --enable-stage1-checking --enable-multilib --disable-libcc1 --with-newlib --with-libgloss --enable-languages=c,c++
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 12.4.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_002b7.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_002b7.dir/'
+         /opt/local/libexec/gcc/x86_64-elf/12.4.0/cc1 -quiet -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk /opt/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_002b7.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccHB7DVt.s
+        GNU C17 (GCC) version 12.4.0 (x86_64-elf)
+        	compiled by GNU C version Apple LLVM 13.1.6 (clang-1316.0.21.2.5), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/sys-include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/include
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/include-fixed
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/include
+        End of search list.
+        GNU C17 (GCC) version 12.4.0 (x86_64-elf)
+        	compiled by GNU C version Apple LLVM 13.1.6 (clang-1316.0.21.2.5), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        warning: MPFR header version 4.2.1 differs from library version 4.2.2.
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 5734a67fd891809683846a6ba37af879
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_002b7.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_002b7.dir/'
+         /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/as -o CMakeFiles/cmTC_002b7.dir/CMakeCCompilerABI.c.o /var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//ccHB7DVt.s
+        COMPILER_PATH=/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/
+        LIBRARY_PATH=/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib/
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'CMakeFiles/cmTC_002b7.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_002b7.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_002b7
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_002b7.dir/link.txt --verbose=1
+        /opt/local/bin/x86_64-elf-gcc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_002b7.dir/CMakeCCompilerABI.c.o -o cmTC_002b7
+        Using built-in specs.
+        COLLECT_GCC=/opt/local/bin/x86_64-elf-gcc
+        COLLECT_LTO_WRAPPER=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper
+        Target: x86_64-elf
+        Configured with: /opt/local/var/macports/build/_opt_bblocal_var_buildworker_ports_build_ports_cross_x86_64-elf-gcc/x86_64-elf-gcc/work/gcc-12.4.0/configure --prefix=/opt/local --target=x86_64-elf --infodir=/opt/local/share/info --mandir=/opt/local/share/man --datarootdir=/opt/local/share/x86_64-elf-gcc --with-system-zlib --with-gmp=/opt/local --with-mpfr=/opt/local --with-mpc=/opt/local --enable-stage1-checking --enable-multilib --disable-libcc1 --with-newlib --with-libgloss --enable-languages=c,c++
+        Thread model: single
+        Supported LTO compression algorithms: zlib
+        gcc version 12.4.0 (GCC) 
+        COMPILER_PATH=/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/12.4.0/:/opt/local/libexec/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/
+        LIBRARY_PATH=/opt/local/lib/gcc/x86_64-elf/12.4.0/:/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib/
+        COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk' '-v' '-o' 'cmTC_002b7' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_002b7.'
+         /opt/local/libexec/gcc/x86_64-elf/12.4.0/collect2 -plugin /opt/local/libexec/gcc/x86_64-elf/12.4.0/liblto_plugin.so -plugin-opt=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//cc9g9boG.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_002b7 crt0.o /opt/local/lib/gcc/x86_64-elf/12.4.0/crtbegin.o -L/opt/local/lib/gcc/x86_64-elf/12.4.0 -L/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_002b7.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/local/lib/gcc/x86_64-elf/12.4.0/crtend.o
+        collect2 version 12.4.0
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld -plugin /opt/local/libexec/gcc/x86_64-elf/12.4.0/liblto_plugin.so -plugin-opt=/opt/local/libexec/gcc/x86_64-elf/12.4.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/wl/ywqvttx95591bvcq_8m0rtmc0000gn/T//cc9g9boG.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_002b7 crt0.o /opt/local/lib/gcc/x86_64-elf/12.4.0/crtbegin.o -L/opt/local/lib/gcc/x86_64-elf/12.4.0 -L/opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_002b7.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/local/lib/gcc/x86_64-elf/12.4.0/crtend.o
+        GNU ld (GNU Binutils) 2.34
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_002b7.dir/build.make:99: cmTC_002b7] Error 1
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-Tg5Iq7'
+        gmake: *** [Makefile:127: cmTC_002b7/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Check for working C compiler: /opt/local/bin/x86_64-elf-gcc"
+    directories:
+      source: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-wfIt6H"
+      binary: "/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-wfIt6H"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "12.7"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-wfIt6H'
+        
+        Run Build Command(s): /opt/local/bin/cmake -E env VERBOSE=1 /opt/local/bin/gmake -f Makefile cmTC_07843/fast
+        /opt/local/bin/gmake  -f CMakeFiles/cmTC_07843.dir/build.make CMakeFiles/cmTC_07843.dir/build
+        gmake[1]: Entering directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-wfIt6H'
+        Building C object CMakeFiles/cmTC_07843.dir/testCCompiler.c.o
+        /opt/local/bin/x86_64-elf-gcc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -o CMakeFiles/cmTC_07843.dir/testCCompiler.c.o -c /Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-wfIt6H/testCCompiler.c
+        Linking C executable cmTC_07843
+        /opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_07843.dir/link.txt --verbose=1
+        /opt/local/bin/x86_64-elf-gcc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_07843.dir/testCCompiler.c.o -o cmTC_07843
+        /opt/local/lib/gcc/x86_64-elf/12.4.0/../../../../x86_64-elf/bin/ld: cannot find crt0.o: No such file or directory
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_07843.dir/build.make:99: cmTC_07843] Error 1
+        gmake[1]: Leaving directory '/Users/dylando/openace/CMakeFiles/CMakeScratch/TryCompile-wfIt6H'
+        gmake: *** [Makefile:127: cmTC_07843/fast] Error 2
+        
+      exitCode: 2
+...
