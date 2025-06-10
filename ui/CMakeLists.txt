@@ -11,7 +11,8 @@ file(MAKE_DIRECTORY ${UI_ASSETS_OUTPUT_DIR})
 
 # Copy common framework assets
 # Note: This assumes acepaper.png is in ui/home. Adjust path if different.
-set(ACEPAPER_SOURCE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/home/acepaper.png)
+# Changed to source acepaper.png from ui/components/home/
+set(ACEPAPER_SOURCE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/components/home/acepaper.png)
 
 if(EXISTS ${ACEPAPER_SOURCE_PATH})
     add_custom_command(

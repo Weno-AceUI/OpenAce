@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenAce Phone</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            background: url('../home/acepaper.png') no-repeat center center fixed; /* Assuming similar path structure */
+        body { /* Updated path and fixed background property */
+            background: url("../../ui/components/home/acepaper.png") no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
             margin: 0;
@@ -35,59 +34,60 @@
             background: rgba(255, 255, 255, 0.5);
         }
     </style>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Moved Tailwind script after custom styles potentially -->
 </head>
-<body class="text-white flex flex-col items-center justify-center min-h-screen p-4">
+<body class="flex flex-col items-center justify-center min-h-screen p-4"> <!-- Removed text-white -->
     <div class="glass rounded-3xl shadow-lg w-full max-w-md p-6 flex flex-col" style="height: 80vh; max-height: 700px;">
-        <h1 class="text-3xl font-bold text-center mb-6">Phone</h1>
+        <h1 class="text-3xl font-bold text-center mb-6 text-white">Phone</h1> <!-- Added text-black -->
         <nav class="flex justify-around mb-6">
-            <button class="text-white px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors" onclick="showSection('dialpad')">Dialpad</button>
-            <button class="text-white px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors" onclick="showSection('contacts')">Contacts</button>
-            <button class="text-white px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors" onclick="showSection('history')">Call History</button>
+            <button class="glass rounded-full shadow-lg p-3 w-16 h-16 flex items-center justify-center" onclick="showSection('dialpad')"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-40q-33 0-56.5-23.5T400-120q0-33 23.5-56.5T480-200q33 0 56.5 23.5T560-120q0 33-23.5 56.5T480-40ZM240-760q-33 0-56.5-23.5T160-840q0-33 23.5-56.5T240-920q33 0 56.5 23.5T320-840q0 33-23.5 56.5T240-760Zm0 240q-33 0-56.5-23.5T160-600q0-33 23.5-56.5T240-680q33 0 56.5 23.5T320-600q0 33-23.5 56.5T240-520Zm0 240q-33 0-56.5-23.5T160-360q0-33 23.5-56.5T240-440q33 0 56.5 23.5T320-360q0 33-23.5 56.5T240-280Zm480-480q-33 0-56.5-23.5T640-840q0-33 23.5-56.5T720-920q33 0 56.5 23.5T800-840q0 33-23.5 56.5T720-760ZM480-280q-33 0-56.5-23.5T400-360q0-33 23.5-56.5T480-440q33 0 56.5 23.5T560-360q0 33-23.5 56.5T480-280Zm240 0q-33 0-56.5-23.5T640-360q0-33 23.5-56.5T720-440q33 0 56.5 23.5T800-360q0 33-23.5 56.5T720-280Zm0-240q-33 0-56.5-23.5T640-600q0-33 23.5-56.5T720-680q33 0 56.5 23.5T800-600q0 33-23.5 56.5T720-520Zm-240 0q-33 0-56.5-23.5T400-600q0-33 23.5-56.5T480-680q33 0 56.5 23.5T560-600q0 33-23.5 56.5T480-520Zm0-240q-33 0-56.5-23.5T400-840q0-33 23.5-56.5T480-920q33 0 56.5 23.5T560-840q0 33-23.5 56.5T480-760Z"/></svg></button>
+            <button class="glass rounded-full shadow-lg p-3 w-16 h-16 flex items-center justify-center" onclick="showSection('contacts')"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-440q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm70-80h500q-45-56-109-88t-141-32q-77 0-141 32t-109 88ZM200-40q-17 0-28.5-11.5T160-80q0-17 11.5-28.5T200-120h560q17 0 28.5 11.5T800-80q0 17-11.5 28.5T760-40H200Zm0-800q-17 0-28.5-11.5T160-880q0-17 11.5-28.5T200-920h560q17 0 28.5 11.5T800-880q0 17-11.5 28.5T760-840H200Z"/></svg></button>
+            <button class="glass rounded-full shadow-lg p-3 w-16 h-16 flex items-center justify-center" onclick="showSection('history')"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M240-80q-50 0-85-35t-35-85v-80q0-17 11.5-28.5T160-320h80v-536q0-7 6-9.5t11 2.5l29 29q6 6 14 6t14-6l32-32q6-6 14-6t14 6l32 32q6 6 14 6t14-6l32-32q6-6 14-6t14 6l32 32q6 6 14 6t14-6l32-32q6-6 14-6t14 6l32 32q6 6 14 6t14-6l32-32q6-6 14-6t14 6l32 32q6 6 14 6t14-6l29-29q5-5 11-2.5t6 9.5v656q0 50-35 85t-85 35H240Zm480-80q17 0 28.5-11.5T760-200v-560H320v440h320q17 0 28.5 11.5T680-280v80q0 17 11.5 28.5T720-160ZM400-680h160q17 0 28.5 11.5T600-640q0 17-11.5 28.5T560-600H400q-17 0-28.5-11.5T360-640q0-17 11.5-28.5T400-680Zm0 120h160q17 0 28.5 11.5T600-520q0 17-11.5 28.5T560-480H400q-17 0-28.5-11.5T360-520q0-17 11.5-28.5T400-560Zm280-40q-17 0-28.5-11.5T640-640q0-17 11.5-28.5T680-680q17 0 28.5 11.5T720-640q0 17-11.5 28.5T680-600Zm0 120q-17 0-28.5-11.5T640-520q0-17 11.5-28.5T680-560q17 0 28.5 11.5T720-520q0 17-11.5 28.5T680-480Z"/></svg></button>
         </nav>
 
-        <div class="flex-1 overflow-y-auto text-white"> {/* Added text-white here for content within */}
+        <div class="flex-1 overflow-y-auto text-black"> <!-- Changed text-white to text-black -->
             <div id="dialpad" class="content-section active flex flex-col items-center">
-                <h2 class="text-2xl font-semibold mb-4">Dialer</h2>
-                <input type="text" id="dialedNumber" class="w-full bg-black/20 text-white text-2xl p-3 rounded-lg mb-4 text-center" readonly>
+                <h2 class="text-2xl font-semibold mb-4 text-white">Dialer</h2> <!-- Added text-black -->
+                <input type="text" id="dialedNumber" class="glass w-full text-white text-2xl p-3 rounded-full mb-4 text-center shadow-lg" readonly> <!-- Applied .glass style -->
                 <div class="grid grid-cols-3 gap-3 w-full max-w-xs">
-                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('1')">1</button>
-                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('2')">2</button>
-                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('3')">3</button>
-                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('4')">4</button>
-                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('5')">5</button>
-                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('6')">6</button>
-                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('7')">7</button>
-                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('8')">8</button>
-                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('9')">9</button>
-                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('*')">*</button>
-                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('0')">0</button>
-                    <button class="bg-white/20 hover:bg-white/30 text-white text-xl rounded-full aspect-square" onclick="appendToDialer('#')">#</button>
+                    <button class="glass text-white text-xl rounded-full aspect-square shadow-lg" onclick="appendToDialer('1')">1</button>
+                    <button class="glass text-white text-xl rounded-full aspect-square shadow-lg" onclick="appendToDialer('2')">2</button>
+                    <button class="glass text-white text-xl rounded-full aspect-square shadow-lg" onclick="appendToDialer('3')">3</button>
+                    <button class="glass text-white text-xl rounded-full aspect-square shadow-lg" onclick="appendToDialer('4')">4</button>
+                    <button class="glass text-white text-xl rounded-full aspect-square shadow-lg" onclick="appendToDialer('5')">5</button>
+                    <button class="glass text-white text-xl rounded-full aspect-square shadow-lg" onclick="appendToDialer('6')">6</button>
+                    <button class="glass text-white text-xl rounded-full aspect-square shadow-lg" onclick="appendToDialer('7')">7</button>
+                    <button class="glass text-white text-xl rounded-full aspect-square shadow-lg" onclick="appendToDialer('8')">8</button>
+                    <button class="glass text-white text-xl rounded-full aspect-square shadow-lg" onclick="appendToDialer('9')">9</button>
+                    <button class="glass text-white text-xl rounded-full aspect-square shadow-lg" onclick="appendToDialer('*')">*</button>
+                    <button class="glass text-white text-xl rounded-full aspect-square shadow-lg" onclick="appendToDialer('0')">0</button>
+                    <button class="glass text-white text-xl rounded-full aspect-square shadow-lg" onclick="appendToDialer('#')">#</button>
                 </div>
                 <div class="flex justify-around w-full max-w-xs mt-4">
-                    <button class="px-6 py-3 rounded-full bg-green-500 hover:bg-green-600 text-white font-semibold" onclick="makeCall()">Call</button>
-                    <button class="px-6 py-3 rounded-full bg-red-500 hover:bg-red-600 text-white font-semibold" onclick="clearDialer()">Clear</button>
+                    <button class="glass px-6 py-3 rounded-full text-white font-semibold shadow-lg hover:bg-white/20" onclick="makeCall()">Call</button>
+                    <button class="glass px-6 py-3 rounded-full text-white font-semibold shadow-lg hover:bg-white/20" onclick="clearDialer()">Clear</button>
                 </div>
             </div>
 
             <div id="contacts" class="content-section">
-                <h2 class="text-2xl font-semibold mb-4 text-center">Contacts</h2>
-                <div class="mb-6 text-white"> {/* Ensure text within this div is white */}
-                    <h3 class="text-lg font-medium mb-2">Add New Contact</h3>
-                    <input type="text" id="newContactName" placeholder="Name" class="w-full bg-black/20 text-white placeholder-white/60 p-2 rounded-lg mb-2 focus:ring-2 focus:ring-blue-500 outline-none">
-                    <input type="tel" id="newContactPhone" placeholder="Phone Number" class="w-full bg-black/20 text-white placeholder-white/60 p-2 rounded-lg mb-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                <h2 class="text-2xl font-semibold mb-4 text-center text-black">Contacts</h2> <!-- Added text-black -->
+                <div class="mb-6 text-black"> <!-- Changed text-white to text-black -->
+                    <h3 class="text-lg font-medium mb-2 text-black">Add New Contact</h3> <!-- Added text-black -->
+                    <input type="text" id="newContactName" placeholder="Name" class="w-full bg-gray-100 text-black placeholder-gray-500 p-2 rounded-lg mb-2 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-300"> <!-- Adjusted styles -->
+                    <input type="tel" id="newContactPhone" placeholder="Phone Number" class="w-full bg-gray-100 text-black placeholder-gray-500 p-2 rounded-lg mb-2 focus:ring-2 focus:ring-blue-500 outline-none border border-gray-300"> <!-- Adjusted styles -->
                     <button class="w-full px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold" onclick="addContact()">Add Contact</button>
                 </div>
-                <ul id="contactsList" class="space-y-2 text-white"> {/* Ensure list items are white */}
+                <ul id="contactsList" class="space-y-2 text-black"> <!-- Changed text-white to text-black -->
                     <!-- Contacts will be loaded here by JavaScript -->
-                    <li class="bg-white/10 p-3 rounded-lg text-center">Loading contacts...</li>
+                    <li class="bg-gray-100 p-3 rounded-lg text-center border border-gray-200">Loading contacts...</li> <!-- Adjusted styles -->
                 </ul>
             </div>
 
             <div id="history" class="content-section">
-                <h2 class="text-2xl font-semibold mb-4 text-center text-white">Call History</h2> {/* Explicitly set text white */}
-                <ul id="callHistoryList" class="space-y-2 text-white"> {/* Ensure list items are white */}
+                <h2 class="text-2xl font-semibold mb-4 text-center text-black">Call History</h2> <!-- Changed text-white to text-black -->
+                <ul id="callHistoryList" class="space-y-2 text-black"> <!-- Changed text-white to text-black -->
                     <!-- Call history will be loaded here by JavaScript -->
-                    <li class="bg-white/10 p-3 rounded-lg text-center">Loading call history...</li> {/* text-white is inherited from ul */}
+                    <li class="bg-gray-100 p-3 rounded-lg text-center border border-gray-200">Loading call history...</li> <!-- Adjusted styles -->
                 </ul>
             </div>
         </div>
@@ -123,24 +123,24 @@
 
         async function loadContacts() {
             const listElement = document.getElementById('contactsList');
-            listElement.innerHTML = '<li class="text-white bg-white/10 p-3 rounded-lg text-center">Loading contacts...</li>';
+            listElement.innerHTML = '<li class="text-black bg-gray-100 p-3 rounded-lg text-center border border-gray-200">Loading contacts...</li>'; // Adjusted styles
             try {
                 const response = await fetch('/api/contacts');
                 if (!response.ok) throw new Error('Failed to fetch contacts');
                 const contacts = await response.json();
                 listElement.innerHTML = ''; // Clear loading message
                 if (contacts.length === 0) {
-                    listElement.innerHTML = '<li class="text-white bg-white/10 p-3 rounded-lg text-center">No contacts found.</li>';
+                    listElement.innerHTML = '<li class="text-black bg-gray-100 p-3 rounded-lg text-center border border-gray-200">No contacts found.</li>'; // Adjusted styles
                 } else {
                     contacts.forEach(contact => { // Each contact item will be styled by Tailwind if needed, but default li is fine for now
-                        const li = document.createElement('li'); li.className = 'text-white bg-white/10 p-3 rounded-lg'; // Style list items
+                        const li = document.createElement('li'); li.className = 'text-black bg-gray-100 p-3 rounded-lg border border-gray-200'; // Adjusted styles
                         li.textContent = `${contact.name} - ${contact.phoneNumber}`;
                         listElement.appendChild(li);
                     });
                 }
             } catch (error) {
                 console.error('Error loading contacts:', error);
-                listElement.innerHTML = '<li class="text-white bg-red-500/30 p-3 rounded-lg text-center">Error loading contacts.</li>';
+                listElement.innerHTML = '<li class="text-black bg-red-100 p-3 rounded-lg text-center border border-red-300">Error loading contacts.</li>'; // Adjusted styles
             }
         }
 
@@ -175,24 +175,24 @@
 
         async function loadCallHistory() {
             const listElement = document.getElementById('callHistoryList');
-            listElement.innerHTML = '<li class="text-white bg-white/10 p-3 rounded-lg text-center">Loading call history...</li>';
+            listElement.innerHTML = '<li class="text-black bg-gray-100 p-3 rounded-lg text-center border border-gray-200">Loading call history...</li>'; // Adjusted styles
             try {
                 const response = await fetch('/api/callhistory');
                 if (!response.ok) throw new Error('Failed to fetch call history');
                 const history = await response.json();
                 listElement.innerHTML = ''; // Clear loading message
                 if (history.length === 0) {
-                    listElement.innerHTML = '<li class="text-white bg-white/10 p-3 rounded-lg text-center">No call history.</li>';
+                    listElement.innerHTML = '<li class="text-black bg-gray-100 p-3 rounded-lg text-center border border-gray-200">No call history.</li>'; // Adjusted styles
                 } else {
                     history.forEach(record => { // Each history item
-                        const li = document.createElement('li'); li.className = 'text-white bg-white/10 p-3 rounded-lg'; // Style list items
+                        const li = document.createElement('li'); li.className = 'text-black bg-gray-100 p-3 rounded-lg border border-gray-200'; // Adjusted styles
                         li.textContent = `${record.contactName} (${record.type}) - ${record.timestamp}`;
                         listElement.appendChild(li);
                     });
                 }
             } catch (error) {
                 console.error('Error loading call history:', error);
-                listElement.innerHTML = '<li class="text-white bg-red-500/30 p-3 rounded-lg text-center">Error loading call history.</li>';
+                listElement.innerHTML = '<li class="text-black bg-red-100 p-3 rounded-lg text-center border border-red-300">Error loading call history.</li>'; // Adjusted styles
             }
         }
 
