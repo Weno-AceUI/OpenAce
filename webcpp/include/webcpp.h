@@ -23,6 +23,10 @@ typedef struct {
 // Initialize WebCpp runtime
 bool webcpp_init(const webcpp_config_t* config);
 
+// Load HTML file and set it as the main document content
+bool webcpp_load_html_file(webcpp_context_t* context, const char* file_path);
+
+
 // Create new WebCpp context
 webcpp_context_t* webcpp_create_context(void);
 
