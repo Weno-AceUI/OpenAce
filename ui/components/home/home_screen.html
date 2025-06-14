@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenAce Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Removed Tailwind from here as it's not used by the provided home_screen.html structure -->
     <style>
         body {
+            /* Path assumes home_screen.html is served from build/ui/components/home/ */
             background: url('acepaper.png') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
@@ -109,39 +111,39 @@
     <div class="flex-1 p-6">
         <!-- App Grid -->
         <div class="grid grid-cols-4 gap-6">
-            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('settings')">
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="launchApp('SettingsApp')">
                 <img src="icons/settings.svg" alt="Settings"/>
                 <span class="text-white text-sm">Settings</span>
             </button>
-            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('files')">
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="launchApp('FilesApp')">
                <img src="icons/files.svg" alt="Files"/>
                 <span class="text-white text-sm">Files</span>
             </button>
-            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('camera')">
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="launchApp('CameraApp')">
                 <img src="icons/camera.svg" alt="Camera"/>
                 <span class="text-white text-sm">Camera</span>
             </button>
-            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('browser')">
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="launchApp('BrowserApp')">
                <img src="icons/browse.svg" alt="Browser"/>
                 <span class="text-white text-sm">Browser</span>
             </button>
-            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('messages')">
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="launchApp('MessagesApp')">
                <img src="icons/messages.svg" alt="Messages"/>
                 <span class="text-white text-sm">Messages</span>
             </button>
-            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('phone')">
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="launchApp('PhoneApp')">
                 <img src="icons/phone.svg" alt="Phone"/>
                 <span class="text-white text-sm">Phone</span>
             </button>
-            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('gallery')">
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="launchApp('PhotosApp')">
                 <img src="icons/photos.svg" alt="Photos"/>
                 <span class="text-white text-sm">Photos</span>
             </button>
-            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('music')">
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="launchApp('MusicApp')">
                 <img src="icons/music.svg" alt="Music"/>
                 <span class="text-white text-sm">Music</span>
             </button>
-            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="openApp('launcher')">
+            <button class="app-icon ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" onclick="launchApp('LauncherApp')">
                 <img src="icons/launcher.svg" alt="  "/>
                 <span class="text-white text-sm">Launcher</span>
             </button>
@@ -208,20 +210,16 @@
         setInterval(updateTime, 1000);
         updateTime();
 
-        // App navigation
-        function openApp(app) {
-            // Hide all sections
-            document.getElementById('contacts-section').classList.add('hidden');
-            document.getElementById('messages-section').classList.add('hidden');
-
-            // Show selected section
-            if (app === 'phone' || app === 'messages') {
-                document.getElementById(`${app}-section`).classList.remove('hidden');
-                if (app === 'phone') {
-                    loadContacts();
-                } else if (app === 'messages') {
-                    loadMessages();
-                }
+        // App "launching" function
+        // This will call a C++ function bridged by WebCpp
+        async function launchApp(appIdentifier) {
+            console.log(`Attempting to launch app: ${appIdentifier}`);
+            if (window.HomeScreenAPI_launchApplication) {
+                const success = await window.HomeScreenAPI_launchApplication(appIdentifier);
+                console.log(`Launch attempt for ${appIdentifier} reported: ${success}`);
+            } else {
+                console.error("HomeScreenAPI_launchApplication function not found on window object.");
+                alert("Error: System Launcher API is not available.");
             }
         }
 
