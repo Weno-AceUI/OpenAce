@@ -23,10 +23,6 @@ typedef struct {
 // Initialize WebCpp runtime
 bool webcpp_init(const webcpp_config_t* config);
 
-// Load HTML file and set it as the main document content
-bool webcpp_load_html_file(webcpp_context_t* context, const char* file_path);
-
-
 // Create new WebCpp context
 webcpp_context_t* webcpp_create_context(void);
 
@@ -35,6 +31,26 @@ bool webcpp_eval_js(webcpp_context_t* context, const char* js_code);
 
 // Load and execute JavaScript file
 bool webcpp_load_js_file(webcpp_context_t* context, const char* file_path);
+
+// Load HTML file and set it as the main document content
+bool webcpp_load_html_file(webcpp_context_t* context, const char* file_path);
+
+// List directory contents (files and subdirectories)
+// result_json will be an allocated string containing a JSON array of objects:
+// e.g., [{"name": "item1", "type": "file/dir", "path": "/full/path/to/item1"}, ...]
+// The caller is responsible for freeing result_json.
+bool webcpp_list_directory_items(webcpp_context_t* context, const char* directory_path, char** result_json);
+
+// Get image file content as a Base64 encoded data URL string.
+// The caller is responsible for freeing data_url_string.
+bool webcpp_get_image_data_url(webcpp_context_t* context, const char* image_path, char** data_url_string);
+
+// Save an image from a Base64 encoded data URL string to the specified file path.
+// full_file_path should include the desired filename and extension (e.g., /path/to/image.png).
+bool webcpp_save_image_from_data_url(webcpp_context_t* context, const char* full_file_path, const char* base64_data_url);
+
+// Load and render content from a given URL into the current context
+bool webcpp_load_url(webcpp_context_t* context, const char* url);
 
 // Register C++ function to be called from JavaScript
 bool webcpp_register_function(webcpp_context_t* context, const char* name, void* function_ptr);

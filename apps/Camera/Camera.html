@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>OpenAce Camera</title>
+    <style>
+        body {
+            background: #000; /* Camera UI is often dark */
+            min-height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+        .camera-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Controls at the bottom */
+            align-items: center;
+        }
+        #cameraViewfinder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the area, might crop */
+            z-index: 1;
+        }
+        .camera-controls {
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+        #captureButton {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 4px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            transition: transform 0.1s ease;
+        }
+        #captureButton:active {
+            transform: scale(0.95);
+            background-color: white;
+        }
+        /* Hidden canvas for capturing frames */
+        #photoCanvas {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="camera-container">
+        <video id="cameraViewfinder" autoplay playsinline></video>
+        <canvas id="photoCanvas"></canvas>
+        <div class="camera-controls">
+            <button id="captureButton" title="Capture Photo"></button>
+        </div>
+    </div>
+
+    <script>
+        const videoElement = document.getElementById('cameraViewfinder');
+        const canvasElement = document.getElementById('photoCanvas');
+        const captureButton = document.getElementById('captureButton');
+        const photosSavePath = "/Users/dylando/Pictures/CameraRoll"; // Example save path
+
+        async function initCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }); // Prefer back camera
+                videoElement.srcObject = stream;
+            } catch (err) {
+                console.error("Error accessing camera:", err);
+                alert("Could not access the camera. Please check permissions.");
+            }
+        }
+
+        captureButton.addEventListener('click', async () => {
+            canvasElement.width = videoElement.videoWidth;
+            canvasElement.height = videoElement.videoHeight;
+            const context = canvasElement.getContext('2d');
+            context.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
+            
+            const dataUrl = canvasElement.toDataURL('image/png'); // Or 'image/jpeg'
+            const fileName = `photo_${Date.now()}.png`;
+            const fullPath = `${photosSavePath}/${fileName}`;
+
+            if (window.CameraAPI_savePhoto) {
+                const success = await window.CameraAPI_savePhoto(fullPath, dataUrl);
+                if (success) {
+                    alert(`Photo saved to ${fullPath}`);
+                    // Optionally, trigger a notification
+                    // if (window.showNotification) window.showNotification("Photo Saved", fileName, "success");
+                } else {
+                    alert(`Failed to save photo to ${fullPath}`);
+                }
+            } else {
+                console.error("CameraAPI_savePhoto function not found on window object.");
+                alert("Error: Save photo API is not available.");
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', initCamera);
+    </script>
+</body>
+</html>

@@ -3,6 +3,7 @@
 #include "../include/webcpp_threading.h"
 #include <stdlib.h>
 #include <string.h>
+#include <dirent.h> // For directory listing
 #include <stdio.h>
 
 static bool g_initialized = false;
@@ -200,6 +201,215 @@ bool webcpp_load_html_file(webcpp_context_t* context, const char* file_path) {
         fprintf(stderr, "WebCpp Error: webcpp_eval_js failed to load HTML content from %s.\n", file_path);
     }
     return success;
+}
+
+// Basic Base64 encoding (simplified, no line breaks)
+static const char base64_chars[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+static char* webcpp_base64_encode(const unsigned char *data, size_t input_length, size_t *output_length) {
+    *output_length = 4 * ((input_length + 2) / 3);
+    char *encoded_data = (char*)malloc(*output_length + 1); // +1 for null terminator
+    if (encoded_data == NULL) return NULL;
+
+    for (size_t i = 0, j = 0; i < input_length;) {
+        uint32_t octet_a = i < input_length ? data[i++] : 0;
+        uint32_t octet_b = i < input_length ? data[i++] : 0;
+        uint32_t octet_c = i < input_length ? data[i++] : 0;
+
+        uint32_t triple = (octet_a << 0x10) + (octet_b << 0x08) + octet_c;
+
+        encoded_data[j++] = base64_chars[(triple >> 3 * 6) & 0x3F];
+        encoded_data[j++] = base64_chars[(triple >> 2 * 6) & 0x3F];
+        encoded_data[j++] = base64_chars[(triple >> 1 * 6) & 0x3F];
+        encoded_data[j++] = base64_chars[(triple >> 0 * 6) & 0x3F];
+    }
+
+    // Pad with '='
+    size_t mod_table[] = {0, 2, 1};
+    for (size_t i = 0; i < mod_table[input_length % 3]; i++)
+        encoded_data[*output_length - 1 - i] = '=';
+
+    encoded_data[*output_length] = '\0';
+    return encoded_data;
+}
+
+// Basic Base64 decoding
+static unsigned char* webcpp_base64_decode(const char *data, size_t input_length, size_t *output_length) {
+    if (input_length % 4 != 0) return NULL; // Invalid Base64 input
+
+    *output_length = input_length / 4 * 3;
+    if (data[input_length - 1] == '=') (*output_length)--;
+    if (data[input_length - 2] == '=') (*output_length)--;
+
+    unsigned char *decoded_data = (unsigned char*)malloc(*output_length);
+    if (decoded_data == NULL) return NULL;
+
+    for (size_t i = 0, j = 0; i < input_length;) {
+        uint32_t sextet_a = data[i] == '=' ? 0 & i++ : strchr(base64_chars, data[i++]) - base64_chars;
+        uint32_t sextet_b = data[i] == '=' ? 0 & i++ : strchr(base64_chars, data[i++]) - base64_chars;
+        uint32_t sextet_c = data[i] == '=' ? 0 & i++ : strchr(base64_chars, data[i++]) - base64_chars;
+        uint32_t sextet_d = data[i] == '=' ? 0 & i++ : strchr(base64_chars, data[i++]) - base64_chars;
+
+        uint32_t triple = (sextet_a << 3 * 6) + (sextet_b << 2 * 6) + (sextet_c << 1 * 6) + (sextet_d << 0 * 6);
+
+        if (j < *output_length) decoded_data[j++] = (triple >> 2 * 8) & 0xFF;
+        if (j < *output_length) decoded_data[j++] = (triple >> 1 * 8) & 0xFF;
+        if (j < *output_length) decoded_data[j++] = (triple >> 0 * 8) & 0xFF;
+    }
+    return decoded_data;
+}
+
+bool webcpp_save_image_from_data_url(webcpp_context_t* context, const char* full_file_path, const char* base64_data_url) {
+    if (!context || !full_file_path || !base64_data_url) return false;
+
+    const char* base64_marker = ";base64,";
+    const char* base64_content_start = strstr(base64_data_url, base64_marker);
+
+    if (!base64_content_start) {
+        fprintf(stderr, "WebCpp Error: Invalid data URL format. Missing ';base64,'.\n");
+        return false;
+    }
+    base64_content_start += strlen(base64_marker); // Move pointer past the marker
+
+    size_t decoded_length;
+    unsigned char* image_bytes = webcpp_base64_decode(base64_content_start, strlen(base64_content_start), &decoded_length);
+
+    if (!image_bytes) {
+        fprintf(stderr, "WebCpp Error: Failed to decode Base64 image data for %s.\n", full_file_path);
+        return false;
+    }
+
+    FILE* outfile = fopen(full_file_path, "wb");
+    if (!outfile) {
+        fprintf(stderr, "WebCpp Error: Could not open file %s for writing.\n", full_file_path);
+        free(image_bytes);
+        return false;
+    }
+
+    size_t written = fwrite(image_bytes, 1, decoded_length, outfile);
+    fclose(outfile);
+    free(image_bytes);
+
+    if (written != decoded_length) {
+        fprintf(stderr, "WebCpp Error: Failed to write all image bytes to %s.\n", full_file_path);
+        return false;
+    }
+    return true;
+}
+
+bool webcpp_list_directory_items(webcpp_context_t* context, const char* directory_path, char** result_json) {
+    if (!context || !directory_path || !result_json) return false;
+
+    DIR *dir;
+    struct dirent *entry;
+    char buffer[2048]; // Buffer for constructing JSON string
+    strcpy(buffer, "[");
+    bool first_item = true;
+
+    if ((dir = opendir(directory_path)) == NULL) {
+        perror("opendir() error");
+        *result_json = strdup("[]"); // Return empty JSON array on error
+        return false;
+    }
+
+    while ((entry = readdir(dir)) != NULL) {
+        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) {
+            continue; // Skip . and ..
+        }
+
+        if (!first_item) {
+            strcat(buffer, ",");
+        }
+        first_item = false;
+
+        char item_path[1024];
+        snprintf(item_path, sizeof(item_path), "%s/%s", directory_path, entry->d_name);
+
+        // Basic escaping for JSON string values (name and path)
+        // A robust solution would handle all special characters.
+        char escaped_name[256];
+        char escaped_path[1024];
+        // Simple escape: just an example, not comprehensive
+        strncpy(escaped_name, entry->d_name, sizeof(escaped_name)-1); escaped_name[sizeof(escaped_name)-1] = '\0';
+        strncpy(escaped_path, item_path, sizeof(escaped_path)-1); escaped_path[sizeof(escaped_path)-1] = '\0';
+        // TODO: Implement proper JSON string escaping for name and path
+
+        char item_json[1500];
+        snprintf(item_json, sizeof(item_json),
+                 "{\"name\":\"%s\",\"type\":\"%s\",\"path\":\"%s\"}",
+                 escaped_name,
+                 (entry->d_type == DT_DIR) ? "dir" : "file",
+                 escaped_path);
+        strcat(buffer, item_json);
+    }
+    closedir(dir);
+    strcat(buffer, "]");
+
+    *result_json = strdup(buffer);
+    if (!*result_json) return false; // strdup failed
+
+    return true;
+}
+
+bool webcpp_get_image_data_url(webcpp_context_t* context, const char* image_path, char** data_url_string) {
+    if (!context || !image_path || !data_url_string) return false;
+
+    FILE* image_file = fopen(image_path, "rb");
+    if (!image_file) {
+        fprintf(stderr, "WebCpp Error: Could not open image file %s\n", image_path);
+        return false;
+    }
+
+    fseek(image_file, 0, SEEK_END);
+    long file_size = ftell(image_file);
+    fseek(image_file, 0, SEEK_SET);
+
+    unsigned char* image_data = (unsigned char*)malloc(file_size);
+    if (!image_data) {
+        fprintf(stderr, "WebCpp Error: Could not allocate memory for image data.\n");
+        fclose(image_file);
+        return false;
+    }
+
+    if (fread(image_data, 1, file_size, image_file) != (size_t)file_size) {
+        fprintf(stderr, "WebCpp Error: Could not read image file %s\n", image_path);
+        fclose(image_file);
+        free(image_data);
+        return false;
+    }
+    fclose(image_file);
+
+    size_t base64_len;
+    char* base64_data = webcpp_base64_encode(image_data, file_size, &base64_len);
+    free(image_data);
+
+    if (!base64_data) {
+        fprintf(stderr, "WebCpp Error: Base64 encoding failed for %s\n", image_path);
+        return false;
+    }
+
+    // Determine MIME type (very basic, based on extension)
+    const char* mime_type = "image/jpeg"; // Default
+    const char* ext = strrchr(image_path, '.');
+    if (ext) {
+        if (strcmp(ext, ".png") == 0) mime_type = "image/png";
+        else if (strcmp(ext, ".gif") == 0) mime_type = "image/gif";
+        // Add more types as needed
+    }
+
+    // Format: "data:[<mime_type>];base64,<data>"
+    size_t data_url_len = strlen("data:") + strlen(mime_type) + strlen(";base64,") + base64_len + 1;
+    *data_url_string = (char*)malloc(data_url_len);
+    if (!*data_url_string) {
+        fprintf(stderr, "WebCpp Error: Could not allocate memory for data URL string.\n");
+        free(base64_data);
+        return false;
+    }
+
+    sprintf(*data_url_string, "data:%s;base64,%s", mime_type, base64_data);
+    free(base64_data);
+
+    return true;
 }
 
 bool webcpp_call_js_function(webcpp_context_t* context, const char* function_name, const char* args_json, char** result_json) {
