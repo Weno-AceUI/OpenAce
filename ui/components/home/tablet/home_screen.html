@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAce Home (Tablet)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Removed Tailwind from here as it's not used by the provided home_screen.html structure -->
+    <style>
+        body {
+            /* Path assumes home_screen.html is served from build/ui/components/home/ */
+            background: url('../acepaper.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .app-icon {
+            transition: all 0.3s ease;
+        }
+        .app-icon:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            transform: scale(10, 10);
+            opacity: 0;
+            transition: transform .5s, opacity 1s;
+        }
+        .ripple:active::after {
+            transform: scale(0, 0);
+            opacity: .3;
+            transition: 0s;
+        }
+        .dock {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 10px;
+            margin: 0 auto;
+            width: fit-content;
+        }
+        .dock-icon {
+            transition: all 0.3s ease;
+        }
+        .dock-icon:hover {
+            transform: scale(1.2) translateY(-10px);
+            background: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
+        }
+        .contact-card {
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        /* App Window Styles */
+        #window-container {
+            /* Ensures windows are above background but below fixed UI like dock/CC */
+            z-index: 10; 
+        }
+        .app-window {
+            position: relative; /* Establishes a positioning context for the absolute title bar */
+            /* padding-top: 50px; */  /* Removed: Title bar will float externally */
+            min-width: 300px;
+            min-height: 200px;
+            /* Existing Tailwind classes define the main window's look:
+               absolute bg-white/10 backdrop-blur-lg shadow-xl rounded-lg 
+               overflow-hidden pointer-events-auto border border-white/20 flex flex-col */
+        }
+        .app-window.focused {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); /* More prominent shadow for focused window */
+        }
+
+        /* Styling for the floating title bar */
+        .app-window .title-bar {
+            position: absolute;
+            top: -40px; /* -(Title bar height + desired gap). E.g., -(32px + 8px) */
+            left: 10px; /* Distance from the left edge of the .app-window */
+            right: 10px; /* Distance from the right edge of the .app-window */
+            /* Height is determined by content + Tailwind's py-1.5 padding */
+            border-radius: 8px; /* Rounded corners for the title bar itself */
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3); /* Shadow to give a floating appearance */
+            z-index: 1; /* Ensures it's above other direct children if any (though content-area is separate) */
+            cursor: move;
+            /* Tailwind classes on the element provide base background, text color, padding, and flex layout:
+               bg-black/30 text-white px-3 py-1.5 flex justify-between items-center flex-shrink-0 */
+        }
+        .app-window.focused .title-bar {
+             background: rgba(0, 0, 0, 0.55); /* Darker background for focused title bar */
+             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* More prominent shadow for focused title bar */
+        }
+        .message-bubble {
+            max-width: 80%;
+            margin: 8px;
+            padding: 12px;
+            border-radius: 16px;
+        }
+        .message-sent {
+            background: #007AFF;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+        .message-received {
+            background: #E5E5EA;
+            color: black;
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Top Bar -->
+    <div class="p-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <!-- Wifi Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-120q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29Zm0-440q75 0 142.5 24T745-470q20 15 20.5 39.5T748-388q-17 17-42 17.5T661-384q-38-26-84-41t-97-15q-51 0-97 15t-84 41q-20 14-45 13t-42-18q-17-18-17-42.5t20-39.5q55-42 122.5-65.5T480-560Zm0-240q125 0 235.5 41T914-643q20 17 21 42t-17 43q-17 17-42 17.5T831-556q-72-59-161.5-91.5T480-680q-100 0-189.5 32.5T129-556q-20 16-45 15.5T42-558q-18-18-17-43t21-42q88-75 198.5-116T480-800Z"/></svg>
+            <!-- Bluetooth Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M440-137v-247L284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l156 156v-247q0-18 12-29.5t28-11.5q8 0 15 3t13 9l172 172q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L536-480l144 144q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L508-108q-6 6-13 9t-15 3q-16 0-28-11.5T440-137Zm80-439 76-76-76-74v150Zm0 342 76-74-76-76v150Z"/></svg>
+            <!-- Airplane Mode Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M400-408 147-307q-24 10-45.5-4.5T80-352v-22q0-12 5.5-23t15.5-18l299-209v-176q0-33 23.5-56.5T480-880q33 0 56.5 23.5T560-800v176l299 209q10 7 15.5 18t5.5 23v22q0 26-21.5 40.5T813-307L560-408v144l103 72q8 6 12.5 14.5T680-159v24q0 20-16.5 32.5T627-96l-147-44-147 44q-20 6-36.5-6.5T280-135v-24q0-10 4.5-18.5T297-192l103-72v-144Z"/></svg>
+        </div>
+        <span class="text-white/60 text-sm" id="time">9:41</span>
+    </div>
+
+    <!-- App Window Container -->
+    <div id="window-container" class="fixed inset-0 pointer-events-none">
+        <!-- App windows will be appended here by JavaScript -->
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-6">
+        <!-- App Grid has been removed as all icons are moved to the dock -->
+        
+        <!-- Dock -->
+        <div class="fixed bottom-6 left-0 right-0 flex justify-center z-40"> <!-- Dock z-index is 40 -->
+            <div class="dock flex items-center gap-x-3">
+                <!-- Phone App -->
+                <button class="dock-icon ripple p-2 rounded-lg" onclick="launchAppWindow('PhoneApp', 'Phone', '../icons/phone.svg')" aria-label="Phone">
+                    <img src="../icons/phone.svg" alt="" class="w-8 h-8"/>
+                </button>
+                <!-- Messages App -->
+                <button class="dock-icon ripple p-2 rounded-lg" onclick="launchAppWindow('MessagesApp', 'Messages', '../icons/messages.svg')" aria-label="Messages">
+                    <img src="../icons/messages.svg" alt="" class="w-8 h-8"/>
+                </button>
+                <!-- Browser App -->
+                <button class="dock-icon ripple p-2 rounded-lg" onclick="launchAppWindow('BrowserApp', 'Browser', '../icons/browse.svg')" aria-label="Browser">
+                    <img src="../icons/browse.svg" alt="" class="w-8 h-8"/>
+                </button>
+                <!-- Music App -->
+                <button class="dock-icon ripple p-2 rounded-lg" onclick="launchAppWindow('MusicApp', 'Music', '../icons/music.svg')" aria-label="Music">
+                    <img src="../icons/music.svg" alt="" class="w-8 h-8"/>
+                </button>
+                <!-- Settings App -->
+                <button class="dock-icon ripple p-2 rounded-lg" onclick="launchAppWindow('SettingsApp', 'Settings', '../icons/settings.svg')" aria-label="Settings">
+                    <img src="../icons/settings.svg" alt="" class="w-8 h-8"/>
+                </button>
+                <!-- Files App -->
+                <button class="dock-icon ripple p-2 rounded-lg" onclick="launchAppWindow('FilesApp', 'Files', '../icons/files.svg')" aria-label="Files">
+                    <img src="../icons/files.svg" alt="" class="w-8 h-8"/>
+                </button>
+                <!-- Camera App -->
+                <button class="dock-icon ripple p-2 rounded-lg" onclick="launchAppWindow('CameraApp', 'Camera', '../icons/camera.svg')" aria-label="Camera">
+                    <img src="../icons/camera.svg" alt="" class="w-8 h-8"/>
+                </button>
+                <!-- Photos App -->
+                <button class="dock-icon ripple p-2 rounded-lg" onclick="launchAppWindow('PhotosApp', 'Photos', '../icons/photos.svg')" aria-label="Photos">
+                    <img src="../icons/photos.svg" alt="" class="w-8 h-8"/>
+                </button>
+                <!-- Launcher App -->
+                <button class="dock-icon ripple p-2 rounded-lg" onclick="launchAppWindow('LauncherApp', 'Launcher', '../icons/launcher.svg')" aria-label="Launcher">
+                    <img src="../icons/launcher.svg" alt="" class="w-8 h-8"/>
+                </button>
+            </div>
+        </div>
+
+       
+    <!-- Control Center Overlay (hidden by default) -->
+    <div id="control-center-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm hidden">
+        <div class="relative w-full max-w-sm">
+            <button id="close-cc-overlay" class="absolute top-2 right-2 z-[51] p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7A1 1 0 0 0 5.7 7.11L10.59 12l-4.89 4.89a1 1 0 1 0 1.41 1.41L12 13.41l4.89 4.89a1 1 0 0 0 1.41-1.41L13.41 12l4.89-4.89a1 1 0 0 0 0-1.4z"/></svg>
+            </button>
+            <div class="control-center rounded-3xl p-6 w-full max-w-sm bg-white/10 border border-white/10 backdrop-blur-lg">
+                <form id="control-form" autocomplete="off">
+                    <div class="mb-8">
+                        <div class="grid grid-cols-3 gap-3">
+                            <button type="button" class="toggle-btn active ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" id="wifi-btn">
+                                <!-- Wifi SVG -->
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-120q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29Zm0-440q75 0 142.5 24T745-470q20 15 20.5 39.5T748-388q-17 17-42 17.5T661-384q-38-26-84-41t-97-15q-51 0-97 15t-84 41q-20 14-45 13t-42-18q-17-18-17-42.5t20-39.5q55-42 122.5-65.5T480-560Zm0-240q125 0 235.5 41T914-643q20 17 21 42t-17 43q-17 17-42 17.5T831-556q-72-59-161.5-91.5T480-680q-100 0-189.5 32.5T129-556q-20 16-45 15.5T42-558q-18-18-17-43t21-42q88-75 198.5-116T480-800Z"/></svg>
+                                <span class="text-sm">Wi-Fi</span>
+                            </button>
+                            <button type="button" class="toggle-btn active ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" id="bluetooth-btn">
+                                <!-- Bluetooth SVG -->
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-137v-247L284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l156 156v-247q0-18 12-29.5t28-11.5q8 0 15 3t13 9l172 172q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L536-480l144 144q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L508-108q-6 6-13 9t-15 3q-16 0-28-11.5T440-137Zm80-439 76-76-76-74v150Zm0 342 76-74-76-76v150Z"/></svg>
+                                <span class="text-sm">Bluetooth</span>
+                            </button>
+                            <button type="button" class="toggle-btn inactive ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" id="airplane-btn">
+                                <!-- Airplane SVG -->
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M400-408 147-307q-24 10-45.5-4.5T80-352v-22q0-12 5.5-23t15.5-18l299-209v-176q0-33 23.5-56.5T480-880q33 0 56.5 23.5T560-800v176l299 209q10 7 15.5 18t5.5 23v22q0 26-21.5 40.5T813-307L560-408v144l103 72q8 6 12.5 14.5T680-159v24q0 20-16.5 32.5T627-96l-147-44-147 44q-20 6-36.5-6.5T280-135v-24q0-10 4.5-18.5T297-192l103-72v-144Z"/></svg>
+                                <span class="text-sm">Airplane</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <label for="brightness" class="control-label w-24"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-760q-17 0-28.5-11.5T440-800v-80q0-17 11.5-28.5T480-920q17 0 28.5 11.5T520-880v80q0 17-11.5 28.5T480-760Zm198 82q-11-11-11-27.5t11-28.5l56-57q12-12 28.5-12t28.5 12q11 11 11 28t-11 28l-57 57q-11 11-28 11t-28-11Zm122 238q-17 0-28.5-11.5T760-480q0-17 11.5-28.5T800-520h80q17 0 28.5 11.5T920-480q0 17-11.5 28.5T880-440h-80ZM480-40q-17 0-28.5-11.5T440-80v-80q0-17 11.5-28.5T480-200q17 0 28.5 11.5T520-160v80q0 17-11.5 28.5T480-40ZM226-678l-57-56q-12-12-12-29t12-28q11-11 28-11t28 11l57 57q11 11 11 28t-11 28q-12 11-28 11t-28-11Zm508 509-56-57q-11-12-11-28.5t11-27.5q11-11 27.5-11t28.5 11l57 56q12 11 11.5 28T791-169q-12 12-29 12t-28-12ZM80-440q-17 0-28.5-11.5T40-480q0-17 11.5-28.5T80-520h80q17 0 28.5 11.5T200-480q0 17-11.5 28.5T160-440H80Zm89 271q-11-11-11-28t11-28l57-57q11-11 27.5-11t28.5 11q12 12 12 28.5T282-225l-56 56q-12 12-29 12t-28-12Zm311-71q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Z"/></svg></label>
+                            <input class="pill-slider flex-1" id="brightness" type="range" min="0" max="100" value="70">
+                            <span id="brightness-value" class="control-value w-12 text-right">70%</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <label for="volume" class="control-label w-24"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M760-481q0-83-44-151.5T598-735q-15-7-22-21.5t-2-29.5q6-16 21.5-23t31.5 0q97 43 155 131.5T840-481q0 108-58 196.5T627-153q-16 7-31.5 0T574-176q-5-15 2-29.5t22-21.5q74-34 118-102.5T760-481ZM280-360H160q-17 0-28.5-11.5T120-400v-160q0-17 11.5-28.5T160-600h120l132-132q19-19 43.5-8.5T480-703v446q0 27-24.5 37.5T412-228L280-360Zm380-120q0 42-19 79.5T591-339q-10 6-20.5.5T560-356v-250q0-12 10.5-17.5t20.5.5q31 25 50 63t19 80Z"/></svg></label>
+                            <input class="pill-slider flex-1" id="volume" type="range" min="0" max="100" value="40">
+                            <span id="volume-value" class="control-value w-12 text-right">40%</span>
+                        </div>
+                        <button type="button" id="smart-hub-btn" class="smart-hub-btn ripple w-full p-4 rounded-2xl flex items-center justify-between bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-white/10 backdrop-blur-lg transition-all duration-300 hover:from-blue-500/30 hover:to-purple-500/30">
+                            <div class="flex items-center gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-120q-17 0-28.5-11.5T440-160v-80q0-17 11.5-28.5T480-280q17 0 28.5 11.5T520-240v80q0 17-11.5 28.5T480-120Zm-160-80q-17 0-28.5-11.5T280-240q0-17 11.5-28.5T320-280q17 0 28.5 11.5T360-240q0 17-11.5 28.5T320-200Zm320 0q-17 0-28.5-11.5T600-240q0-17 11.5-28.5T640-280q17 0 28.5 11.5T680-240q0 17-11.5 28.5T640-200ZM480-360q-75 0-127.5-52.5T300-540q0-75 52.5-127.5T480-720q75 0 127.5 52.5T660-540q0 75-52.5 127.5T480-360Zm0-80q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Zm0-100Zm0 380q-17 0-28.5-11.5T440-200q0-17 11.5-28.5T480-240q17 0 28.5 11.5T520-200q0 17-11.5 28.5T480-160Z"/></svg>
+                                <span class="text-white font-medium">Smart Hub</span>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: false });
+            document.getElementById('time').textContent = time;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // --- App Windowing Feature ---
+        const windowContainer = document.getElementById('window-container');
+        let openWindows = {}; // Tracks open windows by appIdentifier
+        let highestZIndex = 10; // Initial z-index for windows (window-container is z-10)
+
+        // Constants for window management
+        const RESIZE_HANDLE_AREA = 10; // px, for edge detection
+        const MIN_WINDOW_WIDTH = 240;  // px
+        const MIN_WINDOW_HEIGHT = 180; // px
+        const TITLE_BAR_CSS_TOP_OFFSET = -40; // Must match the CSS `top` value for .app-window .title-bar
+        let splitViewSlots = { left: null, right: null }; // Stores appIdentifier for split windows
+
+        function launchAppWindow(appIdentifier, appName, iconSrc) {
+            if (openWindows[appIdentifier]) {
+                bringToFront(openWindows[appIdentifier]);
+                return;
+            }
+
+            highestZIndex++;
+            const windowId = `window-${appIdentifier}`;
+
+            const appWindow = document.createElement('div');
+            appWindow.id = windowId;
+            // Tailwind classes for styling the window
+            appWindow.className = 'app-window absolute bg-white/10 backdrop-blur-lg shadow-xl rounded-lg pointer-events-auto border border-white/20 flex flex-col';
+            
+            // Cascade initial window position
+            const initialLeft = 50 + (Object.keys(openWindows).length % 10) * 30;
+            const initialTop = 50 + (Object.keys(openWindows).length % 10) * 30;
+            appWindow.style.cssText = `width: 360px; height: 280px; left: ${initialLeft}px; top: ${initialTop}px; z-index: ${highestZIndex};`;
+
+            appWindow.innerHTML = `
+                <div class="title-bar bg-black/30 text-white px-3 py-1.5 flex justify-between items-center">
+                    <div class="flex items-center gap-2">
+                        <img src="${iconSrc}" alt="${appName}" class="w-4 h-4">
+                        <span class="app-name text-sm font-medium">${appName}</span>
+                    </div>
+                    <div class="flex items-center">
+                        <button class="split-view-btn text-white hover:bg-black/50 p-0.5 rounded-full w-5 h-5 flex items-center justify-center focus:outline-none mr-1" aria-label="Toggle Split View ${appName}">
+                            <svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1" ry="1"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg>
+                        </button>
+                        <button class="close-btn text-white hover:bg-black/50 hover:text-white p-0.5 rounded-full w-5 h-5 flex items-center justify-center focus:outline-none" aria-label="Close ${appName}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="content-area p-4 text-white h-full overflow-y-auto flex flex-col items-center justify-center">
+                    <img src="${iconSrc}" alt="${appName}" class="w-20 h-20 mb-3 opacity-80">
+                    <p class="text-center text-xl font-semibold">${appName}</p>
+                    <p class="text-center text-xs text-white/70 mt-1">This is a placeholder window for ${appName}.</p>
+                </div>
+            `;
+
+            windowContainer.appendChild(appWindow);
+            openWindows[appIdentifier] = appWindow;
+
+            makeDraggable(appWindow);
+            setupCloseButton(appWindow, appIdentifier);
+            makeResizable(appWindow); // Add resizable capabilities
+            setupSplitViewButton(appWindow, appIdentifier);
+            bringToFront(appWindow); 
+        }
+
+        function makeDraggable(element) {
+            const titleBar = element.querySelector('.title-bar');
+            let offsetX, offsetY;
+
+            titleBar.onmousedown = function(e) {
+                // e.preventDefault(); // Can prevent text selection but might interfere with button clicks if not handled carefully
+                if (element.dataset.splitSide) return; // Don't drag if in split view
+                if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return; // Don't drag if clicking a button in title bar
+
+                bringToFront(element);
+                offsetX = e.clientX - element.offsetLeft;
+                offsetY = e.clientY - element.offsetTop;
+
+                document.onmousemove = function(moveEvent) {
+                    let newLeft = moveEvent.clientX - offsetX;
+                    let newTop = moveEvent.clientY - offsetY;
+
+                    // Calculate boundaries for the window element
+                    const viewportWidth = window.innerWidth;
+                    const viewportHeight = window.innerHeight;
+                    
+                    const minWindowLeft = 0;
+                    const maxWindowLeft = viewportWidth - element.offsetWidth;
+                    const minWindowTop = -TITLE_BAR_CSS_TOP_OFFSET; // Ensures title bar is visible
+                    const maxWindowTop = viewportHeight - element.offsetHeight;
+
+                    newLeft = Math.max(minWindowLeft, Math.min(newLeft, maxWindowLeft));
+                    newTop = Math.max(minWindowTop, Math.min(newTop, maxWindowTop));
+
+                    element.style.left = newLeft + 'px';
+                    element.style.top = newTop + 'px';
+                };
+
+                document.onmouseup = function() {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
+            };
+        }
+
+        function setupCloseButton(element, appIdentifier) {
+            const closeBtn = element.querySelector('.close-btn');
+            closeBtn.onclick = function() {
+                // If window was in a split view, clear its slot
+                if (splitViewSlots.left === appIdentifier) {
+                    splitViewSlots.left = null;
+                } else if (splitViewSlots.right === appIdentifier) {
+                    splitViewSlots.right = null;
+                }
+                element.remove();
+                delete openWindows[appIdentifier];
+                // Potentially adjust other split window if one is closed
+            };
+        }
+
+        function makeResizable(element) {
+            let initialX, initialY, initialWidth, initialHeight, initialLeft, initialTop;
+            let currentResizeHandle = null;
+
+            function updateResizeCursor(e) {
+                if (document.onmousemove && currentResizeHandle) return; // Don't change if actively resizing
+
+                const rect = element.getBoundingClientRect();
+                const onRight = Math.abs(e.clientX - rect.right) < RESIZE_HANDLE_AREA;
+                const onBottom = Math.abs(e.clientY - rect.bottom) < RESIZE_HANDLE_AREA;
+                const onLeft = Math.abs(e.clientX - rect.left) < RESIZE_HANDLE_AREA;
+                const onTop = Math.abs(e.clientY - rect.top) < RESIZE_HANDLE_AREA;
+
+                if ((onRight && onBottom) || (onLeft && onTop)) element.style.cursor = 'nwse-resize';
+                else if ((onLeft && onBottom) || (onRight && onTop)) element.style.cursor = 'nesw-resize';
+                else if (onRight || onLeft) element.style.cursor = 'ew-resize';
+                else if (onBottom || onTop) element.style.cursor = 'ns-resize';
+                else element.style.cursor = 'default';
+            }
+
+            element.addEventListener('mousemove', updateResizeCursor);
+            element.addEventListener('mouseleave', () => {
+                if (!currentResizeHandle) element.style.cursor = 'default';
+            });
+
+            element.addEventListener('mousedown', function(e) {
+                if (element.dataset.splitSide) return; // Don't resize if in split view
+                if (e.target.closest('.title-bar') || e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                    return; // Let drag or button clicks handle this
+                }
+
+                const rect = element.getBoundingClientRect();
+                currentResizeHandle = null; // Reset
+
+                const onRight = Math.abs(e.clientX - rect.right) < RESIZE_HANDLE_AREA;
+                const onBottom = Math.abs(e.clientY - rect.bottom) < RESIZE_HANDLE_AREA;
+                const onLeft = Math.abs(e.clientX - rect.left) < RESIZE_HANDLE_AREA;
+                const onTop = Math.abs(e.clientY - rect.top) < RESIZE_HANDLE_AREA;
+
+                if (onRight && onBottom) currentResizeHandle = 'bottom-right';
+                else if (onLeft && onBottom) currentResizeHandle = 'bottom-left';
+                else if (onRight && onTop) currentResizeHandle = 'top-right';
+                else if (onLeft && onTop) currentResizeHandle = 'top-left';
+                else if (onRight) currentResizeHandle = 'right';
+                else if (onBottom) currentResizeHandle = 'bottom';
+                else if (onLeft) currentResizeHandle = 'left';
+                else if (onTop) currentResizeHandle = 'top';
+
+                if (!currentResizeHandle) { // Not a resize, but a click on window body
+                    bringToFront(element);
+                    return;
+                }
+
+                e.preventDefault();
+                bringToFront(element);
+
+                initialX = e.clientX;
+                initialY = e.clientY;
+                initialWidth = element.offsetWidth;
+                initialHeight = element.offsetHeight;
+                initialLeft = element.offsetLeft;
+                initialTop = element.offsetTop;
+
+                function handleResizeMove(moveEvent) {
+                    moveEvent.preventDefault();
+                    const dx = moveEvent.clientX - initialX;
+                    const dy = moveEvent.clientY - initialY;
+
+                    let newWidth = initialWidth;
+                    let newHeight = initialHeight;
+                    let newLeft = initialLeft;
+                    let newTop = initialTop;
+
+                    if (currentResizeHandle.includes('right')) newWidth = initialWidth + dx;
+                    if (currentResizeHandle.includes('left')) {
+                        newWidth = initialWidth - dx;
+                        newLeft = initialLeft + dx;
+                    }
+                    if (currentResizeHandle.includes('bottom')) newHeight = initialHeight + dy;
+                    if (currentResizeHandle.includes('top')) {
+                        newHeight = initialHeight - dy;
+                        newTop = initialTop + dy;
+                    }
+
+                    // Apply minimum dimensions and adjust opposite edge if necessary
+                    if (newWidth < MIN_WINDOW_WIDTH) {
+                        if (currentResizeHandle.includes('left')) newLeft = initialLeft + (initialWidth - MIN_WINDOW_WIDTH);
+                        newWidth = MIN_WINDOW_WIDTH;
+                    }
+                    if (newHeight < MIN_WINDOW_HEIGHT) {
+                        if (currentResizeHandle.includes('top')) newTop = initialTop + (initialHeight - MIN_WINDOW_HEIGHT);
+                        newHeight = MIN_WINDOW_HEIGHT;
+                    }
+
+                    // Boundary check for top position (title bar visibility)
+                    const minAllowedWindowTop = -TITLE_BAR_CSS_TOP_OFFSET;
+                    if (newTop < minAllowedWindowTop) {
+                        if (currentResizeHandle.includes('top')) {
+                            const overshot = minAllowedWindowTop - newTop;
+                            newHeight = Math.max(MIN_WINDOW_HEIGHT, newHeight - overshot);
+                        }
+                        newTop = minAllowedWindowTop;
+                    }
+                     // Ensure window does not go off left edge
+                    if (newLeft < 0) {
+                        if (currentResizeHandle.includes('left')) { // Shrink width if pulling from left
+                             newWidth = Math.max(MIN_WINDOW_WIDTH, newWidth + newLeft); // newLeft is negative
+                        }
+                        newLeft = 0;
+                    }
+
+                    // Apply styles
+                    element.style.width = newWidth + 'px';
+                    element.style.height = newHeight + 'px';
+                    element.style.left = newLeft + 'px';
+                    element.style.top = newTop + 'px';
+                }
+
+                function handleResizeUp() {
+                    document.removeEventListener('mousemove', handleResizeMove);
+                    document.removeEventListener('mouseup', handleResizeUp);
+                    currentResizeHandle = null; // Reset handle
+                    updateResizeCursor(e); // Update cursor to reflect new state
+                }
+
+                document.addEventListener('mousemove', handleResizeMove);
+                document.addEventListener('mouseup', handleResizeUp);
+            });
+        }
+
+        function bringToFront(element) {
+            highestZIndex++;
+            element.style.zIndex = highestZIndex;
+            document.querySelectorAll('.app-window.focused').forEach(win => win.classList.remove('focused'));
+            element.classList.add('focused');
+        }
+
+        function setupSplitViewButton(element, appIdentifier) {
+            const splitBtn = element.querySelector('.split-view-btn');
+            splitBtn.onclick = function() {
+                toggleSplitView(element, appIdentifier);
+            };
+        }
+
+        function restoreWindowState(element) {
+            if (!element) return;
+            const appIdentifier = element.id.replace('window-', '');
+
+            if (element.dataset.preSplitState) {
+                const state = JSON.parse(element.dataset.preSplitState);
+                element.style.left = state.left;
+                element.style.top = state.top;
+                element.style.width = state.width;
+                element.style.height = state.height;
+                delete element.dataset.preSplitState;
+            }
+            if (splitViewSlots.left === appIdentifier) splitViewSlots.left = null;
+            if (splitViewSlots.right === appIdentifier) splitViewSlots.right = null;
+            delete element.dataset.splitSide;
+            // Ensure cursor is reset if it was a resize cursor
+            element.style.cursor = 'default';
+        }
+
+        function toggleSplitView(element, appIdentifier) {
+            if (element.dataset.splitSide) { // Already split, so unsplit it
+                restoreWindowState(element);
+            } else { // Not split, try to split it
+                // Store current state before splitting
+                element.dataset.preSplitState = JSON.stringify({
+                    left: element.style.left,
+                    top: element.style.top,
+                    width: element.style.width,
+                    height: element.style.height
+                });
+
+                if (splitViewSlots.left === null) {
+                    snapWindowToSide(element, 'left', appIdentifier);
+                } else if (splitViewSlots.right === null) {
+                    snapWindowToSide(element, 'right', appIdentifier);
+                } else {
+                    // Both slots are full. For now, we'll replace the left one.
+                    // A more sophisticated approach might involve user choice or cycling.
+                    const currentLeftAppId = splitViewSlots.left;
+                    const otherWindowEl = document.getElementById(`window-${currentLeftAppId}`);
+                    if (otherWindowEl) restoreWindowState(otherWindowEl);
+                    
+                    snapWindowToSide(element, 'left', appIdentifier);
+                }
+            }
+        }
+
+        function snapWindowToSide(element, side, appIdentifier) {
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            
+            // Estimate heights of fixed elements
+            const topBarEl = document.querySelector('body > div:first-child'); // Assuming top bar is the first div in body
+            const topBarHeight = topBarEl ? topBarEl.offsetHeight + 16 : 60; // 16 for p-4 margin if not captured
+            
+            const dockEl = document.querySelector('.dock').parentElement; // The fixed div containing the dock
+            const dockTotalHeight = dockEl ? dockEl.offsetHeight + (parseInt(getComputedStyle(dockEl).bottom) * 2) : 80; // bottom-6 is 24px, so 24px margin
+
+            const availableHeight = viewportHeight - topBarHeight - dockTotalHeight;
+            const windowWidth = viewportWidth / 2;
+            const windowHeight = availableHeight;
+            let windowLeft;
+            const windowTop = topBarHeight; // Window top edge aligns below the top bar
+
+            // Clear the target slot if occupied by another window
+            const targetSlotOccupantId = splitViewSlots[side];
+            if (targetSlotOccupantId && targetSlotOccupantId !== appIdentifier) {
+                const otherWindowEl = document.getElementById(`window-${targetSlotOccupantId}`);
+                if (otherWindowEl) restoreWindowState(otherWindowEl);
+            }
+
+            if (side === 'left') {
+                windowLeft = 0;
+                splitViewSlots.left = appIdentifier;
+            } else { // 'right'
+                windowLeft = viewportWidth / 2;
+                splitViewSlots.right = appIdentifier;
+            }
+
+            element.style.left = windowLeft + 'px';
+            element.style.top = windowTop + 'px';
+            element.style.width = windowWidth + 'px';
+            element.style.height = windowHeight + 'px';
+            element.dataset.splitSide = side;
+            element.style.cursor = 'default'; // Ensure resize cursors are removed
+        }
+
+        // --- End App Windowing Feature ---
+
+        // --- Existing JS for Contacts, Messages, Control Center (remains for now) ---
+        async function loadContacts() {
+            try {
+                const response = await fetch('/api/contacts');
+                const data = await response.json();
+                const contactsGrid = document.getElementById('contacts-grid');
+                contactsGrid.innerHTML = '';
+
+                data.contacts.forEach(contact => {
+                    const contactCard = document.createElement('div');
+                    contactCard.className = 'contact-card glass p-4 rounded-xl';
+                    contactCard.innerHTML = `
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold">${contact.name}</h3>
+                                <p class="text-white/60 text-sm">${contact.phone}</p>
+                                <p class="text-white/60 text-sm">${contact.email}</p>
+                            </div>
+                            <button onclick="toggleFavorite(${contact.id})" class="text-yellow-500">
+                                ${contact.favorite ? '★' : '☆'}
+                            </button>
+                        </div>
+                    `;
+                    contactsGrid.appendChild(contactCard);
+                });
+            } catch (error) {
+                console.error('Error loading contacts:', error);
+            }
+        }
+
+        function showAddContactModal() {
+            document.getElementById('add-contact-modal').classList.remove('hidden');
+        }
+
+        function hideAddContactModal() {
+            document.getElementById('add-contact-modal').classList.add('hidden');
+        }
+
+        document.getElementById('add-contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            try {
+                const response = await fetch('/api/contacts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: formData.get('name'),
+                        phone: formData.get('phone'),
+                        email: formData.get('email'),
+                    }),
+                });
+                if (response.ok) {
+                    hideAddContactModal();
+                    loadContacts();
+                }
+            } catch (error) {
+                console.error('Error adding contact:', error);
+            }
+        });
+
+        async function toggleFavorite(contactId) {
+            try {
+                const response = await fetch(`/api/contacts/${contactId}/favorite`, {
+                    method: 'POST',
+                });
+                if (response.ok) {
+                    loadContacts();
+                }
+            } catch (error) {
+                console.error('Error toggling favorite:', error);
+            }
+        }
+
+        // Message management
+        async function loadMessages() {
+            try {
+                const response = await fetch('/api/contacts');
+                const data = await response.json();
+                const messagesContainer = document.getElementById('messages-container');
+                messagesContainer.innerHTML = '';
+
+                // Load messages for each contact
+                for (const contact of data.contacts) {
+                    const messagesResponse = await fetch(`/api/contacts/${contact.id}/messages`);
+                    const messagesData = await messagesResponse.json();
+
+                    if (messagesData.messages && messagesData.messages.length > 0) {
+                        const contactSection = document.createElement('div');
+                        contactSection.className = 'mb-6';
+                        contactSection.innerHTML = `
+                            <h3 class="font-semibold mb-2">${contact.name}</h3>
+                            <div class="space-y-2">
+                                ${messagesData.messages.map(msg => `
+                                    <div class="message-bubble ${msg.sent ? 'message-sent' : 'message-received'}">
+                                        <p>${msg.content}</p>
+                                        <span class="text-xs opacity-60">${msg.timestamp}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                        messagesContainer.appendChild(contactSection);
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading messages:', error);
+            }
+        }
+
+        function showNewMessageModal() {
+            document.getElementById('new-message-modal').classList.remove('hidden');
+            loadContactsForMessage();
+        }
+
+        function hideNewMessageModal() {
+            document.getElementById('new-message-modal').classList.add('hidden');
+        }
+
+        async function loadContactsForMessage() {
+            try {
+                const response = await fetch('/api/contacts');
+                const data = await response.json();
+                const select = document.querySelector('#new-message-form select[name="contact"]');
+                select.innerHTML = data.contacts.map(contact => 
+                    `<option value="${contact.id}">${contact.name}</option>`
+                ).join('');
+            } catch (error) {
+                console.error('Error loading contacts for message:', error);
+            }
+        }
+
+        document.getElementById('new-message-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const contactId = formData.get('contact');
+            try {
+                const response = await fetch(`/api/contacts/${contactId}/messages`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        content: formData.get('content'),
+                    }),
+                });
+                if (response.ok) {
+                    hideNewMessageModal();
+                    loadMessages();
+                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load initial data
+            loadContacts();
+            loadMessages();
+        });
+
+        // Control Center Overlay logic
+        const ccOverlay = document.getElementById('control-center-overlay');
+        const closeCcOverlay = document.getElementById('close-cc-overlay');
+        let lastY = null;
+        let atTop = true;
+
+        // Show overlay on downward scroll at top
+        window.addEventListener('touchstart', (e) => {
+            if (window.scrollY === 0) {
+                atTop = true;
+                lastY = e.touches[0].clientY;
+            } else {
+                atTop = false;
+            }
+        });
+        window.addEventListener('touchmove', (e) => {
+            if (!atTop || lastY === null) return;
+            const currentY = e.touches[0].clientY;
+            if (currentY - lastY > 40) { // User pulled down
+                ccOverlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                lastY = null;
+            }
+        });
+        closeCcOverlay.addEventListener('click', () => {
+            ccOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+        // Also close overlay if user taps outside the panel
+        ccOverlay.addEventListener('click', (e) => {
+            if (e.target === ccOverlay) {
+                closeCcOverlay.click();
+            }
+        });
+
+    </script>
+</body>
+</html> 
