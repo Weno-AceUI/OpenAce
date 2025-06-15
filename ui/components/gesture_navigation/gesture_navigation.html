@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>OpenAce Gesture Navigation</title>
+    <!-- 
+        openace_theme.css (for .glass) and acegui.css/js are automatically injected 
+        by WebCpp if this component is loaded as a WebCpp "app" or page.
+    -->
+    <style>
+        :root {
+            --gesture-nav-height: 30px; /* Includes padding */
+            --gesture-pill-height: 5px;
+            --gesture-pill-width: 130px;
+            --gesture-pill-color: rgba(0, 0, 0, 0.7);
+            --gesture-edge-width: 30px; /* Width of the edge swipe detection area */
+            --gesture-back-indicator-size: 40px;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrollbars on the component itself */
+            font-family: var(--openace-font-family, sans-serif); /* Use theme font */
+        }
+
+        #gesture-nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: var(--gesture-nav-height);
+            display: flex;
+            justify-content: center;
+           align-items: flex-start;
+           background: rgba(255, 255, 255, 0.1);
+           backdrop-filter: blur(10px);
+           border-top: 1px solid rgba(255, 255, 255, 0.15);
+            z-index: 20000; /* High z-index to be on top */
+            padding-bottom: 10px; /* Safe area padding for the pill */
+            box-sizing: border-box;
+        }
+
+        #gesture-nav-pill {
+            width: var(--gesture-pill-width);
+            height: var(--gesture-pill-height);
+            background-color: var(--gesture-pill-color);
+            border-radius: calc(var(--gesture-pill-height) / 2);            
+            /* For a simple pill, direct styling is fine */
+            transition: transform 0.2s ease-out, background-color 0.2s ease;
+            cursor: grab;
+        }
+
+        #gesture-nav-pill:active {
+            background-color: #001;
+            transform: scale(1.1);
+        }
+
+        /* Edge swipe detection areas (invisible) */
+        .edge-swipe-area {
+            position: fixed;
+            top: 0;
+            height: 100vh;
+            width: var(--gesture-edge-width);
+            z-index: 19999; /* Below nav bar but above app content */
+            /* background-color: rgba(255,0,0,0.1); /* For debugging */
+        }
+        #left-edge { left: 0; }
+        #right-edge { right: 0; }
+
+    </style>
+</head>
+<body>
+
+    <div id="gesture-nav-bar"> <!-- Added .glass class here -->
+        <div id="gesture-nav-pill"></div>
+    </div>
+
+    <div id="left-edge" class="edge-swipe-area"></div>
+    <div id="right-edge" class="edge-swipe-area"></div>
+
+    <script>
+        const pill = document.getElementById('gesture-nav-pill');
+        const leftEdge = document.getElementById('left-edge');
+        const rightEdge = document.getElementById('right-edge');
+
+        let pillTouchStartY = null;
+        const swipeUpThreshold = -50; // Pixels to swipe up for "home"
+
+        pill.addEventListener('touchstart', (e) => {
+            pillTouchStartY = e.touches[0].clientY;
+            pill.style.transition = 'none'; // Allow immediate feedback during drag
+        }, { passive: true });
+
+        pill.addEventListener('touchmove', (e) => {
+            if (pillTouchStartY === null) return;
+            const deltaY = e.touches[0].clientY - pillTouchStartY;
+            // Optional: Visual feedback by moving the pill slightly
+            // if (deltaY < 0) { // Only allow dragging up
+            //     pill.style.transform = `translateY(${deltaY / 3}px) scale(1.1)`;
+            // }
+        }, { passive: true });
+
+        pill.addEventListener('touchend', (e) => {
+            if (pillTouchStartY === null) return;
+            const deltaY = e.changedTouches[0].clientY - pillTouchStartY;
+            pill.style.transition = 'transform 0.2s ease-out, background-color 0.2s ease';
+            pill.style.transform = ''; // Reset visual feedback
+
+            if (deltaY < swipeUpThreshold) {
+                console.log('Gesture: Swipe Up (Go Home)');
+                // In a real system, this would call a system API:
+                // if (window.SystemShellAPI && typeof window.SystemShellAPI.goHome === 'function') {
+                //     window.SystemShellAPI.goHome();
+                // } else {
+                //     console.warn('SystemShellAPI.goHome() not available.');
+                // }
+            }
+            pillTouchStartY = null;
+        });
+
+        // Edge swipe for "Back"
+        let edgeTouchStartX = null;
+        let edgeSwipeOrigin = null; // 'left' or 'right'
+        const swipeEdgeThreshold = 50; // Pixels to swipe from edge
+
+        function handleEdgeTouchStart(e, origin) {
+            edgeTouchStartX = e.touches[0].clientX;
+            edgeSwipeOrigin = origin;
+        }
+
+        function handleEdgeTouchEnd(e) {
+            if (edgeTouchStartX === null || edgeSwipeOrigin === null) return;
+            const deltaX = e.changedTouches[0].clientX - edgeTouchStartX;
+
+            let performBack = false;
+            if (edgeSwipeOrigin === 'left' && deltaX > swipeEdgeThreshold) {
+                performBack = true;
+            } else if (edgeSwipeOrigin === 'right' && deltaX < -swipeEdgeThreshold) {
+                performBack = true;
+            }
+
+            if (performBack) {
+                console.log(`Gesture: Swipe from ${edgeSwipeOrigin} edge (Go Back)`);
+                // In a real system, this would call a system API:
+                // if (window.SystemShellAPI && typeof window.SystemShellAPI.goBack === 'function') {
+                //     window.SystemShellAPI.goBack();
+                // } else {
+                //     console.warn('SystemShellAPI.goBack() not available.');
+                // }
+            }
+            edgeTouchStartX = null;
+            edgeSwipeOrigin = null;
+        }
+
+        leftEdge.addEventListener('touchstart', (e) => handleEdgeTouchStart(e, 'left'), { passive: true });
+        leftEdge.addEventListener('touchend', handleEdgeTouchEnd);
+
+        rightEdge.addEventListener('touchstart', (e) => handleEdgeTouchStart(e, 'right'), { passive: true });
+        rightEdge.addEventListener('touchend', handleEdgeTouchEnd);
+
+        console.log("OpenAce Gesture Navigation Initialized");
+    </script>
+</body>
+</html>

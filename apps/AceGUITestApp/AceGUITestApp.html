@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>AceGUI Test App</title>
+    <!-- 
+        openace_theme.css, acegui.css, and acegui.js are automatically injected 
+        by WebCpp when this HTML file is loaded.
+    -->
+    <style>
+        body {
+            background: url('../..//ui/components/home/acepaper.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            font-family: var(--openace-font-family);
+            color: var(--openace-text-color);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start; /* Align items to the start for better testing layout */
+        }
+        .test-section {
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .test-section h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AceGUI Component Test Page</h1>
+
+    <div id="buttonTestArea" class="test-section glass">
+        <h2>Buttons</h2>
+        <!-- Buttons will be added here by JS -->
+    </div>
+
+    <div id="panelTestArea" class="test-section">
+        <h2>Panels</h2>
+        <!-- Panels will be added here by JS -->
+    </div>
+
+    <div id="modalTestArea" class="test-section glass">
+        <h2>Modals</h2>
+        <!-- Button to trigger modal will be added here -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!window.AceGUI) {
+                console.error("AceGUI framework not loaded!");
+                alert("AceGUI framework not loaded! Check console.");
+                return;
+            }
+
+            // Test Buttons
+            const buttonArea = document.getElementById('buttonTestArea');
+            const btn1 = AceGUI.createButton({ text: 'Standard Button' });
+            const btn2 = AceGUI.createButton({ text: 'Click Me!', onClick: () => alert('Button clicked!') });
+            const btn3 = AceGUI.createButton({ text: 'Styled Button', classes: ['custom-style-for-btn'] });
+            buttonArea.appendChild(btn1);
+            buttonArea.appendChild(btn2);
+            buttonArea.appendChild(btn3);
+
+            // Test Panels
+            const panelArea = document.getElementById('panelTestArea');
+            const panel1 = AceGUI.createPanel({ classes: ['glass'], children: [AceGUI.createButton({text: 'Button in Panel'})] });
+            panel1.prepend(document.createTextNode("This is a panel with a button. ")); // Add some text
+            const panel2 = AceGUI.createPanel({ children: [document.createTextNode("A simple text panel.")] });
+            panelArea.appendChild(panel1);
+            panelArea.appendChild(panel2);
+
+            // Test Modals
+            const modalArea = document.getElementById('modalTestArea');
+            const showModalButton = AceGUI.createButton({
+                text: 'Show Test Modal',
+                onClick: () => {
+                    AceGUI.showModal({
+                        title: 'AceGUI Test Modal',
+                        content: '<p>This is the content of the modal. You can put <strong>HTML</strong> here.</p>',
+                        buttons: [
+                            { text: 'Cancel', onClick: () => console.log('Modal cancel clicked.') },
+                            { text: 'OK', onClick: () => console.log('Modal OK clicked.') }
+                        ]
+                    });
+                }
+            });
+            modalArea.appendChild(showModalButton);
+
+            console.log('AceGUI test components initialized.');
+        });
+    </script>
+</body>
+</html>

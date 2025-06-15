@@ -9,4 +9,7 @@ add_library(webcpp_lib STATIC
     # Add other .c files from WebCpp/src if any
 )
 
-target_include_directories(webcpp_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(webcpp_lib PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include  # For webcpp.h etc.
+    ${CMAKE_SOURCE_DIR}/v8/include      # For V8 headers
+)

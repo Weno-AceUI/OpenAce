@@ -1,0 +1,86 @@
+/* /Users/dylando/openace/ui/assets/css/acegui.css */
+
+/* Styles for AceGUI JavaScript framework components */
+
+/* Example: A styled button provided by AceGUI.js */
+.acegui-button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: var(--openace-font-family);
+    color: var(--openace-text-color);
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    text-align: center;
+}
+
+.acegui-button:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.acegui-button:active {
+    transform: scale(0.98);
+}
+
+/* Example: A simple panel/card component */
+.acegui-panel {
+    padding: 15px;
+    border-radius: 12px;
+    /* It can also use the .glass class for the standard glass effect */
+}
+
+/* Modal Styles */
+.acegui-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure modal is on top */
+}
+
+.acegui-modal {
+    min-width: 300px;
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* For scrollable content */
+}
+
+.acegui-modal-titlebar {
+    padding: 12px 15px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: var(--openace-text-color);
+}
+
+.acegui-modal-content {
+    padding: 15px;
+    flex-grow: 1;
+    overflow-y: auto; /* Make content scrollable if it overflows */
+    color: var(--openace-text-color);
+}
+
+.acegui-modal-footer {
+    padding: 10px 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 10px;
+}
+
+/* Add more component styles here as the JS framework grows:
+   - List views
+   - Input fields with OpenAce styling
+   - Navigation bars
+*/

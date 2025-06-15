@@ -1,0 +1,15 @@
+/* /Users/dylando/openace/ui/assets/css/openace_theme.css */
+
+:root {
+    /* Define common variables if needed */
+    --openace-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --openace-text-color: white;
+    --openace-glass-bg: rgba(255, 255, 255, 0.1); /* Default glass background */
+    --openace-glass-border: rgba(255, 255, 255, 0.15);
+}
+
+.glass {
+    background: var(--openace-glass-bg);
+    backdrop-filter: blur(10px); /* Standard blur */
+    border: 1px solid var(--openace-glass-border);
+}

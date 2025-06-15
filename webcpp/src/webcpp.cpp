@@ -7,13 +7,9 @@
 #include <stdio.h>
 #include <vector> // For argument processing in V8 callbacks
 
-// --- V8 Integration ---
-// These includes and using declarations would typically be at the top.
-// You'll need to ensure V8 headers are in your include path.
-#ifdef __cplusplus
+// V8 Integration - Ensure V8 headers are in your include path.
 #include "../../v8/include/v8.h"
-#include <libplatform/libplatform.h> // For V8 platform initialization
-#endif
+#include "../../v8/include/libplatform/libplatform.h" // For V8 platform initialization
 
 // Forward declaration
 static void GenericV8FunctionCallback(const v8::FunctionCallbackInfo<v8::Value>& args);
@@ -387,8 +383,55 @@ bool webcpp_load_html_file(webcpp_context_t* context, const char* file_path) {
         return false; // Failed to read file
     }
 
-    char* escaped_html = webcpp_escape_html_for_js_injection(html_content);
+    // The paths assume that UI_ASSETS_OUTPUT_DIR
+    // is served from the root as /ui_assets/ by your WebCpp environment or system shell.
+    // Adjust this path if your serving mechanism is different.
+    const char* theme_css_tag = "<link rel='stylesheet' type='text/css' href='/ui_assets/css/openace_theme.css'>";
+    const char* acegui_css_tag = "<link rel='stylesheet' type='text/css' href='/ui_assets/css/acegui.css'>";
+    const char* acegui_js_tag = "<script type='text/javascript' src='/ui_assets/js/acegui.js' defer></script>";
+
+    // Find the end of the <head> tag to insert our tags.
+    // A more robust solution would use a proper HTML parser, but string manipulation can work for well-formed simple HTML.
+    char* head_end_tag_pos = strcasestr(html_content, "</head>");
+    char* final_html_content;
+
+    if (head_end_tag_pos) {
+        size_t head_len = head_end_tag_pos - html_content;
+        size_t total_len = strlen(html_content) + strlen(theme_css_tag) + strlen(acegui_css_tag) + strlen(acegui_js_tag) + 1;
+        final_html_content = (char*)malloc(total_len);
+        if (!final_html_content) {
+            fprintf(stderr, "WebCpp Error: Failed to allocate memory for modified HTML content.\n");
+            free(html_content);
+            return false;
+        }
+        // Copy content before </head>
+        strncpy(final_html_content, html_content, head_len);
+        final_html_content[head_len] = '\0'; // Null-terminate
+        // Append our tags
+        strcat(final_html_content, theme_css_tag);
+        strcat(final_html_content, acegui_css_tag);
+        strcat(final_html_content, acegui_js_tag);
+        // Append the rest of the original HTML (including </head> and <body> etc.)
+        strcat(final_html_content, head_end_tag_pos);
+    } else {
+        // Fallback: if no </head> tag, prepend to the whole content. This is less ideal.
+        fprintf(stderr, "WebCpp Warning: No </head> tag found in %s. Prepending framework assets.\n", file_path);
+        size_t total_len = strlen(html_content) + strlen(theme_css_tag) + strlen(acegui_css_tag) + strlen(acegui_js_tag) + 1;
+        final_html_content = (char*)malloc(total_len);
+         if (!final_html_content) {
+            fprintf(stderr, "WebCpp Error: Failed to allocate memory for modified HTML content (fallback).\n");
+            free(html_content);
+            return false;
+        }
+        strcpy(final_html_content, theme_css_tag);
+        strcat(final_html_content, acegui_css_tag);
+        strcat(final_html_content, acegui_js_tag);
+        strcat(final_html_content, html_content);
+    }
     free(html_content); // Free original content
+
+    char* escaped_html = webcpp_escape_html_for_js_injection(final_html_content);
+    free(final_html_content); // Free the combined HTML string
 
     if (!escaped_html) {
         fprintf(stderr, "WebCpp Error: Failed to escape HTML content for JS injection.\n");
