@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenAce Control Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+        
+        .control-center {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toggle-btn {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .toggle-btn.active {
+            background: rgba(52, 211, 153, 0.2);
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+
+        .toggle-btn.inactive {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .toggle-btn:active {
+            transform: scale(0.95);
+        }
+
+        .pill-slider {
+            width: 100%;
+            height: 0.75rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            appearance: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pill-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #volume.pill-slider::-webkit-slider-thumb {
+            background: rgba(96, 165, 250, 0.9);
+            border-color: rgba(96, 165, 250, 0.3);
+        }
+
+        .pill-slider:focus::-webkit-slider-thumb {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+        }
+
+        .control-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        .control-value {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+
+        /* Touch feedback animation */
+        @keyframes ripple {
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.3) 10%, transparent 10.01%);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            transform: scale(10, 10);
+            opacity: 0;
+            transition: transform 0.5s, opacity 0.5s;
+        }
+
+        .ripple:active::after {
+            transform: scale(0, 0);
+            opacity: 0.3;
+            transition: 0s;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="control-center rounded-3xl p-6 w-full max-w-sm">
+        <form id="control-form" autocomplete="off">
+            <div class="mb-8">
+                <div class="grid grid-cols-3 gap-3">
+                    <button type="button" class="toggle-btn active ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" id="wifi-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-120q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29Zm0-440q75 0 142.5 24T745-470q20 15 20.5 39.5T748-388q-17 17-42 17.5T661-384q-38-26-84-41t-97-15q-51 0-97 15t-84 41q-20 14-45 13t-42-18q-17-18-17-42.5t20-39.5q55-42 122.5-65.5T480-560Zm0-240q125 0 235.5 41T914-643q20 17 21 42t-17 43q-17 17-42 17.5T831-556q-72-59-161.5-91.5T480-680q-100 0-189.5 32.5T129-556q-20 16-45 15.5T42-558q-18-18-17-43t21-42q88-75 198.5-116T480-800Z"/></svg>
+                        <span class="text-sm">Wi-Fi</span>
+                    </button>
+                    <button type="button" class="toggle-btn active ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" id="bluetooth-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-137v-247L284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l156 156v-247q0-18 12-29.5t28-11.5q8 0 15 3t13 9l172 172q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L536-480l144 144q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L508-108q-6 6-13 9t-15 3q-16 0-28-11.5T440-137Zm80-439 76-76-76-74v150Zm0 342 76-74-76-76v150Z"/></svg>
+                        <span class="text-sm">Bluetooth</span>
+                    </button>
+                    <button type="button" class="toggle-btn inactive ripple p-4 rounded-2xl flex flex-col items-center justify-center gap-2" id="airplane-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M400-408 147-307q-24 10-45.5-4.5T80-352v-22q0-12 5.5-23t15.5-18l299-209v-176q0-33 23.5-56.5T480-880q33 0 56.5 23.5T560-800v176l299 209q10 7 15.5 18t5.5 23v22q0 26-21.5 40.5T813-307L560-408v144l103 72q8 6 12.5 14.5T680-159v24q0 20-16.5 32.5T627-96l-147-44-147 44q-20 6-36.5-6.5T280-135v-24q0-10 4.5-18.5T297-192l103-72v-144Z"/></svg>
+                        <span class="text-sm">Airplane</span>
+                    </button>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                    <label for="brightness" class="control-label w-24"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-760q-17 0-28.5-11.5T440-800v-80q0-17 11.5-28.5T480-920q17 0 28.5 11.5T520-880v80q0 17-11.5 28.5T480-760Zm198 82q-11-11-11-27.5t11-28.5l56-57q12-12 28.5-12t28.5 12q11 11 11 28t-11 28l-57 57q-11 11-28 11t-28-11Zm122 238q-17 0-28.5-11.5T760-480q0-17 11.5-28.5T800-520h80q17 0 28.5 11.5T920-480q0 17-11.5 28.5T880-440h-80ZM480-40q-17 0-28.5-11.5T440-80v-80q0-17 11.5-28.5T480-200q17 0 28.5 11.5T520-160v80q0 17-11.5 28.5T480-40ZM226-678l-57-56q-12-12-12-29t12-28q11-11 28-11t28 11l57 57q11 11 11 28t-11 28q-12 11-28 11t-28-11Zm508 509-56-57q-11-12-11-28.5t11-27.5q11-11 27.5-11t28.5 11l57 56q12 11 11.5 28T791-169q-12 12-29 12t-28-12ZM80-440q-17 0-28.5-11.5T40-480q0-17 11.5-28.5T80-520h80q17 0 28.5 11.5T200-480q0 17-11.5 28.5T160-440H80Zm89 271q-11-11-11-28t11-28l57-57q11-11 27.5-11t28.5 11q12 12 12 28.5T282-225l-56 56q-12 12-29 12t-28-12Zm311-71q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Z"/></svg></label>
+                    <input class="pill-slider flex-1" id="brightness" type="range" min="0" max="100" value="70">
+                    <span id="brightness-value" class="control-value w-12 text-right">70%</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <label for="volume" class="control-label w-24"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M760-481q0-83-44-151.5T598-735q-15-7-22-21.5t-2-29.5q6-16 21.5-23t31.5 0q97 43 155 131.5T840-481q0 108-58 196.5T627-153q-16 7-31.5 0T574-176q-5-15 2-29.5t22-21.5q74-34 118-102.5T760-481ZM280-360H160q-17 0-28.5-11.5T120-400v-160q0-17 11.5-28.5T160-600h120l132-132q19-19 43.5-8.5T480-703v446q0 27-24.5 37.5T412-228L280-360Zm380-120q0 42-19 79.5T591-339q-10 6-20.5.5T560-356v-250q0-12 10.5-17.5t20.5.5q31 25 50 63t19 80Z"/></svg></label>
+                    <input class="pill-slider flex-1" id="volume" type="range" min="0" max="100" value="40">
+                    <span id="volume-value" class="control-value w-12 text-right">40%</span>
+                </div>
+                <button type="button" id="smart-hub-btn" class="smart-hub-btn ripple w-full p-4 rounded-2xl flex items-center justify-between bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-white/10 backdrop-blur-lg transition-all duration-300 hover:from-blue-500/30 hover:to-purple-500/30">
+                    <div class="flex items-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-120q-17 0-28.5-11.5T440-160v-80q0-17 11.5-28.5T480-280q17 0 28.5 11.5T520-240v80q0 17-11.5 28.5T480-120Zm-160-80q-17 0-28.5-11.5T280-240q0-17 11.5-28.5T320-280q17 0 28.5 11.5T360-240q0 17-11.5 28.5T320-200Zm320 0q-17 0-28.5-11.5T600-240q0-17 11.5-28.5T640-280q17 0 28.5 11.5T680-240q0 17-11.5 28.5T640-200ZM480-360q-75 0-127.5-52.5T300-540q0-75 52.5-127.5T480-720q75 0 127.5 52.5T660-540q0 75-52.5 127.5T480-360Zm0-80q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Zm0-100Zm0 380q-17 0-28.5-11.5T440-200q0-17 11.5-28.5T480-240q17 0 28.5 11.5T520-200q0 17-11.5 28.5T480-160Z"/></svg>
+                        <span class="text-white font-medium">Smart Hub</span>
+                    </div>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div id="smart-hub-panel" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center">
+        <div class="control-center rounded-3xl p-6 w-full max-w-sm max-h-[80vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-semibold text-white">Smart Hub</h2>
+                <button id="close-smart-hub" class="p-2 rounded-full hover:bg-white/10 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                </button>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="smart-device ripple p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-white font-medium">Living Room</span>
+                        <div class="w-12 h-6 rounded-full bg-green-500/20 relative">
+                            <div class="w-5 h-5 rounded-full bg-green-500 absolute left-0.5 top-0.5 transition-transform duration-300"></div>
+                        </div>
+                    </div>
+                    <div class="text-white/60 text-sm">3 devices</div>
+                </div>
+                <div class="smart-device ripple p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-white font-medium">Kitchen</span>
+                        <div class="w-12 h-6 rounded-full bg-green-500/20 relative">
+                            <div class="w-5 h-5 rounded-full bg-green-500 absolute left-0.5 top-0.5 transition-transform duration-300"></div>
+                        </div>
+                    </div>
+                    <div class="text-white/60 text-sm">2 devices</div>
+                </div>
+                <div class="smart-device ripple p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-white font-medium">Bedroom</span>
+                        <div class="w-12 h-6 rounded-full bg-gray-500/20 relative">
+                            <div class="w-5 h-5 rounded-full bg-gray-500 absolute right-0.5 top-0.5 transition-transform duration-300"></div>
+                        </div>
+                    </div>
+                    <div class="text-white/60 text-sm">4 devices</div>
+                </div>
+                <div class="smart-device ripple p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-white font-medium">Office</span>
+                        <div class="w-12 h-6 rounded-full bg-green-500/20 relative">
+                            <div class="w-5 h-5 rounded-full bg-green-500 absolute left-0.5 top-0.5 transition-transform duration-300"></div>
+                        </div>
+                    </div>
+                    <div class="text-white/60 text-sm">2 devices</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Enhanced toggle button logic with ripple effect
+        function toggleButton(btn) {
+            btn.classList.toggle('active');
+            btn.classList.toggle('inactive');
+            
+            if (btn.classList.contains('active')) {
+                btn.classList.remove('text-gray-400');
+                btn.classList.add('text-white');
+            } else {
+                btn.classList.remove('text-white');
+                btn.classList.add('text-gray-400');
+            }
+        }
+
+        // Add ripple effect to all buttons
+        document.querySelectorAll('.ripple').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const x = e.clientX - e.target.getBoundingClientRect().left;
+                const y = e.clientY - e.target.getBoundingClientRect().top;
+                
+                const ripple = document.createElement('span');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        document.getElementById('wifi-btn').onclick = function() { toggleButton(this); };
+        document.getElementById('bluetooth-btn').onclick = function() { toggleButton(this); };
+        document.getElementById('airplane-btn').onclick = function() { toggleButton(this); };
+
+        // Enhanced slider interactions
+        function updateSlider(input) {
+            const value = input.value;
+            const valueDisplay = document.getElementById(input.id + '-value');
+            valueDisplay.textContent = value + '%';
+            
+            // Add haptic feedback simulation
+            if ('vibrate' in navigator) {
+                navigator.vibrate(5);
+            }
+        }
+
+        document.getElementById('brightness').oninput = function() { updateSlider(this); };
+        document.getElementById('volume').oninput = function() { updateSlider(this); };
+
+        // Smart Hub functionality
+        const smartHubBtn = document.getElementById('smart-hub-btn');
+        const smartHubPanel = document.getElementById('smart-hub-panel');
+        const closeSmartHub = document.getElementById('close-smart-hub');
+        const smartDevices = document.querySelectorAll('.smart-device');
+
+        smartHubBtn.addEventListener('click', () => {
+            smartHubPanel.classList.remove('hidden');
+            smartHubPanel.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeSmartHub.addEventListener('click', () => {
+            smartHubPanel.classList.add('hidden');
+            smartHubPanel.classList.remove('flex');
+            document.body.style.overflow = '';
+        });
+
+        smartHubPanel.addEventListener('click', (e) => {
+            if (e.target === smartHubPanel) {
+                closeSmartHub.click();
+            }
+        });
+
+        smartDevices.forEach(device => {
+            const toggle = device.querySelector('.w-12');
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isActive = toggle.classList.contains('bg-green-500/20');
+                toggle.classList.toggle('bg-green-500/20', !isActive);
+                toggle.classList.toggle('bg-gray-500/20', isActive);
+                const thumb = toggle.querySelector('.w-5');
+                thumb.classList.toggle('bg-green-500', !isActive);
+                thumb.classList.toggle('bg-gray-500', isActive);
+                thumb.classList.toggle('left-0.5', !isActive);
+                thumb.classList.toggle('right-0.5', isActive);
+            });
+        });
+    </script>
+</body>
+</html>

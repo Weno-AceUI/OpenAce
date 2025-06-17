@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>OpenAce Keyboard</title>
+    <style>
+        :root {
+            --key-bg: rgba(255, 255, 255, 0.15);
+            --key-bg-hover: rgba(255, 255, 255, 0.25);
+            --key-border: rgba(255, 255, 255, 0.2);
+            --key-text-color: white;
+            --key-active-bg: rgba(255, 255, 255, 0.3);
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            overscroll-behavior: none; /* Prevents pull-to-refresh or other scroll effects */
+        }
+        .keyboard-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.3); /* Darker, slightly transparent background for the keyboard area */
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px; /* Spacing between key rows */
+            touch-action: none; /* Disable pinch-zoom, etc. on the keyboard itself */
+            user-select: none; /* Prevent text selection on keys */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        .keyboard-row {
+            display: flex;
+            justify-content: center;
+            gap: 5px; /* Spacing between keys in a row */
+            width: 100%;
+        }
+        .keyboard-key {
+            background: var(--key-bg);
+            border: 1px solid var(--key-border);
+            color: var(--key-text-color);
+            border-radius: 5px;
+            padding: 10px 0; /* Vertical padding */
+            min-width: 30px; /* Minimum width for smaller keys */
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            transition: background-color 0.1s ease;
+            flex-grow: 1; /* Allow keys to grow */
+            text-align: center;
+        }
+        .keyboard-key:hover {
+            background: var(--key-bg-hover);
+        }
+        .keyboard-key:active, .keyboard-key.active {
+            background: var(--key-active-bg);
+            transform: scale(0.98);
+        }
+        .key-shift, .key-backspace, .key-enter, .key-space, .key-special {
+            flex-grow: 1.5; /* Make special keys wider */
+        }
+        .key-space {
+            flex-grow: 5; /* Make space bar much wider */
+        }
+        .key-char.shifted {
+            display: none;
+        }
+        .keyboard-container.shift-active .key-char.shifted {
+            display: inline;
+        }
+        .keyboard-container.shift-active .key-char.unshifted {
+            display: none;
+        }
+    </style>
+    <!-- Tailwind is not strictly necessary for a self-contained component like this,
+         but if you prefer to use its utility classes, you can include it.
+         For this example, I'll use pure CSS for the keyboard itself. -->
+</head>
+<body>
+
+<div class="keyboard-container" id="openace-keyboard">
+    <!-- This is a simplified QWERTY layout. More rows/keys can be added. -->
+    <div class="keyboard-row">
+        <div class="keyboard-key" data-key="q"><span class="key-char unshifted">q</span><span class="key-char shifted">Q</span></div>
+        <div class="keyboard-key" data-key="w"><span class="key-char unshifted">w</span><span class="key-char shifted">W</span></div>
+        <div class="keyboard-key" data-key="e"><span class="key-char unshifted">e</span><span class="key-char shifted">E</span></div>
+        <div class="keyboard-key" data-key="r"><span class="key-char unshifted">r</span><span class="key-char shifted">R</span></div>
+        <div class="keyboard-key" data-key="t"><span class="key-char unshifted">t</span><span class="key-char shifted">T</span></div>
+        <div class="keyboard-key" data-key="y"><span class="key-char unshifted">y</span><span class="key-char shifted">Y</span></div>
+        <div class="keyboard-key" data-key="u"><span class="key-char unshifted">u</span><span class="key-char shifted">U</span></div>
+        <div class="keyboard-key" data-key="i"><span class="key-char unshifted">i</span><span class="key-char shifted">I</span></div>
+        <div class="keyboard-key" data-key="o"><span class="key-char unshifted">o</span><span class="key-char shifted">O</span></div>
+        <div class="keyboard-key" data-key="p"><span class="key-char unshifted">p</span><span class="key-char shifted">P</span></div>
+    </div>
+    <div class="keyboard-row">
+        <div class="keyboard-key" data-key="a"><span class="key-char unshifted">a</span><span class="key-char shifted">A</span></div>
+        <div class="keyboard-key" data-key="s"><span class="key-char unshifted">s</span><span class="key-char shifted">S</span></div>
+        <div class="keyboard-key" data-key="d"><span class="key-char unshifted">d</span><span class="key-char shifted">D</span></div>
+        <div class="keyboard-key" data-key="f"><span class="key-char unshifted">f</span><span class="key-char shifted">F</span></div>
+        <div class="keyboard-key" data-key="g"><span class="key-char unshifted">g</span><span class="key-char shifted">G</span></div>
+        <div class="keyboard-key" data-key="h"><span class="key-char unshifted">h</span><span class="key-char shifted">H</span></div>
+        <div class="keyboard-key" data-key="j"><span class="key-char unshifted">j</span><span class="key-char shifted">J</span></div>
+        <div class="keyboard-key" data-key="k"><span class="key-char unshifted">k</span><span class="key-char shifted">K</span></div>
+        <div class="keyboard-key" data-key="l"><span class="key-char unshifted">l</span><span class="key-char shifted">L</span></div>
+    </div>
+    <div class="keyboard-row">
+        <div class="keyboard-key key-shift" data-special="shift">Shift</div>
+        <div class="keyboard-key" data-key="z"><span class="key-char unshifted">z</span><span class="key-char shifted">Z</span></div>
+        <div class="keyboard-key" data-key="x"><span class="key-char unshifted">x</span><span class="key-char shifted">X</span></div>
+        <div class="keyboard-key" data-key="c"><span class="key-char unshifted">c</span><span class="key-char shifted">C</span></div>
+        <div class="keyboard-key" data-key="v"><span class="key-char unshifted">v</span><span class="key-char shifted">V</span></div>
+        <div class="keyboard-key" data-key="b"><span class="key-char unshifted">b</span><span class="key-char shifted">B</span></div>
+        <div class="keyboard-key" data-key="n"><span class="key-char unshifted">n</span><span class="key-char shifted">N</span></div>
+        <div class="keyboard-key" data-key="m"><span class="key-char unshifted">m</span><span class="key-char shifted">M</span></div>
+        <div class="keyboard-key key-backspace" data-special="backspace"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m560-424 76 76q11 11 28 11t28-11q11-11 11-28t-11-28l-76-76 76-76q11-11 11-28t-11-28q-11-11-28-11t-28 11l-76 76-76-76q-11-11-28-11t-28 11q-11 11-11 28t11 28l76 76-76 76q-11 11-11 28t11 28q11 11 28 11t28-11l76-76ZM360-160q-19 0-36-8.5T296-192L116-432q-16-21-16-48t16-48l180-240q11-15 28-23.5t36-8.5h440q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H360Z"/></svg></div>
+    </div>
+    <div class="keyboard-row">
+        <div class="keyboard-key key-special" data-special="symbols">123</div>
+        <div class="keyboard-key key-space" data-key=" ">Space</div>
+        <div class="keyboard-key key-enter" data-special="enter">Enter</div>
+    </div>
+</div>
+
+<script>
+    const keyboard = document.getElementById('openace-keyboard');
+    let isShiftActive = false;
+
+    keyboard.addEventListener('click', function(event) {
+        const target = event.target.closest('.keyboard-key');
+        if (!target) return;
+
+        const key = target.dataset.key;
+        const specialKey = target.dataset.special;
+
+        let charToInput = '';
+
+        if (key) {
+            charToInput = isShiftActive ? key.toUpperCase() : key.toLowerCase();
+            // If shift was a one-time press, deactivate it
+            if (isShiftActive && !keyboard.classList.contains('shift-capslock')) { // Assuming a capslock state could be added
+                toggleShift(false);
+            }
+        } else if (specialKey) {
+            handleSpecialKey(specialKey);
+        }
+
+        if (charToInput) {
+            // In a real OS, this would send the character to the focused input field
+            // For now, we'll log it.
+            console.log('Key pressed:', charToInput);
+            // Example: window.parent.postMessage({ type: 'keyboardInput', char: charToInput }, '*');
+        }
+    });
+
+    function handleSpecialKey(specialKey) {
+        console.log('Special key:', specialKey);
+        if (specialKey === 'shift') {
+            toggleShift();
+        } else if (specialKey === 'backspace') {
+            // Example: window.parent.postMessage({ type: 'keyboardInput', special: 'backspace' }, '*');
+        } else if (specialKey === 'enter') {
+            // Example: window.parent.postMessage({ type: 'keyboardInput', special: 'enter' }, '*');
+        } else if (specialKey === 'symbols') {
+            alert('Symbol/Numeric keyboard not implemented yet.');
+        }
+    }
+
+    function toggleShift(forceState) {
+        isShiftActive = typeof forceState === 'boolean' ? forceState : !isShiftActive;
+        if (isShiftActive) {
+            keyboard.classList.add('shift-active');
+        } else {
+            keyboard.classList.remove('shift-active');
+        }
+    }
+
+    // Prevent touch events from scrolling the page when interacting with the keyboard
+    keyboard.addEventListener('touchstart', (e) => e.preventDefault(), { passive: false });
+    keyboard.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    keyboard.addEventListener('touchend', (e) => e.preventDefault(), { passive: false });
+
+</script>
+</body>
+</html>

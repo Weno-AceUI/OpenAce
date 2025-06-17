@@ -132,8 +132,8 @@
 </head>
 <body class="text-white">
     <!-- Top Bar -->
-    <div class="p-4 flex justify-between items-center">
-        <div class="flex items-center gap-4">
+    <div class="fixed top-0 left-0 right-0 p-4 flex justify-between items-center z-30 bg-black/25 backdrop-blur-md h-14">
+        <div class="flex items-center gap-3">
             <!-- Wifi Icon -->
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-120q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29Zm0-440q75 0 142.5 24T745-470q20 15 20.5 39.5T748-388q-17 17-42 17.5T661-384q-38-26-84-41t-97-15q-51 0-97 15t-84 41q-20 14-45 13t-42-18q-17-18-17-42.5t20-39.5q55-42 122.5-65.5T480-560Zm0-240q125 0 235.5 41T914-643q20 17 21 42t-17 43q-17 17-42 17.5T831-556q-72-59-161.5-91.5T480-680q-100 0-189.5 32.5T129-556q-20 16-45 15.5T42-558q-18-18-17-43t21-42q88-75 198.5-116T480-800Z"/></svg>
             <!-- Bluetooth Icon -->
@@ -142,6 +142,16 @@
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M400-408 147-307q-24 10-45.5-4.5T80-352v-22q0-12 5.5-23t15.5-18l299-209v-176q0-33 23.5-56.5T480-880q33 0 56.5 23.5T560-800v176l299 209q10 7 15.5 18t5.5 23v22q0 26-21.5 40.5T813-307L560-408v144l103 72q8 6 12.5 14.5T680-159v24q0 20-16.5 32.5T627-96l-147-44-147 44q-20 6-36.5-6.5T280-135v-24q0-10 4.5-18.5T297-192l103-72v-144Z"/></svg>
         </div>
         <span class="text-white/60 text-sm" id="time">9:41</span>
+    </div>
+
+    <!-- Menu Bar -->
+    <div id="main-menu-bar" class="fixed top-14 left-0 right-0 px-4 h-8 flex items-center space-x-1 text-sm z-20 bg-black/15 backdrop-blur-sm">
+        <button id="app-menu-title" class="px-2 py-0.5 rounded hover:bg-white/15 active:bg-white/25 transition-colors font-semibold">Home</button>
+        <button class="px-2 py-0.5 rounded hover:bg-white/15 active:bg-white/25 transition-colors">File</button>
+        <button class="px-2 py-0.5 rounded hover:bg-white/15 active:bg-white/25 transition-colors">Edit</button>
+        <button class="px-2 py-0.5 rounded hover:bg-white/15 active:bg-white/25 transition-colors">View</button>
+        <button class="px-2 py-0.5 rounded hover:bg-white/15 active:bg-white/25 transition-colors">Window</button>
+        <button class="px-2 py-0.5 rounded hover:bg-white/15 active:bg-white/25 transition-colors">Help</button>
     </div>
 
     <!-- App Window Container -->
@@ -266,7 +276,6 @@
         const MIN_WINDOW_WIDTH = 240;  // px
         const MIN_WINDOW_HEIGHT = 180; // px
         const TITLE_BAR_CSS_TOP_OFFSET = -40; // Must match the CSS `top` value for .app-window .title-bar
-        let splitViewSlots = { left: null, right: null }; // Stores appIdentifier for split windows
 
         function launchAppWindow(appIdentifier, appName, iconSrc) {
             if (openWindows[appIdentifier]) {
@@ -283,27 +292,26 @@
             appWindow.className = 'app-window absolute bg-white/10 backdrop-blur-lg shadow-xl rounded-lg pointer-events-auto border border-white/20 flex flex-col';
             
             // Cascade initial window position
-            const initialLeft = 50 + (Object.keys(openWindows).length % 10) * 30;
-            const initialTop = 50 + (Object.keys(openWindows).length % 10) * 30;
+            const statusBarHeight = 56; // h-14 from Tailwind
+            const menuBarHeight = 32;   // h-8 from Tailwind
+            const topOffset = statusBarHeight + menuBarHeight + 20; // 20px margin
+            const initialLeft = 50 + (Object.keys(openWindows).length % 10) * 30; // Horizontal cascade
+            const initialTop = topOffset + (Object.keys(openWindows).length % 10) * 30; // Vertical cascade
             appWindow.style.cssText = `width: 360px; height: 280px; left: ${initialLeft}px; top: ${initialTop}px; z-index: ${highestZIndex};`;
 
             appWindow.innerHTML = `
-                <div class="title-bar bg-black/30 text-white px-3 py-1.5 flex justify-between items-center">
+                <div class="title-bar bg-black/30 text-white px-3 py-1.5 flex justify-between items-center flex-shrink-0">
                     <div class="flex items-center gap-2">
                         <img src="${iconSrc}" alt="${appName}" class="w-4 h-4">
                         <span class="app-name text-sm font-medium">${appName}</span>
                     </div>
-                    <div class="flex items-center">
-                        <button class="split-view-btn text-white hover:bg-black/50 p-0.5 rounded-full w-5 h-5 flex items-center justify-center focus:outline-none mr-1" aria-label="Toggle Split View ${appName}">
-                            <svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1" ry="1"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg>
-                        </button>
-                        <button class="close-btn text-white hover:bg-black/50 hover:text-white p-0.5 rounded-full w-5 h-5 flex items-center justify-center focus:outline-none" aria-label="Close ${appName}">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <button class="close-btn text-white hover:bg-black/50 hover:text-white p-0.5 rounded-full w-5 h-5 flex items-center justify-center focus:outline-none" aria-label="Close ${appName}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
-                <div class="content-area p-4 text-white h-full overflow-y-auto flex flex-col items-center justify-center">
+                <div class="content-area p-4 text-white flex-grow overflow-y-auto flex flex-col items-center justify-center">
                     <img src="${iconSrc}" alt="${appName}" class="w-20 h-20 mb-3 opacity-80">
                     <p class="text-center text-xl font-semibold">${appName}</p>
                     <p class="text-center text-xs text-white/70 mt-1">This is a placeholder window for ${appName}.</p>
@@ -316,8 +324,19 @@
             makeDraggable(appWindow);
             setupCloseButton(appWindow, appIdentifier);
             makeResizable(appWindow); // Add resizable capabilities
-            setupSplitViewButton(appWindow, appIdentifier);
             bringToFront(appWindow); 
+        }
+        
+        function updateMenuBarForFocus(appWindow) {
+            const appMenuTitle = document.getElementById('app-menu-title');
+            if (appWindow && appWindow.classList.contains('focused')) {
+                const appNameElement = appWindow.querySelector('.title-bar .app-name');
+                if (appNameElement) {
+                    appMenuTitle.textContent = appNameElement.textContent;
+                }
+            } else {
+                appMenuTitle.textContent = 'Home';
+            }
         }
 
         function makeDraggable(element) {
@@ -326,7 +345,6 @@
 
             titleBar.onmousedown = function(e) {
                 // e.preventDefault(); // Can prevent text selection but might interfere with button clicks if not handled carefully
-                if (element.dataset.splitSide) return; // Don't drag if in split view
                 if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return; // Don't drag if clicking a button in title bar
 
                 bringToFront(element);
@@ -363,15 +381,29 @@
         function setupCloseButton(element, appIdentifier) {
             const closeBtn = element.querySelector('.close-btn');
             closeBtn.onclick = function() {
-                // If window was in a split view, clear its slot
-                if (splitViewSlots.left === appIdentifier) {
-                    splitViewSlots.left = null;
-                } else if (splitViewSlots.right === appIdentifier) {
-                    splitViewSlots.right = null;
-                }
+                const wasFocused = element.classList.contains('focused');
                 element.remove();
                 delete openWindows[appIdentifier];
-                // Potentially adjust other split window if one is closed
+
+                if (wasFocused) {
+                    let nextFocusedWindow = null;
+                    let maxZ = -1;
+                    // Find the window with the highest z-index among the remaining open windows
+                    for (const id in openWindows) {
+                        const win = openWindows[id];
+                        const currentZ = parseInt(win.style.zIndex || '0', 10);
+                        if (currentZ > maxZ) {
+                            maxZ = currentZ;
+                            nextFocusedWindow = win;
+                        }
+                    }
+
+                    if (nextFocusedWindow) {
+                        bringToFront(nextFocusedWindow); // This will also update the menu bar
+                    } else {
+                        updateMenuBarForFocus(null); // No windows left, reset menu bar
+                    }
+                }
             };
         }
 
@@ -401,7 +433,6 @@
             });
 
             element.addEventListener('mousedown', function(e) {
-                if (element.dataset.splitSide) return; // Don't resize if in split view
                 if (e.target.closest('.title-bar') || e.target.tagName === 'BUTTON' || e.target.closest('button')) {
                     return; // Let drag or button clicks handle this
                 }
@@ -509,103 +540,10 @@
             highestZIndex++;
             element.style.zIndex = highestZIndex;
             document.querySelectorAll('.app-window.focused').forEach(win => win.classList.remove('focused'));
+            // Ensure no other window has .focused before adding it to the current one
             element.classList.add('focused');
+            updateMenuBarForFocus(element);
         }
-
-        function setupSplitViewButton(element, appIdentifier) {
-            const splitBtn = element.querySelector('.split-view-btn');
-            splitBtn.onclick = function() {
-                toggleSplitView(element, appIdentifier);
-            };
-        }
-
-        function restoreWindowState(element) {
-            if (!element) return;
-            const appIdentifier = element.id.replace('window-', '');
-
-            if (element.dataset.preSplitState) {
-                const state = JSON.parse(element.dataset.preSplitState);
-                element.style.left = state.left;
-                element.style.top = state.top;
-                element.style.width = state.width;
-                element.style.height = state.height;
-                delete element.dataset.preSplitState;
-            }
-            if (splitViewSlots.left === appIdentifier) splitViewSlots.left = null;
-            if (splitViewSlots.right === appIdentifier) splitViewSlots.right = null;
-            delete element.dataset.splitSide;
-            // Ensure cursor is reset if it was a resize cursor
-            element.style.cursor = 'default';
-        }
-
-        function toggleSplitView(element, appIdentifier) {
-            if (element.dataset.splitSide) { // Already split, so unsplit it
-                restoreWindowState(element);
-            } else { // Not split, try to split it
-                // Store current state before splitting
-                element.dataset.preSplitState = JSON.stringify({
-                    left: element.style.left,
-                    top: element.style.top,
-                    width: element.style.width,
-                    height: element.style.height
-                });
-
-                if (splitViewSlots.left === null) {
-                    snapWindowToSide(element, 'left', appIdentifier);
-                } else if (splitViewSlots.right === null) {
-                    snapWindowToSide(element, 'right', appIdentifier);
-                } else {
-                    // Both slots are full. For now, we'll replace the left one.
-                    // A more sophisticated approach might involve user choice or cycling.
-                    const currentLeftAppId = splitViewSlots.left;
-                    const otherWindowEl = document.getElementById(`window-${currentLeftAppId}`);
-                    if (otherWindowEl) restoreWindowState(otherWindowEl);
-                    
-                    snapWindowToSide(element, 'left', appIdentifier);
-                }
-            }
-        }
-
-        function snapWindowToSide(element, side, appIdentifier) {
-            const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;
-            
-            // Estimate heights of fixed elements
-            const topBarEl = document.querySelector('body > div:first-child'); // Assuming top bar is the first div in body
-            const topBarHeight = topBarEl ? topBarEl.offsetHeight + 16 : 60; // 16 for p-4 margin if not captured
-            
-            const dockEl = document.querySelector('.dock').parentElement; // The fixed div containing the dock
-            const dockTotalHeight = dockEl ? dockEl.offsetHeight + (parseInt(getComputedStyle(dockEl).bottom) * 2) : 80; // bottom-6 is 24px, so 24px margin
-
-            const availableHeight = viewportHeight - topBarHeight - dockTotalHeight;
-            const windowWidth = viewportWidth / 2;
-            const windowHeight = availableHeight;
-            let windowLeft;
-            const windowTop = topBarHeight; // Window top edge aligns below the top bar
-
-            // Clear the target slot if occupied by another window
-            const targetSlotOccupantId = splitViewSlots[side];
-            if (targetSlotOccupantId && targetSlotOccupantId !== appIdentifier) {
-                const otherWindowEl = document.getElementById(`window-${targetSlotOccupantId}`);
-                if (otherWindowEl) restoreWindowState(otherWindowEl);
-            }
-
-            if (side === 'left') {
-                windowLeft = 0;
-                splitViewSlots.left = appIdentifier;
-            } else { // 'right'
-                windowLeft = viewportWidth / 2;
-                splitViewSlots.right = appIdentifier;
-            }
-
-            element.style.left = windowLeft + 'px';
-            element.style.top = windowTop + 'px';
-            element.style.width = windowWidth + 'px';
-            element.style.height = windowHeight + 'px';
-            element.dataset.splitSide = side;
-            element.style.cursor = 'default'; // Ensure resize cursors are removed
-        }
-
         // --- End App Windowing Feature ---
 
         // --- Existing JS for Contacts, Messages, Control Center (remains for now) ---
@@ -768,6 +706,7 @@
             // Load initial data
             loadContacts();
             loadMessages();
+            updateMenuBarForFocus(null); // Set initial menu bar title to "AceOS"
         });
 
         // Control Center Overlay logic
