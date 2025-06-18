@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>OpenAce Watch</title>
+    <style>
+        body {
+            background: #000; /* Simple black background for watches is common */
+            /* Or, if you want to use acepaper, ensure it's suitable for a small, possibly round display
+            background: url('../acepaper.png') no-repeat center center fixed;
+            background-size: cover;
+            */
+            min-height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden; /* Prevent scrolling on the watch face */
+        }
+
+        .watch-face-container {
+            width: 100vw; /* Full width of viewport */
+            height: 100vh; /* Full height of viewport */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px; /* Some padding from the edges */
+            box-sizing: border-box;
+        }
+
+        .time-display {
+            font-size: 3.5em; /* Prominent time */
+            font-weight: 300; /* Light font weight often looks good for time */
+            margin-bottom: 2px;
+        }
+
+        .date-display {
+            font-size: 1em;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .app-launcher {
+            display: flex;
+            flex-wrap: wrap; /* Allow icons to wrap if too many */
+            justify-content: center;
+            gap: 15px; /* Space between icons */
+            max-width: 200px; /* Limit width of launcher area */
+        }
+
+        .app-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%; /* Circular icons are common on watches */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .app-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .app-icon img,
+        .app-icon svg {
+            width: 24px; /* Size of the icon graphic itself */
+            height: 24px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Optional: If you want to simulate a round watch screen, wrap .watch-face-container in .watch-screen-clipper -->
+
+    <div class="watch-face-container">
+        <div id="timeDisplay" class="time-display">10:09</div>
+        <div id="dateDisplay" class="date-display">MON, SEP 23</div>
+
+        <div class="app-launcher">
+            <!-- Phone App -->
+            <div class="app-icon" onclick="launchApp('PhoneApp', 'Phone')" aria-label="Phone">
+                <img src="../icons/Phone.svg" alt="Phone">
+            </div>
+            <!-- Messages App -->
+            <div class="app-icon" onclick="launchApp('MessagesApp', 'Messages')" aria-label="Messages">
+                <img src="../icons/Messages.svg" alt="Messages">
+            </div>
+            <!-- Music App -->
+            <div class="app-icon" onclick="launchApp('MusicApp', 'Music')" aria-label="Music">
+                <img src="../icons/Music.svg" alt="Music">
+            </div>
+            <!-- Settings App -->
+            <div class="app-icon" onclick="launchApp('SettingsApp', 'Settings')" aria-label="Settings">
+                <img src="../icons/Settings.svg" alt="Settings">
+            </div>
+            <div class="app-icon" onclick="launchApp('Launcher', 'Launcher')" aria-label="Launcher">
+                <img src="../icons/Launcher.svg" alt="Launcher">
+            </div>
+        </div>
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('timeDisplay').textContent = `${hours}:${minutes}`;
+
+            const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+            const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+            const dayName = days[now.getDay()];
+            const monthName = months[now.getMonth()];
+            const dayOfMonth = now.getDate();
+            document.getElementById('dateDisplay').textContent = `${dayName}, ${monthName} ${dayOfMonth}`;
+        }
+
+        function launchApp(appIdentifier, appName) {
+            // Placeholder for launching an app on the watch
+            // This would likely involve communication with the OpenAce Watch OS
+            // to open the specified application.
+            console.log(`Attempting to launch ${appName} (ID: ${appIdentifier})`);
+            alert(`Launch ${appName}`); 
+            // In a real scenario, you might use:
+            // window.OpenAceWatchAPI.launchApp(appIdentifier);
+        }
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+        // Initial call to display time immediately
+        updateTime();
+    </script>
+</body>
+</html>
