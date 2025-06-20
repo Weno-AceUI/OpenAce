@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAce TV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            /* Path assumes this file is in build/ui/components/home/tv/ */
+            background: url('../acepaper.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: white;
+            overflow: hidden; /* No scrolling on TV UI */
+        }
+
+        /* App Shelf / Rail styles */
+        .app-shelf {
+            width: 100%;
+        }
+
+        #app-rail {
+            display: grid; /* Changed to CSS Grid */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+            gap: 2rem; /* Gap between tiles */
+            padding: 2.5rem; /* Padding for the grid itself */
+            justify-items: center; /* Center items within their grid cells */
+            align-items: center; /* Center items vertically within their grid cells */
+            width: 100%; /* Ensure it takes full width */
+            flex-grow: 1; /* Allow grid to fill remaining vertical space */
+            overflow-y: auto; /* Allow vertical scrolling if content overflows */
+            /* Removed overflow-x, negative margin, and fixed height */
+            scroll-behavior: smooth;
+            /* Removed fixed height as grid will expand */
+            
+            /* Hide scrollbar for a cleaner TV look */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        #app-rail::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        /* Individual App Tile styles */
+        .app-tile {
+            width: 280px;  /* Larger, more readable tiles */
+            height: 158px; /* 16:9 aspect ratio */
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 3px solid transparent;
+            transition: all 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-shrink: 0; /* Prevent shrinking in flex container */
+            cursor: pointer;
+        }
+
+        .app-tile:focus {
+            outline: none;
+            transform: scale(1.08);
+            border-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            z-index: 5;
+        }
+
+        .app-tile img {
+            width: 56px;
+            height: 56px;
+        }
+
+        .app-tile span {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* Main content area adjustments for grid */
+        main {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0; /* Fill entire viewport */
+            display: flex;
+            flex-direction: column;
+        }
+        .app-shelf {
+            flex-grow: 1; /* Allow it to take available vertical space */
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Top Info Bar -->
+    <div class="fixed top-0 left-0 right-0 p-8 flex justify-end items-center z-10">
+        <div class="flex items-center gap-4 text-xl">
+            <!-- Wifi Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#FFFFFF"><path d="M480-120q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29Zm0-440q75 0 142.5 24T745-470q20 15 20.5 39.5T748-388q-17 17-42 17.5T661-384q-38-26-84-41t-97-15q-51 0-97 15t-84 41q-20 14-45 13t-42-18q-17-18-17-42.5t20-39.5q55-42 122.5-65.5T480-560Zm0-240q125 0 235.5 41T914-643q20 17 21 42t-17 43q-17 17-42 17.5T831-556q-72-59-161.5-91.5T480-680q-100 0-189.5 32.5T129-556q-20 16-45 15.5T42-558q-18-18-17-43t21-42q88-75 198.5-116T480-800Z"/></svg>
+            <span class="text-white/80 text-2xl font-light" id="time">9:41</span>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="absolute inset-0 flex flex-col">
+        <!-- App Shelf -->
+        <div class="app-shelf flex-grow flex flex-col pt-32">
+            <div id="app-rail">
+                <button class="app-tile focusable" onclick="launchApp('PhotosApp')">
+                    <img src="../icons/photos.svg" alt="Photos"/>
+                    <span>Photos</span>
+                </button>
+                <button class="app-tile focusable" onclick="launchApp('MusicApp')">
+                    <img src="../icons/music.svg" alt="Music"/>
+                    <span>Music</span>
+                </button>
+                <button class="app-tile focusable" onclick="launchApp('BrowserApp')">
+                   <img src="../icons/browse.svg" alt="Browser"/>
+                    <span>Browser</span>
+                </button>
+                <button class="app-tile focusable" onclick="launchApp('SettingsApp')">
+                    <img src="../icons/settings.svg" alt="Settings"/>
+                    <span>Settings</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+            document.getElementById('time').textContent = time;
+        }
+
+        // App "launching" function
+        async function launchApp(appIdentifier) {
+            console.log(`Attempting to launch app: ${appIdentifier}`);
+            if (window.HomeScreenAPI_launchApplication) {
+                const success = await window.HomeScreenAPI_launchApplication(appIdentifier);
+                console.log(`Launch attempt for ${appIdentifier} reported: ${success}`);
+            } else {
+                console.error("HomeScreenAPI_launchApplication function not found on window object.");
+                // On a real TV, you might show a visual error instead of an alert.
+                alert("Error: System Launcher API is not available.");
+            }
+        }
+
+        // D-Pad Navigation for TV Remote
+        function setupNavigation() {
+            const rail = document.getElementById('app-rail');
+            const items = rail.querySelectorAll('.focusable');
+            if (items.length === 0) return;
+
+            let currentIndex = 0; // Current focused item index
+            let numColumns = 0; // Number of columns in the grid
+
+            // Function to calculate the number of columns dynamically
+            function calculateNumColumns() {
+                if (items.length === 0) {
+                    numColumns = 1; // Default to 1 if no items
+                    return;
+                }
+                const firstItem = items[0];
+                // Get the computed style for the grid gap
+                const columnGap = parseFloat(getComputedStyle(rail).columnGap || getComputedStyle(rail).gap);
+                const itemWidth = firstItem.offsetWidth;
+                const railWidth = rail.offsetWidth;
+                
+                // Calculate how many items can fit horizontally
+                numColumns = Math.floor((railWidth + columnGap) / (itemWidth + columnGap));
+                if (numColumns === 0) numColumns = 1; // Ensure at least one column
+                console.log(`Calculated columns: ${numColumns}`);
+            }
+
+            // Recalculate columns on window resize
+            window.addEventListener('resize', calculateNumColumns);
+            calculateNumColumns(); // Initial calculation on load
+
+            items[currentIndex].focus(); // Focus the first item on load
+
+            document.addEventListener('keydown', (e) => {
+                // Prevent default browser behavior for arrow keys which might scroll the page
+                if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+                    e.preventDefault();
+                    // Recalculate columns on keydown as well, in case of dynamic layout changes
+                    calculateNumColumns();
+                }
+
+                let newIndex = currentIndex;
+
+                switch (e.key) {
+                    case 'ArrowRight':
+                        newIndex = (currentIndex + 1) % items.length;
+                        break;
+                    case 'ArrowLeft':
+                        newIndex = (currentIndex - 1 + items.length) % items.length;
+                        break;
+                    case 'ArrowDown':
+                        newIndex = currentIndex + numColumns;
+                        if (newIndex >= items.length) {
+                            // Wrap to the first item in the same column on the first row
+                            newIndex = currentIndex % numColumns;
+                        }
+                        break;
+                    case 'ArrowUp':
+                        newIndex = currentIndex - numColumns;
+                        if (newIndex < 0) {
+                            // Wrap to the last item in the same column on the last row
+                            const lastRowStart = Math.floor((items.length - 1) / numColumns) * numColumns;
+                            newIndex = lastRowStart + (currentIndex % numColumns);
+                            if (newIndex >= items.length) { // Adjust if the last row is not full
+                                newIndex = items.length - 1;
+                            }
+                        }
+                        break;
+                    case 'Enter':
+                        if (document.activeElement && typeof document.activeElement.click === 'function') {
+                            document.activeElement.click();
+                        }
+                        return; // Don't change focus after Enter
+                }
+                
+                // Only change focus if the new index is different and valid
+                if (newIndex !== currentIndex && items[newIndex]) {
+                    currentIndex = newIndex;
+                    items[currentIndex].focus();
+
+                    // Scroll the rail to keep the focused item in view
+                    const focusedElement = items[currentIndex];
+                    if (focusedElement) {
+                        focusedElement.scrollIntoView({
+                            behavior: 'smooth',
+                            inline: 'center', // Horizontally center the focused item
+                            block: 'center' // Vertically center the focused item
+                        });
+                    }
+                }
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            setInterval(updateTime, 1000);
+            updateTime();
+            setupNavigation();
+        });
+    </script>
+</body>
+</html>
