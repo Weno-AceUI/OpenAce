@@ -2,12 +2,9 @@
 
 OpenAce is a lightweight, modular base operating system developed by Weno. Designed to replace Android on AceUI-powered devices, OpenAce provides a secure, efficient, and customizable platform for embedded and mobile systems.
 
-## 🚀 What's New in 0.4 "Cheesecake"
-
-- **Apps:** We've added more essential applications to make your device usable.
-- **APIs** More APIs for more functionalities on OpenAce. APIs use the WebCpp framework to run, you can use APIs to make your apps more usable to your clients.
-
-These foundational UI improvements mark a major step forward in making OpenAce a daily-driver-ready platform for AceUI devices.
+## What's new in OpenAce 0.5 Popcorn
+- TV, Tablet, Watch? OpenAce has it all, in a fully conected experience.
+- Introducing the new App Icon design, redesigned to be more appealing, flat and less busy.
 
 ## Features
 - Minimal, fast, and resource-efficient core
