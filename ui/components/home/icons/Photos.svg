@@ -1,17 +1,18 @@
 <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<rect width="50" height="50" rx="10" fill="white"/>
-<g id="Repeat group 1_inner" data-figma-trr="r6u1-0f">
-<circle cx="25.4463" cy="17.1969" r="8.24946" fill="url(#paint0_linear_92_80)"/>
+<rect width="50" height="50" rx="10" fill="#FF0073"/>
+<g id="Repeat group 1_inner" data-figma-trr="r12u1.5-0f">
+<rect x="21.1719" y="6.42194" width="8" height="15" rx="4" fill="white"/>
 </g>
-<use xlink:href="#Repeat%20group%201_inner" transform="translate(25.1982 -6.75183) rotate(60)"/>
-<use xlink:href="#Repeat%20group%201_inner" transform="translate(43.6445 11.6945) rotate(120)"/>
-<use xlink:href="#Repeat%20group%201_inner" transform="translate(36.8927 36.8927) rotate(-180)"/>
-<use xlink:href="#Repeat%20group%201_inner" transform="translate(11.6945 43.6445) rotate(-120)"/>
-<use xlink:href="#Repeat%20group%201_inner" transform="translate(-6.75183 25.1982) rotate(-60)"/>
-<defs>
-<linearGradient id="paint0_linear_92_80" x1="25.4463" y1="8.94745" x2="25.4463" y2="25.4464" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FF0000"/>
-<stop offset="1" stop-color="#8800FF"/>
-</linearGradient>
-</defs>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(12.1545 -7.01741) rotate(30)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(26.1893 -7.01741) rotate(60)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(38.3438) rotate(90)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(45.3612 12.1545) rotate(120)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(45.3612 26.1893) rotate(150)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(38.3438 38.3438) rotate(-180)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(26.1893 45.3613) rotate(-150)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(12.1545 45.3612) rotate(-120)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(9.79573e-09 38.3438) rotate(-90)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(-7.01741 26.1893) rotate(-60)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(-7.01741 12.1545) rotate(-30)"/>
+<circle cx="25.5" cy="25.5" r="4" stroke="white"/>
 </svg>
