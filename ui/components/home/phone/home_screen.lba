@@ -1,0 +1,43 @@
+**
+    home_screen.lba - The OpenAce Home Screen for phones, written in Lambda.
+    This demonstrates how a core system UI can be built with the language.
+**
+
+** --- 1. Define the main UI structure --- **
+print "--- Initializing OpenAce Home Screen ---";
+ui main_window = Window("OpenAce Home");
+ui app_grid = IconGrid();
+ui dock = Dock();
+
+** --- 2. Define App Data --- **
+let grid_apps = [
+    ["Phone", "/ui/icons/Phone.svg"],
+    ["Messages", "/ui/icons/Messages.svg"],
+    ["Browser", "/ui/icons/Browser.svg"]
+];
+
+let dock_apps = [
+    ["Photos", "/ui/icons/Photos.svg"],
+    ["Settings", "/ui/icons/Settings.svg"]
+];
+
+** --- 3. Populate UI using loops --- **
+let i = 0;
+while (i < len(grid_apps)) {
+    let app_data = get(grid_apps, i);
+    app_grid.add(AppIcon(get(app_data, 0), get(app_data, 1)));
+    i = i + 1;
+}
+
+i = 0;
+while (i < len(dock_apps)) {
+    let app_data = get(dock_apps, i);
+    dock.add(AppIcon(get(app_data, 0), get(app_data, 1)));
+    i = i + 1;
+}
+
+** --- 4. Assemble the final view --- **
+main_window.add(app_grid);
+main_window.add(dock);
+
+print "--- OpenAce Home Screen UI constructed successfully ---";

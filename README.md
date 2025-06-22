@@ -17,23 +17,6 @@ OpenAce is a lightweight, modular base operating system developed by Weno. Desig
 We have provided a development Roadmap below:
 ![OpenAce Project Roadmap](roadmap.png)
 
-## Integrating OpenAce into Your ROM
-OpenAce is designed to be easily integrated into custom ROMs. ROM developers do **not** need to clone the entire OpenAce repository. Instead, you only need to integrate the in-development OpenAce API into your ROM project to extend, customize, and interact with the OS at various levels.
-
-### Steps to Integrate OpenAce
-1. **Integrate the OpenAce API**
-   - Add the OpenAce API (currently in development) as a dependency in your ROM project. Refer to the `docs/` directory for the latest API updates and integration instructions.
-2. **Configure Device Support**
-   - Add your device configuration under the `device/` directory. Use `device/weno/` as a reference.
-3. **Build OpenAce**
-   - Use the scripts in the `build/` directory to compile OpenAce for your target hardware.
-4. **Integrate AceUI**
-   - AceUI is the default UI layer. Customize it in the `ui/` directory to match your ROM's branding and features.
-5. **Use the OpenAce API**
-   - The OpenAce API will provide hooks and interfaces for ROM-level customization, system service integration, and hardware abstraction. Refer to the `docs/` directory for API updates and usage examples as development progresses.
-
-> **Note:** The OpenAce API is under active development. Stay tuned for updates and detailed integration guides in future releases.
-
 ## Getting Started
 1. **Build OpenAce**
    - Follow the instructions in the `build/` directory to compile the OS for your target device.

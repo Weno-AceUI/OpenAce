@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAce Popup Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            /* Using a generic background for demonstration */
+            background: url('../home/acepaper.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: white;
+        }
+
+        /* The container for the popup menu */
+        .popup-menu-container {
+            position: absolute;
+            min-width: 220px;
+            background: rgba(40, 40, 40, 0.7); /* Darker glass for better contrast */
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            padding: 6px;
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+
+        /* Individual item in the menu */
+        .popup-menu-item {
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Hover state for items */
+        .popup-menu-item:not(.disabled):hover {
+            background-color: #007AFF; /* A primary blue for selection */
+            color: white;
+        }
+
+        /* Disabled state */
+        .popup-menu-item.disabled {
+            color: rgba(255, 255, 255, 0.4);
+            cursor: default;
+        }
+
+        /* Separator line */
+        .popup-menu-separator {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.15);
+            margin: 6px 0;
+        }
+        
+        /* For demonstration: a fake menu bar */
+        .demo-menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 20px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            display: flex;
+            gap: 15px;
+        }
+        .demo-menu-bar button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 6px;
+        }
+        .demo-menu-bar button:hover {
+            background: rgba(255,255,255,0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- This is a demonstration of how the popup would be used with a menu bar -->
+    <div class="demo-menu-bar">
+        <button id="file-menu-btn">File</button>
+        <button id="edit-menu-btn">Edit</button>
+    </div>
+
+    <!-- The actual popup menu component. It's positioned by JS. -->
+    <div id="popup-menu" class="popup-menu-container">
+        <!-- Content will be injected by JavaScript -->
+    </div>
+
+    <script>
+        const popupMenu = document.getElementById('popup-menu');
+        let isMenuOpen = false;
+
+        // --- Menu Definitions ---
+        const menus = {
+            file: [
+                { label: 'New Window', action: () => alert('New Window clicked') },
+                { label: 'New Tab', action: () => alert('New Tab clicked') },
+                { type: 'separator' },
+                { label: 'Open File...', action: () => alert('Open File... clicked') },
+                { label: 'Open Recent', action: () => alert('Open Recent clicked') },
+                { type: 'separator' },
+                { label: 'Close Window', action: () => alert('Close Window clicked'), disabled: true },
+                { label: 'Close Tab', action: () => alert('Close Tab clicked') },
+            ],
+            edit: [
+                { label: 'Undo', action: () => alert('Undo clicked') },
+                { label: 'Redo', action: () => alert('Redo clicked'), disabled: true },
+                { type: 'separator' },
+                { label: 'Cut', action: () => alert('Cut clicked') },
+                { label: 'Copy', action: () => alert('Copy clicked') },
+                { label: 'Paste', action: () => alert('Paste clicked') },
+            ]
+        };
+
+        function showPopupMenu(anchorElement, menuItems) {
+            popupMenu.innerHTML = ''; // Clear previous items
+
+            menuItems.forEach(item => {
+                if (item.type === 'separator') {
+                    const separator = document.createElement('div');
+                    separator.className = 'popup-menu-separator';
+                    popupMenu.appendChild(separator);
+                } else {
+                    const menuItemEl = document.createElement('div');
+                    menuItemEl.className = 'popup-menu-item';
+                    menuItemEl.textContent = item.label;
+                    if (item.disabled) {
+                        menuItemEl.classList.add('disabled');
+                    } else {
+                        menuItemEl.onclick = () => { item.action(); hidePopupMenu(); };
+                    }
+                    popupMenu.appendChild(menuItemEl);
+                }
+            });
+
+            const rect = anchorElement.getBoundingClientRect();
+            popupMenu.style.top = `${rect.bottom + 5}px`;
+            popupMenu.style.left = `${rect.left}px`;
+            popupMenu.style.display = 'block';
+            isMenuOpen = true;
+        }
+
+        function hidePopupMenu() {
+            popupMenu.style.display = 'none';
+            isMenuOpen = false;
+        }
+
+        document.getElementById('file-menu-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            isMenuOpen ? hidePopupMenu() : showPopupMenu(e.currentTarget, menus.file);
+        });
+        
+        document.getElementById('edit-menu-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            isMenuOpen ? hidePopupMenu() : showPopupMenu(e.currentTarget, menus.edit);
+        });
+
+        document.addEventListener('click', () => {
+            if (isMenuOpen) hidePopupMenu();
+        });
+    </script>
+
+</body>
+</html>

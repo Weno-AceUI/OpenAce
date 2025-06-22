@@ -46,7 +46,7 @@ if [ ! -d "build" ]; then
     mkdir build
 fi
 cd build
-cmake ..
+cmake -DCMAKE_TOOLCHAIN_FILE=../tools/macos_toolchain.cmake ..
 cmake --build . --clean-first
 
 # Create UTM configuration directory if it doesn't exist
@@ -61,3 +61,5 @@ cp ../device/utm/OpenAce.utm "$UTM_CONFIG_DIR/"
 
 print_status "Setup complete! You can now open UTM and run OpenAce."
 print_warning "Note: Make sure to copy the kernel.bin and initrd.img to the correct location in UTM's configuration." 
+
+ADDON_SOURCE_PATH="./build/native_modules/webcpp_addon.node"
