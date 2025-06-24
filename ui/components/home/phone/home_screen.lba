@@ -7,6 +7,8 @@
 print "--- Initializing OpenAce Home Screen ---";
 ui main_window = Window("OpenAce Home");
 ui app_grid = IconGrid();
+ui background = BackgroundImage("/assets/wallpapers/default.png");
+ui test = Label("Test Test Test Test Test.");
 ui dock = Dock();
 
 ** --- 2. Define App Data --- **
@@ -22,22 +24,20 @@ let dock_apps = [
 ];
 
 ** --- 3. Populate UI using loops --- **
-let i = 0;
-while (i < len(grid_apps)) {
-    let app_data = get(grid_apps, i);
+for (let i = 0; i < len(grid_apps); i = i + 1) {
+    let app_data = get(grid_apps, i); ** Note: We can improve this with array[index] syntax later **
     app_grid.add(AppIcon(get(app_data, 0), get(app_data, 1)));
-    i = i + 1;
 }
 
-i = 0;
-while (i < len(dock_apps)) {
+for (let i = 0; i < len(dock_apps); i = i + 1) {
     let app_data = get(dock_apps, i);
     dock.add(AppIcon(get(app_data, 0), get(app_data, 1)));
-    i = i + 1;
 }
 
 ** --- 4. Assemble the final view --- **
+main_window.add(background);
 main_window.add(app_grid);
 main_window.add(dock);
+main_window.add(test);
 
 print "--- OpenAce Home Screen UI constructed successfully ---";

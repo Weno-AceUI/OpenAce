@@ -1,0 +1,21 @@
+**
+    ButtonApp.lba - A simple app to test Lambda's interaction logic.
+    Demonstrates the 'handle' declaration for button clicks.
+**
+
+print "--- Initializing Button App ---";
+
+ui main_window = Window("Button Test");
+
+ui click_button = Button("Click Me!");
+ui status_label = Label("Status: Ready");
+
+handle click_button.click {
+    print "Button was clicked in Lambda!";
+    status_label.text = "Status: Clicked!"; ** Note: Direct property assignment on UI components is a future feature **
+}
+
+main_window.add(click_button);
+main_window.add(status_label);
+
+print "--- Button App UI constructed successfully ---";

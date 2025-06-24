@@ -41,8 +41,8 @@ fi
 
 # Resolve the absolute path for the script to ensure the interpreter can find it.
 if ! command -v realpath &> /dev/null; then
-    print_warning "'realpath' command not found. Path resolution might be less reliable."
-    ABSOLUTE_SCRIPT_PATH=$(cd "$(dirname "$LAMBDA_SCRIPT_ARG")" && pwd)/"$(basename "$LAMBDA_SCRIPT_ARG")"
+    echo -e "${YELLOW}[!] Warning: 'realpath' command not found. Using a fallback method for path resolution.${NC}"
+    ABSOLUTE_SCRIPT_PATH="$(cd "$(dirname "$LAMBDA_SCRIPT_ARG")" && pwd)/$(basename "$LAMBDA_SCRIPT_ARG")"
 else
     ABSOLUTE_SCRIPT_PATH=$(realpath "$LAMBDA_SCRIPT_ARG")
 fi

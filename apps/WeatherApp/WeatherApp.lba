@@ -1,0 +1,29 @@
+**
+    WeatherApp.lba - A simple weather app to test Lambda's UI preview.
+    This demonstrates using custom classes for styling components.
+**
+
+print "--- Initializing Weather App ---";
+
+ui main_window = Window("Weather");
+
+** --- 1. Setup Background and Main Layout --- **
+** A real app would get this path from a config or API **
+ui background = BackgroundImage("../../ui/components/home/acepaper.png");
+main_window.add(background);
+
+** --- 2. Create UI Elements with custom style classes --- **
+ui location_label = Label("San Francisco", ["weather-location"]);
+ui temp_label = Label("68°", ["weather-temp"]);
+ui condition_label = Label("Partly Cloudy", ["weather-condition"]);
+
+** --- 3. Add elements to the window --- **
+main_window.add(location_label);
+main_window.add(temp_label);
+main_window.add(condition_label);
+
+print "--- Weather App UI constructed successfully ---";
+
+Button("back")
+
+ui ui ui ui ui ui ui ui ui ui ui ui ui ui ui ui ui ui ui
