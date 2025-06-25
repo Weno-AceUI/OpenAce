@@ -125,4 +125,10 @@ widget_t* widget_find_by_id(widget_t* root, const char* id);
 // Clean up widget system
 void widget_cleanup(void);
 
+// Create tabbar widget
+widget_t* widget_create_tabbar(const char* id);
+
+// Create tab widget
+widget_t* widget_create_tab(const char* id, const char* title, widget_t* content);
+
 #endif // ACEUI_WIDGET_H 

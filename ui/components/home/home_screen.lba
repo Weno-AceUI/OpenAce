@@ -7,7 +7,6 @@
 print "--- Initializing OpenAce Home Screen ---";
 ui main_window = Window("OpenAce Home");
 ui app_grid = IconGrid();
-ui dock = Dock();
 ui test = Label("Test Test Test Test Test.");
 ui background = BackgroundImage("acepaper.png");
 main_window.add(background);
@@ -17,22 +16,26 @@ main_window.add(background);
 
 ui phone_icon = AppIcon("Phone", "icons/Phone.svg");
 ui messages_icon = AppIcon("Messages", "icons/Messages.svg");
-ui browser_icon = AppIcon("Browser", "icons/Browser.svg");
+ui browser_icon = AppIcon("Browser", "icons/Browse.svg");
+ui photos_icon = AppIcon("Photos", "icons/Photos.svg");
+ui settings_icon = AppIcon("Settings", "icons/Settings.svg");
+ui launcher_icon = AppIcon("Launcher", "icons/Launcher.svg");
+ui music_icon = AppIcon("Music", "icons/Music.svg");
+ui camera_icon = AppIcon("Camera", "icons/Camera.svg");
+ui files_icon = AppIcon("Files", "icons/Files.svg");
 
 app_grid.add(phone_icon);
 app_grid.add(messages_icon);
 app_grid.add(browser_icon);
-
-** --- 3. Populate the dock --- **
-ui photos_icon = AppIcon("Photos", "icons/Photos.svg");
-ui settings_icon = AppIcon("Settings", "icons/Settings.svg");
-
-dock.add(photos_icon);
-dock.add(settings_icon);
+app_grid.add(photos_icon);
+app_grid.add(settings_icon);
+app_grid.add(launcher_icon);
+app_grid.add(music_icon);
+app_grid.add(camera_icon);
+app_grid.add(files_icon);
 
 ** --- 4. Assemble the final view --- **
 main_window.add(app_grid);
-main_window.add(dock);
 main_window.add(test);
 
 print "--- OpenAce Home Screen UI constructed successfully ---";

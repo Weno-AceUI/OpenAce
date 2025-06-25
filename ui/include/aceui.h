@@ -31,7 +31,9 @@ typedef enum {
     WIDGET_TREEVIEW,
     WIDGET_MENU,
     WIDGET_TOOLBAR,
-    WIDGET_STATUSBAR
+    WIDGET_STATUSBAR,
+    WIDGET_TABBAR,
+    WIDGET_TAB
 } widget_type_t;
 
 // Color structure
@@ -181,5 +183,7 @@ void aceui_render(void);
 
 // Clean up AceUI framework
 void aceui_cleanup(void);
+
+// Optionally, define TabBar/Tab structures here if needed for your C backend
 
 #endif // ACEUI_H 

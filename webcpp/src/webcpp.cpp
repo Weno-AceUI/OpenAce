@@ -1,6 +1,7 @@
 #include "../include/webcpp.h"
 #include "../include/webcpp_gpu.h"
 #include "../include/webcpp_threading.h"
+#include "../../ui/include/aceui_widget.h"
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h> // For directory listing
@@ -236,6 +237,71 @@ static void GenericV8FunctionCallback(const v8::FunctionCallbackInfo<v8::Value>&
         } else {
             args.GetReturnValue().Set(v8::Null(isolate));
         }
+        return;
+    }
+
+    // TabBar and Tab widget creation functions
+    if (strcmp(func_name, "WidgetAPI_createTabBar") == 0) {
+        if (args.Length() < 1 || !args[0]->IsString()) {
+            isolate->ThrowException(v8::String::NewFromUtf8Literal(isolate, "Expected 1 string argument (id)."));
+            return;
+        }
+        v8::String::Utf8Value arg0_v8(isolate, args[0]);
+        const char* arg0_c = *arg0_v8;
+
+        typedef void* (*FuncType_Ctx_Str_Ptr)(webcpp_context_t*, const char*);
+        FuncType_Ctx_Str_Ptr actual_func = reinterpret_cast<FuncType_Ctx_Str_Ptr>(c_func_ptr);
+        void* result = actual_func(webcpp_ctx, arg0_c);
+        
+        if (result) {
+            args.GetReturnValue().Set(v8::External::New(isolate, result));
+        } else {
+            args.GetReturnValue().Set(v8::Null(isolate));
+        }
+        return;
+    }
+
+    if (strcmp(func_name, "WidgetAPI_createTab") == 0) {
+        if (args.Length() < 3 || !args[0]->IsString() || !args[1]->IsString()) {
+            isolate->ThrowException(v8::String::NewFromUtf8Literal(isolate, "Expected 3 arguments: id (string), title (string), content_widget (object)."));
+            return;
+        }
+        v8::String::Utf8Value arg0_v8(isolate, args[0]);
+        const char* arg0_c = *arg0_v8;
+        v8::String::Utf8Value arg1_v8(isolate, args[1]);
+        const char* arg1_c = *arg1_v8;
+        
+        void* content_widget = NULL;
+        if (!args[2]->IsNull() && args[2]->IsExternal()) {
+            content_widget = v8::Local<v8::External>::Cast(args[2])->Value();
+        }
+
+        typedef void* (*FuncType_Ctx_Str_Str_Ptr_Ptr)(webcpp_context_t*, const char*, const char*, void*);
+        FuncType_Ctx_Str_Str_Ptr_Ptr actual_func = reinterpret_cast<FuncType_Ctx_Str_Str_Ptr_Ptr>(c_func_ptr);
+        void* result = actual_func(webcpp_ctx, arg0_c, arg1_c, content_widget);
+        
+        if (result) {
+            args.GetReturnValue().Set(v8::External::New(isolate, result));
+        } else {
+            args.GetReturnValue().Set(v8::Null(isolate));
+        }
+        return;
+    }
+
+    if (strcmp(func_name, "WidgetAPI_addTabToTabBar") == 0) {
+        if (args.Length() < 2 || !args[0]->IsExternal() || !args[1]->IsExternal()) {
+            isolate->ThrowException(v8::String::NewFromUtf8Literal(isolate, "Expected 2 arguments: tabbar_widget (object), tab_widget (object)."));
+            return;
+        }
+        
+        void* tabbar_widget = v8::Local<v8::External>::Cast(args[0])->Value();
+        void* tab_widget = v8::Local<v8::External>::Cast(args[1])->Value();
+
+        typedef bool (*FuncType_Ctx_Ptr_Ptr_Bool)(webcpp_context_t*, void*, void*);
+        FuncType_Ctx_Ptr_Ptr_Bool actual_func = reinterpret_cast<FuncType_Ctx_Ptr_Ptr_Bool>(c_func_ptr);
+        bool result = actual_func(webcpp_ctx, tabbar_widget, tab_widget);
+        
+        args.GetReturnValue().Set(v8::Boolean::New(isolate, result));
         return;
     }
 
@@ -765,4 +831,38 @@ void webcpp_shutdown(void) {
         printf("WebCpp: V8 shutdown.\n");
     }
     g_initialized = false;
+}
+
+// TabBar and Tab widget creation functions
+void* create_tabbar_widget_js(webcpp_context_t* ctx, const char* id) {
+    if (!ctx || !id) return NULL;
+    
+    // Create TabBar widget using the C widget system
+    widget_t* tabbar = widget_create_tabbar(id);
+    if (tabbar) {
+        printf("WebCpp: Created TabBar widget with id: %s\n", id);
+    }
+    return tabbar;
+}
+
+void* create_tab_widget_js(webcpp_context_t* ctx, const char* id, const char* title, void* content_widget) {
+    if (!ctx || !id || !title) return NULL;
+    
+    // Create Tab widget using the C widget system
+    widget_t* tab = widget_create_tab(id, title, (widget_t*)content_widget);
+    if (tab) {
+        printf("WebCpp: Created Tab widget with id: %s, title: %s\n", id, title);
+    }
+    return tab;
+}
+
+bool add_tab_to_tabbar_js(webcpp_context_t* ctx, void* tabbar_widget, void* tab_widget) {
+    if (!ctx || !tabbar_widget || !tab_widget) return false;
+    
+    // Add tab to tabbar using the C widget system
+    bool success = widget_add_child((widget_t*)tabbar_widget, (widget_t*)tab_widget);
+    if (success) {
+        printf("WebCpp: Added tab to TabBar successfully\n");
+    }
+    return success;
 } 

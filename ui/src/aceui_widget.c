@@ -271,4 +271,23 @@ void widget_cleanup(void) {
     // - Free default styles
 
     g_initialized = false;
+}
+
+widget_t* widget_create_tabbar(const char* id) {
+    widget_t* tabbar = widget_create(id, NULL);
+    if (tabbar) {
+        tabbar->type = WIDGET_TABBAR;
+    }
+    return tabbar;
+}
+
+widget_t* widget_create_tab(const char* id, const char* title, widget_t* content) {
+    widget_t* tab = widget_create(id, title);
+    if (tab) {
+        tab->type = WIDGET_TAB;
+        if (content) {
+            widget_add_child(tab, content);
+        }
+    }
+    return tab;
 } 

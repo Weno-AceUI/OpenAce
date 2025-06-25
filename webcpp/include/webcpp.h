@@ -55,6 +55,9 @@ bool webcpp_load_url(webcpp_context_t* context, const char* url);
 // Register C++ function to be called from JavaScript
 bool webcpp_register_function(webcpp_context_t* context, const char* name, void* function_ptr);
 
+// Register widget functions (TabBar, Tab, etc.)
+bool webcpp_register_widget_functions(webcpp_context_t* context);
+
 // Call JavaScript function from C++
 bool webcpp_call_js_function(webcpp_context_t* context, const char* function_name, const char* args_json, char** result_json);
 
